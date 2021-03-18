@@ -61,6 +61,8 @@ namespace ODOT.ARMS.Web.Entities
         public virtual DbSet<FinOverviewDD> ArmsFinOverview { get; set; }
 
         public virtual DbSet<ArmsBudgetInventory> ArmsBudgetInventory { get; set; }
+
+        public virtual DbSet<ArmsContribution> ARMSContributions { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -1155,6 +1157,42 @@ namespace ODOT.ARMS.Web.Entities
                 entity.Property(dev => dev.EntryDate).HasColumnName("ENTRY_DT");
             });
 
+            modelBuilder.Entity<ArmsContribution>(entity =>
+            {
+
+                entity.ToTable("ARMS_PULLING_CONTRIBUTION");
+
+                entity.Property(e => e.ContributionId)
+                  .HasColumnName("CONTROLLING_BOARD_ID");
+
+
+                entity.Property(e => e.ProjectId)
+                 .HasColumnName("PROJ_ID");
+
+                entity.Property(e => e.FiscalYear)
+                .HasColumnName("FISCAL_YR");
+
+                entity.Property(e => e.CommittedAmt)
+                .HasColumnName("AMT_COMMITTED");
+                entity.Property(e => e.TransferredAmt)
+               .HasColumnName("AMT_TRANSFERRED");
+
+                entity.Property(e => e.TransferReceiveDate)
+                .HasColumnName("TRNSFR_REC_DT");
+
+                entity.Property(e => e.Comment)
+               .HasColumnName("COMMENT_TXT");
+
+                entity.Property(e => e.USStateCode)
+                .HasColumnName("US_STATES_CD");
+
+                entity.Property(e => e.EntryDate)
+                .HasColumnName("ENTRY_DT");
+
+                entity.Property(e => e.UserId)
+                .HasColumnName("USER_ID");
+
+            });
         }
     }
 }

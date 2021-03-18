@@ -24,7 +24,7 @@ namespace ODOT.ARMS.Web.Repositories
                 _cache = memoryCache;
                 _context = context;
             }
-            public async Task<ArmsContribution> AddArmsContribAsync(ArmsContribution cb)
+            public async Task<ArmsContribution> AddArmsContributionAsync(ArmsContribution cb)
             {
                 await _context.ARMSContributions.AddAsync(cb);
                 await _context.SaveChangesAsync();
@@ -36,7 +36,7 @@ namespace ODOT.ARMS.Web.Repositories
                 _context.SaveChanges();
             }
 
-            public async Task<List<ArmsContribution>> GetAllArmsContribAsync()
+            public async Task<List<ArmsContribution>> GetAllArmsContributionAsync()
             {
                 return await _cache.GetOrCreateAsync("CB", entry =>
                 {
@@ -49,19 +49,19 @@ namespace ODOT.ARMS.Web.Repositories
                 //});
             }
 
-            public async Task<IEnumerable<ArmsContribution>> GetAllArmsContribAsyncByProjectId(Guid ProjectId)
+            public async Task<IEnumerable<ArmsContribution>> GetAllArmsContributionAsyncByProjectId(Guid ProjectId)
             {
-                var result = await GetAllArmsContribAsync();
+                var result = await GetAllArmsContributionAsync();
                 return result.Where(a => a.ProjectId == ProjectId);
             }
-            public async Task<ArmsContribution> GetArmsContribIdAsync(Guid Id)
+            public async Task<ArmsContribution> GetArmsContributionIdAsync(Guid Id)
             {
                 //throw new NotImplementedException();
-                var result = await GetAllArmsContribAsync();
+                var result = await GetAllArmsContributionAsync();
                 return result.FirstOrDefault(a => a.ContributionId == Id);
             }
 
-            public ArmsContribution UpdateArmsContrib(ArmsContribution cb)
+            public ArmsContribution UpdateArmsContribution(ArmsContribution cb)
             {
                 _context.ARMSContributions.Update(cb);
                 _context.Attach(cb);

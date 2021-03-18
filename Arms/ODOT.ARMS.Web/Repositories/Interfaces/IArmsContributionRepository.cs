@@ -8,14 +8,14 @@ namespace ODOT.ARMS.Web.Repositories.Interfaces
 {
     public interface IArmsContributionRepository
     {
-        Task<List<ArmsContribution>> GetAllArmsContribAsync();
-        Task<IEnumerable<ArmsContribution>> GetAllArmsContribAsyncByProjectId(Guid ProjectId);
+        Task<List<ArmsContribution>> GetAllArmsContributionAsync();
+        Task<IEnumerable<ArmsContribution>> GetAllArmsContributionAsyncByProjectId(Guid ProjectId);
 
-        Task<ArmsContribution> GetArmsContribIdAsync(Guid Id);
+        Task<ArmsContribution> GetArmsContributionIdAsync(Guid Id);
 
-        Task<ArmsContribution> AddArmsContribAsync(ArmsContribution armsContribution);
+        Task<ArmsContribution> AddArmsContributionAsync(ArmsContribution armsContribution);
 
-        ArmsContribution UpdateArmsContrib(ArmsContribution armsContribution);
+        ArmsContribution UpdateArmsContribution(ArmsContribution armsContribution);
 
         void CommitChanges();
 

@@ -32,7 +32,7 @@ namespace ODOT.ARMS.Web.Controllers
         [RequestHeaderMatchesMediaType("Accept", new[] { "application/vnd.dot.arms.cbsforproject+json" })]
         public async Task<IActionResult> GetCBsListByProjectId(Guid projectId)
         {
-            var cbs = await _ContributionRepo.GetAllArmsContribAsyncByProjectId(projectId);
+            var cbs = await _ContributionRepo.GetAllArmsContributionAsyncByProjectId(projectId);
 
             if (cbs == null)
             {
@@ -66,7 +66,7 @@ namespace ODOT.ARMS.Web.Controllers
             {
                 cbForCreate.UserId = "preicher";
                 cbToAdd = _mapper.Map<Entities.ArmsContribution>(cbForCreate);
-                await _ContributionRepo.AddArmsContribAsync(cbToAdd);
+                await _ContributionRepo.AddArmsContributionAsync(cbToAdd);
             }
             catch (Exception ex)
             {
@@ -83,7 +83,7 @@ namespace ODOT.ARMS.Web.Controllers
         [RequestHeaderMatchesMediaType("Content-Type", new[] { "application/vnd.dot.arms.cbforupdate+json" })]
         public async Task<IActionResult> UpdateCB(Guid ContributionId, [FromBody] DTOs.ArmsContribution cbForUpdate)
         {
-            var cbFromRepo = await _ContributionRepo.GetArmsContribIdAsync(ContributionId);
+            var cbFromRepo = await _ContributionRepo.GetArmsContributionIdAsync(ContributionId);
 
             if (cbFromRepo == null)
             {
@@ -91,7 +91,7 @@ namespace ODOT.ARMS.Web.Controllers
             }
 
             cbForUpdate.UserId = "preicher";
-            _ContributionRepo.UpdateArmsContrib(_mapper.Map(cbForUpdate, cbFromRepo));
+            _ContributionRepo.UpdateArmsContribution(_mapper.Map(cbForUpdate, cbFromRepo));
             var copyCB = _mapper.Map<DTOs.ArmsContribution>(cbFromRepo);
             copyCB.DocCnt = await _fileUploads.GetUploadCountBySrcIdAsync(cbForUpdate.ContributionId ?? Guid.Empty);
             return Ok(copyCB);
