@@ -1,0 +1,50 @@
+<kendo-dialog-titlebar class="k-fin-data">Add Invoice</kendo-dialog-titlebar>
+
+<kendo-tabstrip (tabSelect)="onTabSelect($event)" class="sub-fin-menu">
+
+  <kendo-tabstrip-tab [title]="'Overview'" [selected]="true">
+    <ng-template kendoTabContent class="sub-fin-menu">
+      <financial-invoices-balances></financial-invoices-balances>
+    </ng-template>
+  </kendo-tabstrip-tab>
+
+  <!--<kendo-tabstrip-tab [title]="'Invoice(WBTO)'">
+    <ng-template kendoTabContent class="sub-fin-menu">
+      <financial-invoices-invoice></financial-invoices-invoice>
+    </ng-template>
+  </kendo-tabstrip-tab>-->
+
+  <!--<kendo-tabstrip-tab [title]="'Encumbrance'">
+    <ng-template kendoTabContent>
+      <financial-invoices-encumbrance></financial-invoices-encumbrance>
+    </ng-template>
+  </kendo-tabstrip-tab>-->
+
+  <kendo-tabstrip-tab [title]="'Budget Category'">
+    <ng-template kendoTabContent>
+      <financial-invoices-budget-categories></financial-invoices-budget-categories>
+    </ng-template>
+  </kendo-tabstrip-tab>
+
+  <kendo-tabstrip-tab [title]="'Comments & Uploads'">
+    <ng-template kendoTabContent>
+      <financial-invoices-commentuploads></financial-invoices-commentuploads>
+    </ng-template>
+  </kendo-tabstrip-tab>
+</kendo-tabstrip>
+<!--
+<financial-invoices-invoice></financial-invoices-invoice>
+
+<financial-invoices-encumbrance></financial-invoices-encumbrance>
+
+<financial-invoices-balances></financial-invoices-balances>
+
+<financial-invoices-budget-categories></financial-invoices-budget-categories>
+
+<financial-invoices-commentuploads></financial-invoices-commentuploads>
+  -->
+
+<kendo-dialog-actions>
+  <button class="btn" tabindex="5" (click)="AddEditDialogClose()">Cancel</button>
+  <button class="btn btn-margin-left" (click)="AddEditDialogSave()">Save</button>
+</kendo-dialog-actions>

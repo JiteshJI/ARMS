@@ -1,0 +1,67 @@
+
+<kendo-dialog class="dis-contacts" *ngIf="active" [width]="400" [height]="300" (close)="closeForm()">
+  <kendo-dialog-titlebar>Edit Agency</kendo-dialog-titlebar>
+  <form class="k-form" [formGroup]="editagencyForm">
+
+    <div class="row">
+      <div class="col-md">
+        <label class="k-label">Agency Name</label>
+        <input kendoTextBox formControlName="AgencyName" />
+      </div>
+
+      <div class="col-md">
+        <label class="k-label">Business Address</label>
+        <input kendoTextBox formControlName="Address1" />
+      </div>
+
+      <div class="col-md">
+        <label class="k-label">Address 2</label>
+        <input kendoTextBox formControlName="Address2" />
+      </div>
+
+      <div class="col-md">
+        <label class="k-label">City</label>
+          <input kendoTextBox formControlName="City" />        
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-2">
+        <label class="k-label">Zip Code</label>
+          <input kendoTextBox formControlName="Zip" />        
+      </div>
+
+      <div class="col-2">
+        <label class="k-label">Zip Ext.</label>
+          <input kendoTextBox formControlName="ZipExtCd" />        
+      </div>
+
+      <div class="col-2">
+        <label class="k-label">Business Phone</label>
+          <input kendoTextBox formControlName="BusinessPhone" />        
+      </div>
+
+      <div class="col-2">
+        <label class="k-label">Business Ext.</label>
+          <input kendoTextBox formControlName="BusinessPhoneExt" />        
+      </div>
+
+      <div class="col-2">
+        <label class="k-label">Mobile Phone</label>
+          <input kendoTextBox formControlName="MobilePhone" />        
+      </div>
+
+      <div class="col-2">
+        <label class="k-label">Status</label>
+          <kendo-dropdownlist>
+          </kendo-dropdownlist>        
+      </div>
+
+    </div>
+    <div class="fade_rule col-md"></div>
+  </form>
+  <kendo-dialog-actions>
+    <button class="btn" (click)="onCancel($event)">Cancel</button>
+    <button class="btn" (click)="onSave($event)">Save</button>
+  </kendo-dialog-actions>
+</kendo-dialog>

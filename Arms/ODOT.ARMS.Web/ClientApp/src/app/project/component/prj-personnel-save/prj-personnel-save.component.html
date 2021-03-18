@@ -1,0 +1,62 @@
+
+<kendo-dialog [width]="150" [height]="430" *ngIf="saveDialogStatus"(close)="addNewEditPersonnelDialogClose.emit(false)">
+  <kendo-dialog-titlebar class="k-refdata">{{getTitle()}}</kendo-dialog-titlebar>
+  <form class="k-form" [formGroup]="personnelForm">
+    <div class="row">
+      <div class="col-6">
+        <label for="contactId">Name</label>
+        <kendo-dropdownlist formControlName="contactId"
+        [data]="data"
+        [textField]="'text'"
+        [valueField]="'value'"
+        [filterable]="true"
+        (filterChange)="handleFilter($event)"
+        [valuePrimitive]="true"  class="k-textboxmedium" tabindex="1">
+        </kendo-dropdownlist>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <label for="RoleId"> Role</label>
+        <kendo-dropdownlist formControlName="roleId"
+        [data]="contactRoles"
+        [textField]="'text'"
+        [valueField]="'value'"
+        [valuePrimitive]="true"  class="k-textboxmedium" tabindex="2">
+        </kendo-dropdownlist>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+        <label for="isLeadInd">Lead</label>
+          <kendo-dropdownlist
+          formControlName="isLeadInd"
+          [data]="isLeadInd"
+          [textField]="'text'"
+          [valueField]="'value'"
+          [valuePrimitive]="true" class="k-textboxmedium" tabindex="3">
+          </kendo-dropdownlist>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+        <label for="activeInd">Status</label>
+          <kendo-dropdownlist formControlName="activeInd"
+          [data]="ActiveIn"
+          [textField]="'text'"
+          [valueField]="'value'"
+          [valuePrimitive]="true" class="k-textboxmedium" tabindex="4">
+          </kendo-dropdownlist>
+      </div>
+    </div>
+  </form>
+  <kendo-dialog-actions>
+    <button class="btn" (click)="addNewEditPersonnelDialogClose.emit(false)">Cancel</button>
+    <button class="btn btn-margin-left" (click)="savePersonnel()" primary="true">Save</button>
+  </kendo-dialog-actions>
+</kendo-dialog>
+

@@ -1,0 +1,106 @@
+/*#region login-page -----------------------*/
+.login-wrap {
+
+  & .login-wrap-background {
+    background-color: #bfbfbf;
+  }
+
+  & .card-login {
+    height: 100%
+  }
+
+  &.card-login-photo {
+    height: 100%
+  }
+
+  & .btn-block {
+    margin-top: 0px !important;
+
+    &:nth-child(n + 2) {
+      margin-left: 15px;
+    }
+  }
+
+  & .login-image {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: 94%;
+    height: auto;
+    max-height: 95%;
+    display: block;
+    margin: auto;
+    position: relative;
+    left: 10px;
+  }
+
+  .login-card-wrap {
+    margin: 0 auto;
+    width: 75vw;
+    height: 100vh;
+    align-items: center;
+
+    & .login-card {
+      box-shadow: 0px 3px 6px 1px #a0a0a0 !important;
+      border: 8px solid #009969;
+
+      & .btn-login-wrap {
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+      }
+
+      & .row {
+        height: 100%;
+
+        & .col-6 {
+          height: inherit;
+
+          & .left-inner-login-card {
+            border-radius: 0px 0px 0px 0px !important;
+            height: inherit;
+            border: none;
+            background-color: #f7f7f7;
+          }
+
+          & .right-inner-login-card {
+            border-radius: 0px 0px 0px 0px !important;
+            height: inherit;
+            border: none;
+          }
+        }
+      }
+    }
+
+    & .card-body {
+      border-radius: 0px;
+      max-height: fit-content;
+      background-color: unset;
+      box-shadow: unset;
+      padding: 0px 35px !important;
+    }
+
+    & .card {
+      box-shadow: none;
+      background-color: #ffffff;
+      border-radius: 10px !important;
+      height: 515px;
+    }
+
+    & .login-card-header {
+      border-radius: 0px !important;
+      background-color: unset !important;
+      color: black;
+      box-shadow: none;
+      width: 100%;
+      text-align: center;
+
+      & p {
+        margin-bottom: 70px !important;
+        font-size: 40px;
+      }
+    }
+  }
+}
+/*#endregion */

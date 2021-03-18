@@ -1,0 +1,47 @@
+<fin-budgetCategory-list *ngIf="viewSalaryWagesGrid$ | async"
+                                 [budgetCategories]="budgetCategories$ | async"
+                                 [budgets]="budgets$ | async"
+                                 (editBudget)="editBudget($event)"
+                                 [phaseList]="phaseList$ | async"
+                                 [status]="status$"
+                                 (selectedBudgetCategoryDDL)="selectedBudgetCategoryDDL($event)"
+                                 [budgetCategoryAltId]="bcAltId">
+</fin-budgetCategory-list>
+
+<!--Add/Edit budget dialogs-->
+<app-prj-other-categories-budget-save *ngIf="addOtherCategoryDialogStatus$ | async"
+                                      [dialogStatus]="addOtherCategoryDialogStatus$ | async"
+                                      [projectId]="projectId$ | async"
+                                      [selectedCategory]="this.selectedBudgetCategory"
+                                      (closeDialog)="closeOtherCategoryDialog()"
+                                      (saveOtherCategoryBudget)="saveBudget($event)"
+                                      [selectedBudget]="selectedBudget$ | async"
+                                      [phaseList]="phaseList$ | async"
+                                      [status]="status$">
+</app-prj-other-categories-budget-save>
+
+<app-prj-salarywages-budget-save *ngIf="addSalaryWagesDialogStatus$ | async"
+                                 [dialogStatus]="addSalaryWagesDialogStatus$ | async"
+                                 [projectId]="projectId$ | async"
+                                 [selectedCategory]="this.selectedBudgetCategory"
+                                 (closeDialog)="closeSalaryWagesDialog()"
+                                 (saveSalaryWagesBudget)="saveBudget($event)"
+                                 [selectedBudget]="selectedBudget$ | async"
+                                 [phaseList]="phaseList$ | async"
+                                 [status]="status$"
+                                 [isSalaryAndWages]="isSalaryAndWages">
+
+</app-prj-salarywages-budget-save>
+
+
+<app-prj-subcontractor-budget-save *ngIf="addSubContractorDialogStatus$ | async"
+                                   [dialogStatus]="addSubContractorDialogStatus$ | async"
+                                   [projectId]="projectId$ | async"
+                                   [selectedCategory]="this.selectedBudgetCategory"
+                                   (closeDialog)="closeSubContractorDialog()"
+                                   (saveSubContractorBudget)="saveBudget($event)"
+                                   [selectedBudget]="selectedBudget$ | async"
+                                   [phaseList]="phaseList$ | async"
+                                   [status]="status$">
+</app-prj-subcontractor-budget-save>
+<!--Add/Edit budget dialogs-->

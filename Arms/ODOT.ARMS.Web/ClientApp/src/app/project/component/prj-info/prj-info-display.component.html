@@ -1,0 +1,262 @@
+<form [formGroup]="prjInfoForm">
+  <div class="row">
+    <div class="col-9">
+      <label for="proj-Info">
+        Project Title <span class="k-field-info k-required">*</span> <span class="blue-text char-count">{{prjInfoForm.controls.projectTitleTxt.value.length}} OF {{maxChars}} Characters</span>
+        <kendo-formfield>
+          <textarea kendoTextArea formControlName="projectTitleTxt" id="project-title" rows="4" cols="50" maxlength="maxChars" tabindex="1"></textarea>
+          <kendo-formerror *ngIf="prjInfoForm.controls.projectTitleTxt.errors?.required">Project Title is required</kendo-formerror>
+        </kendo-formfield>
+      </label>
+    </div>
+    <div class="col-3">
+      <label for="classification">
+        Classification
+        <input kendoTextBox id="classification" class="k-textboxsmall" value={{populateClassificationName()}} disabled tabindex="-1" />
+      </label>
+      <kendo-formfield>
+        <label for="projectStatusId" class="control-label">
+          Project Status<span class="k-field-info k-required">*</span>
+          <kendo-dropdownlist #projectStatusTxt
+                              isRequired="true"
+                              formControlName="projectStatusId"
+                              [data]="projectStatus"
+                              [defaultItem]="{text: 'Select Project Status',value: null }"
+                              [textField]="'text'"
+                              [valueField]="'value'"
+                              [valuePrimitive]="true"
+                              tabindex="2" required>
+          </kendo-dropdownlist>
+        </label>
+        <kendo-formerror *ngIf="prjInfoForm.controls.projectStatusId.errors?.required">Project Status is required</kendo-formerror>
+      </kendo-formfield>
+    </div>
+  </div>
+
+
+
+  <div class="row">
+    <div class="col-3">
+      <kendo-formfield>
+        <label for="ideaNum">Idea Number</label>
+        <input formControlName="ideaNum" kendoTextBox id="ideaNum" maxlength="100" tabindex="3" />
+        <kendo-formerror *ngIf="prjInfoForm.controls.ideaNum.errors?.valueExists">Duplicate:Enter unique Idea number</kendo-formerror>
+      </kendo-formfield>
+    </div>
+    <div class="col-3">
+      <kendo-formfield>
+        <label for="rfpNum">RFP Number <span class="k-field-info k-required">*</span></label>
+        <input formControlName="rfpNum" kendoTextBox id="rfpNum" maxlength="100" tabindex="4" />
+        <kendo-formerror *ngIf="prjInfoForm.controls.rfpNum.errors?.required">RFP number is required</kendo-formerror>
+        <kendo-formerror *ngIf="prjInfoForm.controls.rfpNum.errors?.valueExists">Duplicate: Enter a unique RFP number</kendo-formerror>
+      </kendo-formfield>
+    </div>
+
+
+
+    <div class="col-3">
+      <kendo-formfield>
+        <label for="stateJobNum"> State Job Number</label>
+        <input formControlName="stateJobNum" kendoTextBox id="stateJobNum" maxlength="100" tabindex="5" />
+        <kendo-formerror *ngIf="prjInfoForm.controls.stateJobNum.errors?.valueExists">Duplicate: Enter a unique State Job number</kendo-formerror>
+      </kendo-formfield>
+    </div>
+
+    <div class="col-3">
+      <kendo-formfield>
+        <label for="propFiscalYr"> Proposed FY<span class="k-field-info k-required">*</span></label>
+        <kendo-numerictextbox id="propFiscalYr"
+                              [spinners]="false"
+                              [step]="1"
+                              [decimals]="'0'"
+                              formControlName="propFiscalYr"
+                              [format]="formatOptions"
+                              [min]="'2015'"
+                              [max]="'2050'"
+                              [autoCorrect]="'true'"
+                              class="k-textboxsmall"
+                              tabindex="6" required>
+        </kendo-numerictextbox>
+        <kendo-formerror *ngIf="prjInfoForm.controls.propFiscalYr.errors?.required">Proposed FY is required</kendo-formerror>
+      </kendo-formfield>
+    </div>
+  </div>
+
+
+  <!-- Row 3 ----------------------------------------------------------------------------------------------->
+
+  <div class="row">
+    <div class="col-3">
+      <kendo-formfield>
+        <label for="pidNum"> PID Number</label>
+        <input formControlName="pidNum" class="too-cool" kendoTextBox id="pidNum" maxlength="100" tabindex="7" (keypress)="charCheck($event)" />
+        <button kendoButton class="cool" [iconClass]="'k-icon k-i-reload'" (click)="pidInfo()" tabindex="-1"></button>
+        <kendo-formerror *ngIf="prjInfoForm.controls.fedAuthNum.errors?.valueExists">Duplicate: Enter a unique Pid Number</kendo-formerror>
+      </kendo-formfield>
+    </div>
+
+    <div class="col-3">
+      <kendo-formfield>
+        <label for="fedAuthNum"> Federal Authorization Number</label>
+        <input formControlName="fedAuthNum" kendoTextBox id="fedAuthNum" maxlength="100" tabindex="8" />
+        <kendo-formerror *ngIf="prjInfoForm.controls.fedAuthNum.errors?.valueExists">Duplicate: Enter a unique Federal Authorization Number</kendo-formerror>
+      </kendo-formfield>
+    </div>
+
+    <div class="col-3">
+      <kendo-formfield>
+        <label for="agreementNum"> Agreement Number</label>
+        <input formControlName="agreementNum" kendoTextBox id="agreementNum" maxlength="100" tabindex="9" />
+        <kendo-formerror *ngIf="prjInfoForm.controls.agreementNum.errors?.valueExists">Duplicate: Enter a unique Agreement number</kendo-formerror>
+      </kendo-formfield>
+    </div>
+
+    <div class="col-3" *ngIf="populateClassificationName()==='POOLED-LEAD'">
+      <!--<kendo-formfield>
+        <label for="tpfNum"> TPF Number</label>
+        <input formControlName="tpfNum" kendoTextBox id="tpfNum" maxlength="100" tabindex="9" />
+        <kendo-formerror *ngIf="prjInfoForm.controls.tpfNum.errors?.valueExists">Duplicate: Enter a tpf number</kendo-formerror>
+      </kendo-formfield>-->
+      <kendo-formfield>
+        <label for="tpfNum"> TPF Number</label>
+        <kendo-maskedtextbox id="tpfNum" [formControlName]="'tpfNum'" [mask]="TPFNumberMask" [value]="tpfNum" id="tpfNum" maxlength="100" tabindex="9"></kendo-maskedtextbox>
+        <kendo-formerror *ngIf="prjInfoForm.controls.tpfNum.errors?.valueExists">Duplicate: Enter a tpf number</kendo-formerror>
+      </kendo-formfield>
+    </div>
+  </div>
+
+  <!-- Row 4 ----------------------------------------------------------------------------------------------->
+
+  <div class="fade_rule col-md"></div>
+  <div class="row">
+    <div class="col-9">
+
+      <div class="row">
+        <div class="col-4">
+          <label for="ContractStartDt1">Contract Start Date</label>
+          <kendo-datepicker formControlName="contractStartDt" name="contractStartDt"
+                            [format]="'MM/dd/yyyy'"
+                            tabindex="10">
+          </kendo-datepicker>
+        </div>
+
+        <div class="col-4">
+
+          <label for="agencyId">Research Agency</label>
+          <kendo-dropdownlist formControlName="agencyId"
+                              [defaultItem]="{text: 'Select Project Status',value: null }"
+                              [data]="researchAgencies"
+                              [filterable]="true"
+                              [textField]="'agencyNameTxt'"
+                              [valueField]="'agencyId'"
+                              [valuePrimitive]="true">
+          </kendo-dropdownlist>
+        </div>
+
+        <div class="col-4">
+          <div class="form-group">
+            <label for="addressCd">Address Code</label>
+            <kendo-dropdownlist formControlName="addressCd"
+                                [data]="addressCodes"
+                                tabindex="13">
+            </kendo-dropdownlist>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4">
+
+          <label for="contractEndDt">Contract End Date</label>
+          <kendo-datepicker formControlName="contractEndDt"
+                            name="contractEndDt"
+                            [format]="'MM/dd/yyyy'"
+                            tabindex="14"></kendo-datepicker>
+        </div>
+
+        <div class="col-4">
+          <label for="vendor">Vendor ID</label>
+          <input formControlName="vendorIdTxt" kendoTextBox disabled maxlength="100" tabindex="-1" />
+        </div>
+
+        <div class="col-4">
+          <label for="duration">Project Duration (in Months)</label>
+          <kendo-numerictextbox [spinners]="false"
+                                [step]="1"
+                                [decimals]="'0'"
+                                formControlName="projectDuration"
+                                id="projectDuration"
+                                [format]="formatOptions"
+                                [min]="'0'"
+                                [max]="'9999'"
+                                [autoCorrect]="'true'"
+                                tabindex="15"
+                                class="k-textboxsmall">
+          </kendo-numerictextbox>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-3">
+      <!--<button class="btn-special btn">Project Types</button>-->
+      <label for="prjType">Project Types<span class="k-field-info k-required">*</span></label>
+      <kendo-formfield>
+        <kendo-multiselect formControlName="projectTypeNbr"
+                           [data]="projectTypes"
+                           [placeholder]="'Select Project Types'"
+                           [textField]="'text'"
+                           [valueField]="'value'"
+                           (valueChange)="handleProjTypeChange($event)"
+                           [valuePrimitive]="true"
+                           tabindex="12" required>
+        </kendo-multiselect>
+        <kendo-formerror *ngIf="prjInfoForm.controls.projectTypeNbr.errors?.required">Project Types are required</kendo-formerror>
+      </kendo-formfield>
+    </div>
+
+  </div>
+
+  <!--   Row 8 --------------------------------------------------------------------------------------- -->
+
+  <div class="row">
+
+    <div class="col-3">
+
+      <label class="k-label">Current End Date</label>
+      <kendo-datepicker formControlName="currentEndDt"
+                        name="currentEndDt"
+                        [format]="'MM/dd/yyyy'"
+                        tabindex="16"></kendo-datepicker>
+    </div>
+
+    <div class="col-3">
+
+      <label for="agreementNum">Addendum Letter</label>
+      <!-- This should be the last addendum to the project -->
+      <input formControlName="agreementNum" kendoTextBox id="classification" class="k-textboxsmall" disabled tabindex="-1" />
+    </div>
+  </div>
+  <!--  Row 10 --------------------------------------------------------------------------------------------- -->
+  <div class="fade_rule col-md"></div>
+  <div class="row">
+    <div class="col-3">
+
+      <label for="Project Status">Implemented</label>
+      <kendo-dropdownlist id="Implement-status"
+                          formControlName="impStatusInd"
+                          [defaultItem]="{text: 'Select Implemented',value: null }"
+                          [data]="statusInd"
+                          [textField]="'text'"
+                          [valueField]="'value'"
+                          [disabled]="disableImplementedStatus"
+                          [valuePrimitive]="true"
+                          tabindex="17">
+      </kendo-dropdownlist>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button type="submit" class="btn float-right" [disabled]="!prjInfoForm.valid || prjInfoForm.pristine" (click)="save()" tabindex="19">Save</button>
+    </div>
+  </div>
+</form>

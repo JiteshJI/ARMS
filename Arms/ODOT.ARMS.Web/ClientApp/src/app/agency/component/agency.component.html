@@ -1,0 +1,192 @@
+<div class="card-header">Agency</div>
+<div #appendTo class="card-body">
+
+  <kendo-grid class=" k-refdata forms-grid"
+              [data]="gridData"
+              [filter]="filter"
+              [pageSize]="15"
+              [pageable]="true"
+              [rowClass]="rowCallback"
+              [sortable]="true"
+              [sort]="sort"
+              (sortChange)="sortChange($event)"
+              [reorderable]="true"
+              [resizable]="true"
+              [filterable]="true"
+              (filterChange)="filterChange($event)">
+
+    <ng-template kendoGridToolbarTemplate>
+      <div class="row">
+        <div class="col-12 table-button ">
+          <div class="add-btn-table">
+            <div class="grid-btn-bg">
+              <button type="button" class="btn add-grid-button k-button k-grid-add-command"
+                                 (click)="onAgencyAddClick()" kendoGridAddCommand>
+                <img src="../../../../../assets/grid_toolbar_icons/Add_Toolbar_Icon.svg" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <!-- main contact display Grid -->
+    <kendo-grid-column field="agencyNameTxt" title="Agency Name" width="143px">
+      <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+        <kendo-grid-string-filter-cell [showOperators]="true"
+                                       [column]="column"
+                                       [operator]="contains"
+                                       [filter]="filter">
+          <kendo-filter-startswith-operator></kendo-filter-startswith-operator>
+          <kendo-filter-eq-operator></kendo-filter-eq-operator>
+          <kendo-filter-contains-operator></kendo-filter-contains-operator>
+        </kendo-grid-string-filter-cell>
+      </ng-template>
+    </kendo-grid-column>
+      <kendo-grid-column field="agencyCatText" title="Category" width="143px">
+        <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+          <kendo-grid-string-filter-cell [showOperators]="true"
+                                         [column]="column"
+                                         [operator]="contains"
+                                         [filter]="filter">
+            <kendo-filter-startswith-operator></kendo-filter-startswith-operator>
+            <kendo-filter-eq-operator></kendo-filter-eq-operator>
+            <kendo-filter-contains-operator></kendo-filter-contains-operator>
+          </kendo-grid-string-filter-cell>
+        </ng-template>
+      </kendo-grid-column>
+    <kendo-grid-column field="controlBoardApprvlInd" title="CB Approval Required" width="75px">
+      <ng-template kendoGridFilterCellTemplate let-filter>
+        <kendo-switch (valueChange)="switchChange($event)"
+                      offLabel="No"
+                      [checked]="checked"
+                      onLabel="Yes">
+        </kendo-switch>
+      </ng-template>
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <span>{{GetYNText(dataItem.controlBoardApprvlInd)}}</span>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="vendorId" title="Vendor ID" width="90px">
+      <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+        <kendo-grid-string-filter-cell [showOperators]="true"
+                                       [column]="column"
+                                       [operator]="startswith"
+                                       [filter]="filter">
+          <kendo-filter-startswith-operator></kendo-filter-startswith-operator>
+        </kendo-grid-string-filter-cell>
+      </ng-template>
+    </kendo-grid-column>
+
+  <kendo-grid-command-column title="Status" width="90px" [columnMenu]="false">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <span>{{GetActiveInactiveText(dataItem.agencyStatusInd)}}</span>
+    </ng-template>
+  </kendo-grid-command-column>
+  <!-- Editing Button -for editing the contact -->
+  <kendo-grid-command-column title="Edit" width="43px" [columnMenu]="false">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <button type="button" class="btn btn-edit" kendoGridEditCommand (click)="EditAgencyForm(dataItem)">
+        <span class="fas fa-pencil-alt"></span>
+      </button>
+    </ng-template>
+  </kendo-grid-command-column>
+  </kendo-grid>
+  <!--Delete confirmation message box-->
+  <!--Delete confirmation message box-->
+  <!-- Kendo Dialog for Editing Contacts -->
+  </div>
+
+
+  <kendo-dialog title="Please confirm" *ngIf="DeleteAgencyDialogOpened" (close)="DeleteAgencyDialogClose()">
+    <p style="margin: 30px; text-align: center;">Are you sure you want to Inactivate {{ itemToRemove }}?</p>
+    <kendo-dialog-actions>
+      <button class='k-button' (click)="DeleteAgencyDialogClose()">No</button>
+      <button class='k-button k-primary' (click)="onDeleteAgencyClick()" primary="true">Yes</button>
+    </kendo-dialog-actions>
+  </kendo-dialog>
+
+
+  <kendo-dialog *ngIf="EditAgencyDialogOpened" (close)="EditAgencyDialogClose()" [width]="450">
+    <kendo-dialog-titlebar>
+      {{ isNew ? 'Agency – Add' : 'Agency – Edit' }}
+    </kendo-dialog-titlebar>
+    <form class="k-form" [formGroup]="AgencyEditForm">
+      <div class="row">
+        <div class="col">
+          <label for="agencyNameTxt" class="control-label">Agency Name<span class="k-field-info k-required"> *</span></label>
+          <input kendoTextBox formControlName="agencyNameTxt" [ngClass]="{ 'ng-invalid ng-touched': submitted && f.agencyNameTxt.errors }" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="agencyCatId" class="control-label">Category<span class="k-field-info k-required"> *</span></label>
+          <kendo-dropdownlist name="selectedCatValue" [defaultItem]="defaultItem1" [data]="agencyCategoryList" [textField]="'administrationCategoryText'"
+                              [valueField]="'administrationCategoryID'" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedCatValue" [ngClass]="{ 'ng-invalid ng-touched': submitted && selectedCatValue.administrationCategoryID==null}"></kendo-dropdownlist>
+          <!--<div *ngIf="selectedCatValue.agencyCatId==null" class="k-tooltip-validation">
+            <div *ngIf="submitted && selectedCatValue.administrationCategoryID==null">Category is required</div>
+          </div>-->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="controlBoardApprvlInd" class="control-label">CB Approval Required</label>
+          <input kendoTextBox readonly="readonly" value="{{selectedCatValue.controllingBoardApprvl == 'Y'? 'Yes':selectedCatValue.controllingBoardApprvl == 'N'? 'No':''}}" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="vendorId" class="control-label">Vendor ID<span class="k-field-info k-required"> *</span></label>
+          <kendo-numerictextbox [spinners]="false"
+                                [step]="1"
+                                [decimals]="'0'"
+                                formControlName="vendorId"
+                                [format]="formatOptions"
+                                [min]="'0'"
+                                [max]="'9999999999'"
+                                [autoCorrect]="'true'">
+          </kendo-numerictextbox>
+          <!--<input kendoTextBox formControlName="vendorId" maxlength="10" />-->
+
+
+          <div *ngIf="submitted || f.vendorId.errors?.vendorIdExists" class="k-tooltip-validation">
+            <!--<div *ngIf="f.vendorId.errors?.required">Vendor Id is required</div>-->
+            <div *ngIf="f.vendorId.errors?.vendorIdExists">Vendor ID Exists</div>
+          </div>
+          <!--<div *ngIf="f.vendorId.errors">
+            <div *ngIf="f.vendorId.errors.maxlength" class="k-tooltip-validation">
+              Maximum number can be 10
+            </div>
+          </div>-->
+          <!--
+            <div *ngIf="f.vendorId.errors">
+              <div *ngIf="f.vendorId.errors.pattern" class="k-tooltip-validation">
+                Only Number is Required
+              </div>
+            </div>
+          </div>-->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="agencyStatusInd" class="control-label">Status<span class="k-field-info k-required"> *</span></label>
+          <kendo-dropdownlist [readonly]="isNew" formControlName="agencyStatusInd"
+                                            [data]="listItems"
+                                            [textField]="'text'"
+                                            [valueField]="'value'"
+                                            [value]="value"
+                              [defaultItem]="defaultItem"
+                                            [valuePrimitive]="true" [ngClass]="{ 'ng-invalid ng-touched': submitted && f.agencyStatusInd.errors }">
+          </kendo-dropdownlist>
+          <!--<div *ngIf="submitted && f.agencyStatusInd.errors" class="k-tooltip-validation">
+            <div *ngIf="f.agencyStatusInd.errors">Status is required</div>
+          </div>-->
+        </div>
+      </div>
+    </form>
+    <kendo-dialog-actions>
+      <button class="btn" (click)="EditAgencyDialogClose()">Cancel</button>
+      <button class="btn btn-margin-left"  (click)="saveEditedAgency()" primary="true">Save</button>
+    </kendo-dialog-actions>
+
+  </kendo-dialog>
+

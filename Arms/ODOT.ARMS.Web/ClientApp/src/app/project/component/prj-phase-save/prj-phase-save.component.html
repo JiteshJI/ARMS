@@ -1,0 +1,65 @@
+<kendo-dialog [width]="308" [height]="430" class="dis-phase" *ngIf="savePhaseDialogStatus"
+              (close)="setSavePhaseDialogStatus.emit(false)">
+  <kendo-dialog-titlebar class="k-prjdata">{{ title }} </kendo-dialog-titlebar>
+  <form class="k-form" [formGroup]="phaseForm" (ngSubmit)="onSavePhase()">
+    <div class="row">
+      <div class="col-8">
+        <input kendoTextBox id="projId" formControlName="projId" tabindex="1" value="1" hidden="hidden" />
+        <label for="phaseId">Phase</label>
+        <input kendoTextBox id="phaseNum" formControlName="phaseNum" tabindex="1" value="1"
+               readonly="readonly" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8">
+        <label for="phaseTitle">Title</label>
+        <input kendoTextBox id="phaseTitle" formControlName="phaseTitle" tabindex="2" maxlength="100" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-8">
+        <label for="phaseAmt">Amount</label>
+        <kendo-numerictextbox id="phaseAmt" formControlName="amount" [format]="'c2'" [min]="0"
+                              [max]="currencyMaxValue" tabindex="3"></kendo-numerictextbox>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8">
+        <label for="beginDt">Begin Date</label>
+        <kendo-datepicker [format]="dateFormat" formControlName="beginDate" id="beginDt"
+                          tabindex="4" [min]="minDate" [max]="maxDate" (valueChange)="onChangeEndDate($event)">
+        </kendo-datepicker>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8">
+        <label for="endDt">End Date</label>
+        <kendo-datepicker [format]="dateFormat" formControlName="endDate" id="endDt"
+                          tabindex="5" [min]="minDate" [max]="maxDate"></kendo-datepicker>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8">
+        <label for="statusId">Status</label>
+        <kendo-dropdownlist formControlName="statusId"
+                            [data]="phaseStatusList"
+                            [defaultItem]="{text: 'Select Phase Status',value: null }"
+                            [textField]="'text'"
+                            [valueField]="'value'"
+                            [valuePrimitive]="true"
+                            *ngIf="!isMerged()">
+        </kendo-dropdownlist>
+        <input kendoTextBox value="Authorized" disabled tabindex="-1" *ngIf="isMerged()" />
+      </div>
+    </div>
+  </form>
+
+  <kendo-dialog-actions>
+    <button class="btn" (click)="setSavePhaseDialogStatus.emit(false)" tabindex="5">Cancel</button>
+    <button class="btn btn-margin-left" [disabled]="!phaseForm.dirty || !phaseForm.valid"
+            (click)="onSavePhase($event)" primary="true" tabindex="6">
+      Save
+    </button>
+  </kendo-dialog-actions>
+</kendo-dialog>

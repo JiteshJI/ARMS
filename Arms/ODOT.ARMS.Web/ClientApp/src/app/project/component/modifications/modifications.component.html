@@ -1,0 +1,130 @@
+<kendo-grid [kendoGridBinding]="gridModData" #grid class="k-fin-data forms-grid extra-grid-space" [sortable]="true">
+  <ng-template kendoGridToolbarTemplate>
+    <div class="row">
+      <div class="col-12 table-button ">
+        <div class="add-btn-table">
+          <div class="grid-btn-bg">
+            <button type="button" class="btn add-grid-button k-button k-grid-add-command"
+                    (click)="onAddClick(true)" kendoGridAddCommand>
+              <img src="../../../../../assets/grid_toolbar_icons/Add_Toolbar_Icon.svg" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <kendo-grid-column field="modNum" title="Mod Num" [width]="100"></kendo-grid-column>
+  <kendo-grid-column field="addendumLetter" title="Addendum Letter" [width]="100"></kendo-grid-column>
+  <kendo-grid-column field="modType" title="Mod. Type" [width]="100"></kendo-grid-column>
+  <kendo-grid-column field="requestDate" title="Request Date" [width]="100"></kendo-grid-column>
+  <kendo-grid-column field="status" title="Status" [width]="100"></kendo-grid-column>
+  <kendo-grid-column field="notes" title="Notes" [width]="100"></kendo-grid-column>
+  <kendo-grid-command-column title="Edit" width="30px">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <button type="button" class="btn btn-edit"><span class="fas fa-pencil-alt"></span></button>
+    </ng-template>
+  </kendo-grid-command-column>
+</kendo-grid>
+
+<!--
+  Add/Edit dialogue
+-->
+<kendo-dialog [width]="1000" [height]="600" *ngIf="AddEditDialogOpened" (close)="AddEditDialogClose()">
+  <kendo-dialog-titlebar class="k-prjdata">Modifications</kendo-dialog-titlebar>
+  <div class="row">
+    <div class="col-3">
+      <label for="modNum">Mod Num</label>
+      <input kendoTextBox id="modNum" tabindex="-1" maxlength="100" [disabled]='true' />
+      <!--<div class="row">
+        <div class="col">-->
+      <label for="modType">Modification Type</label>
+      <kendo-dropdownlist id="modType"
+                          [data]="modTypeList"
+                          tabindex="1"
+                          [textField]="'text'"
+                          [valueField]="'value'"></kendo-dropdownlist>
+      <!--</div>
+
+      </div>-->
+      <div class="row">
+
+      </div>
+    </div>
+    <div class="col-9">
+
+      <label for="reqChanges">Requested Changes</label>
+      <kendo-multiselect id="reqChanges"
+                         [data]="reqChangesList"
+                         [placeholder]="'Select Requested Change'"
+                         [textField]="'text'"
+                         tabindex="2"
+                         [valueField]="'value'"
+                         [(ngModel)]="reqChangesValues">
+        <!--(valueChange)="valueChange($event)">-->
+      </kendo-multiselect>
+
+    </div>
+
+  </div>
+  <div class="row">
+
+    <div class="col-3">
+      <label for="addendumLetter">Addendum Letter</label>
+      <input kendoTextBox id="addendumLetter" tabindex="-1" maxlength="100" [disabled]='true' />
+    </div>
+
+    <div class="col-3">
+      <label for="receivedRequestDate">Received Request Date</label>
+      <kendo-datepicker name="receivedRequestDate" (valueChange)="onChangeRequestDate($event)"
+                        [format]="'MM/dd/yyyy'" tabindex="3">
+      </kendo-datepicker>
+    </div>
+
+    <div class="col-3">
+      <label for="completionDate">Completion Date</label>
+      <kendo-datepicker name="completionDate" (valueChange)="onChangeCompletionDate($event)"
+                        [format]="'MM/dd/yyyy'" tabindex="4">
+      </kendo-datepicker>
+    </div>
+
+    <div class="col-3">
+      <label for="status">Status</label>
+      <kendo-dropdownlist id="status"
+                          [data]="modStatusList"
+                          [textField]="'text'"
+                          tabindex="5"
+                          [valueField]="'value'"></kendo-dropdownlist>
+    </div>
+
+  </div>
+  <hr>
+
+  <kendo-tabstrip>
+
+    <kendo-tabstrip-tab *ngFor="let item of orderList(reqChangesValues) let i=index"
+                        [title]="reqChangesMap.get(item.value)"
+                        [selected]="isSelected(i, reqChangesMap.get(item.value))">
+      <ng-template kendoTabContent class="sub-fin-menu">
+
+        <modifications-budget [frmId]="item.value" *ngIf="(item.value === 1)"></modifications-budget>
+        <modifications-funding [frmId]="item.value" *ngIf="(item.value === 4)"></modifications-funding>
+        <modifications-personnel [frmId]="item.value" *ngIf="(item.value === 16)"></modifications-personnel>
+        <edit-modification-scope [frmId]="item.value" *ngIf="(item.value ===32)"></edit-modification-scope>
+</ng-template>
+    </kendo-tabstrip-tab>
+
+
+    <kendo-tabstrip-tab [title]="'Comments and Files'">
+      <ng-template kendoTabContent class="sub-fin-menu">
+        <modifications-uploads [frmId]="0"></modifications-uploads>
+      </ng-template>
+    </kendo-tabstrip-tab>
+
+  </kendo-tabstrip>
+
+
+  <kendo-dialog-actions>
+    <button class="btn" tabindex="6" (click)="AddEditDialogClose()">Cancel</button>
+    <button class="btn btn-margin-left" tabindex="7" (click)="AddEditDialogSave()">Save</button>
+  </kendo-dialog-actions>
+</kendo-dialog>

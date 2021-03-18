@@ -1,0 +1,15 @@
+<app-nav [routeItems]="routeItems"></app-nav>
+<div class="main-wrap">
+  <!-- <div class="sidebar">
+    <div class="card-header">
+      Project Navigation
+    </div>
+    <app-project-navigation></app-project-navigation>
+  </div> -->
+  <div class="container-fluid pb-wrap">
+    <div class="main-content">
+      <router-outlet></router-outlet>  <!-- Router outlet for the children of Shell Component-->
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,63 @@
+// <- Colors ->
+//$primary-c: #009969; // Nav background,
+$primary-c: #1f2a44; // Nav background,
+$secondary-c: #1f2a44; // Headers (cards, panels, treeView active)
+$action-c: #00b5e2; // Btns (add, edit, save, download(at bottom of pages))
+//$action-c: #000000;// Btns (add, edit, save, download(at bottom of pages))
+$action-c-hover: darken($action-c, 7%);
+$btn-green: #4fae4f; // btn done,
+$btn-green-hover: darken($btn-green, 7%);
+$btn-red: #e60f0f; // btn close,
+$btn-red-hover: darken($btn-red, 7%);
+$icon-trash-c: #749caf; // Trash can btn color,
+$icon-trash-c-hover: darken($icon-trash-c, 7%); // Trash can hover
+$card-bg-c: #e8e8e8; // background of cards,
+$grid-header-c: #d2d2d2; // Grid header color,
+$white-c: #ffffff; // text headers, background,
+$red-c: #dc0e00; // required fields,
+
+// <- Fonts ->
+$main-font: 'Roboto';
+// $second-font: 'Trebuchet MS';
+// $backup-font: 'sans-sarif';
+
+// v OLD v
+// Sizes
+$navSize: .95rem;
+$headerSize: 1rem;
+$subHeaderSize: .97rem;
+$tableHeader: .85rem;
+$paraSize: 0.8rem;
+$sideNavH: 0.75rem;
+$sideNavS: 0.7rem;
+$formTextSize: 0.7rem;
+
+// <-Icons->
+$iconHeaderSize: 18px !important;
+$iconFormSize: 14px !important;
+
+// < ARMS tab colors >
+$base-tab-pooled: #DC582A;
+$base-tab-pooled-hoover: darken(#DC582A, 15%);
+//$base-tab-pooled-hoover: saturate(#DC582A, 20%);
+$base-tab-pooled-selected: darken(#DC582A, 15%);
+
+$base-tab-roc: #9E2A2B;
+$base-tab-roc-hoover: darken(#9E2A2B, 15%);
+$base-tab-roc-selected: darken(#9E2A2B, 15%);
+
+$base-tab-oril: #f68d2e;
+$base-tab-oril-hoover: darken(#f68d2e, 15%);
+$base-tab-oril-selected: darken(#f68d2e, 15%);
+
+$base-tab-standard: #00b5e2;
+$base-tab-standard-hoover: darken(#00b5e2, 15%);
+$base-tab-standard-selected: darken(#00b5e2, 15%);
+
+$base-tab-finance: #009969;
+$base-tab-finance-hoover: darken(#009969, 15%);
+$base-tab-finance-selected: darken(#009969, 15%);
+
+$base-tab-modifications: #766e63;
+$base-tab-modifications-hoover: darken(#766e63, 15%);
+$base-tab-modifications-selected: darken(#766e63, 15%);

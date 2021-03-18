@@ -1,0 +1,105 @@
+<div class="row">
+  <div class="col">
+    <kendo-grid class="k-fin-data forms-grid extra-grid-space fin-encum-grid"
+                [kendoGridBinding]="SummaryData"
+                [sortable]="true"
+                scrollable="none">
+
+      <kendo-grid-column field="fiscalYr" title="Fiscal Year" width="100">
+      </kendo-grid-column>
+
+      <kendo-grid-column field="encNum" title="Encum No" width="100">
+      </kendo-grid-column>
+
+      <kendo-grid-column field="sac"
+                         title="SAC"
+                         format="{0:c}">
+      </kendo-grid-column>
+
+      <kendo-grid-column field="poLnAmt"
+                         title="PO Line Amt"
+                         format="{0:c}">
+      </kendo-grid-column>
+
+      <kendo-grid-column field="adj"
+                         title="Adjustment"
+                         format="{0:c}">
+      </kendo-grid-column>
+
+      <kendo-grid-column field="poLnDisb"
+                         title="PO Line Disb."
+                         format="{0:c}">
+      </kendo-grid-column>
+
+      <kendo-grid-column field="poLinBal"
+                         title="PO Line Balance"
+                         format="{0:c}">
+      </kendo-grid-column>
+
+    </kendo-grid>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <kendo-grid [kendoGridBinding]="InvoiceData" class="forms-grid extra-grid-space"
+                [sortable]="true">
+
+      <ng-template kendoGridToolbarTemplate>
+        <div class="row">
+          <div class="col-12 table-button">
+            <div class="add-btn-table">
+              <div class="grid-btn-bg">
+                <div class="grid-inline-input">
+                  <label class="k-form-field">
+                    <span>
+                      Budget Category:
+                    </span>
+                  </label>
+                  <kendo-dropdownlist [data]="phaseItems"
+                                      [textField]="'text'"
+                                      [valueField]="'value'">
+                  </kendo-dropdownlist>
+                </div>
+                <button type="button" class="btn add-grid-button k-button k-grid-add-command" (click)="onAddInvoiceClick()" kendoGridAddCommand>
+                  <img src="../../../../../assets/grid_toolbar_icons/Add_Toolbar_Icon.svg" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+
+      <kendo-grid-column field="budgetCat" title="Budget Category" [width]="200"></kendo-grid-column>
+      <kendo-grid-column field="invAmt" title="Amount" format="{0:c}"></kendo-grid-column>
+      <kendo-grid-command-column title="Edit" width="60px">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <button type="button" class="btn btn-edit"><span class="fas fa-pencil-alt"></span></button>
+        </ng-template>
+      </kendo-grid-command-column>
+    </kendo-grid>
+  </div>
+</div>
+
+<kendo-dialog [width]="270" [height]="250" *ngIf="AddInvoiceDialogOpened" (close)="AddInvoiceDialogClose()">
+  <kendo-dialog-titlebar class="k-fin-data">Add Invoice Item</kendo-dialog-titlebar>
+  <div class="row">
+    <div class="col-12">
+      <label for="budgetCat">Budget Category</label>
+      <kendo-dropdownlist id="budgetCat" [data]="budgetCategories"></kendo-dropdownlist>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <label for="budgAmt">Amount</label>
+      <kendo-numerictextbox [spinners]="false"
+                            id="budgAmt"
+                            [format]="'c2'" [min]="0"
+                            [max]="1000000"></kendo-numerictextbox>
+    </div>
+  </div>
+  <kendo-dialog-actions>
+    <button class="btn" tabindex="5" (click)="AddInvoiceDialogClose()">Cancel</button>
+    <button class="btn btn-margin-left">Save</button>
+  </kendo-dialog-actions>
+</kendo-dialog>

@@ -1,0 +1,20 @@
+<!-- This html displays the child component project-info component using its selector <app-prj-info> here .
+  The entire display component loads here. The values are passed between the parent component and child component using input and output properties.   -->
+
+
+  <app-prj-info
+  [projectInfo]=  "ProjectInfo$ | async"
+  [isNew] = " isNew$ |async "
+  [projectTypes] = "projectTypes$ | async"
+  [projectTypeId]= "projectTypeId$ | async"
+  [projectStatus] = "projectStatus$ | async "
+  [researchAgencies] = "agencies$ | async "
+  [addressCodes]= "addressCode$ | async"
+  [warehouseInfo]= "warehouseInfo$ | async"
+  (saveProjInfo)= "saveProjInfo($event)"
+  (getVendorInfo)= "getVendorInfo($event)"
+  (getPidInfo)= "getPidInfo($event)">
+</app-prj-info>
+
+
+

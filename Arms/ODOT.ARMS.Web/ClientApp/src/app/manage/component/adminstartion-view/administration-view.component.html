@@ -1,0 +1,188 @@
+<!--<div class="card-header">Administration</div>-->
+<div class="card-body">
+  <div class="row">
+    <div class="col-1">
+      <label class="k-label">List Type <span class="k-field-info k-required">*</span></label>
+    </div>
+    <div class="col-4">
+      <kendo-dropdownlist [data]="fundingTypeList"
+                          class="k-textboxmedium"
+                          [defaultItem]="{ fundingTypeTxt: 'Select List Type', fundingTypeId: null }"
+                          [valuePrimitive]="false"
+                          [textField]="'fundingTypeTxt'"
+                          [valueField]="'fundingTypeId'"
+                          [value]="selectedFunding"
+                          (valueChange)="changeFunding($event)">
+      </kendo-dropdownlist>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-1">
+      <label class="k-label">Specific List <span class="k-field-info k-required">*</span></label>
+    </div>
+    <div class="col-4">
+            <kendo-dropdownlist [data]="fundingSpecifictypes"
+                          class="k-textboxmedium"
+                          [defaultItem]="{specificListText: 'Select Specific List', specificListID: null}"
+                          [valuePrimitive]="false"
+                          [textField]="'specificListText'"
+                          [disabled]="fundingSpecifictypes.length===0"
+                          [valueField]="'specificListID'"
+                          [(ngModel)]="selectedSpecificItem"
+                          (valueChange)="changeProject($event)">
+      </kendo-dropdownlist>
+    </div>
+  </div>
+  <kendo-grid class=" k-refdata forms-grid extra-grid-space"
+              [data]="data"
+              [pageSize]="state.take"
+              [skip]="state.skip"
+              [sort]="state.sort"
+              [filter]="state.filter"
+              [sortable]="true"
+              [pageable]="true"
+              [filterable]="true"
+              [rowClass]="rowCallback"
+              (dataStateChange)="dataStateChange($event)">
+    <ng-template kendoGridToolbarTemplate>
+      <div class="row">
+        <div class="col-12 table-button ">
+          <div class="add-btn-table">
+            <div class="grid-btn-bg">
+              <button type="button" class="btn add-grid-button k-button k-grid-add-command" [disabled]="chkSpecificItem()"
+                                 (click)="onAddAdministrationClick()" kendoGridAddCommand>
+                <img src="../../../../../assets/grid_toolbar_icons/Add_Toolbar_Icon.svg" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <kendo-grid-column field="primaryTypeTxt" title="Primary Events" width="150px" *ngIf="hiddenColumns"></kendo-grid-column>
+    <kendo-grid-column field="administrationCategoryText" title="{{SecondaryColumnText}}"></kendo-grid-column>
+    <kendo-grid-command-column field="controllingBoardApprvl" title="Controlling Board Approval" width="200px" [columnMenu]="false" *ngIf="selectedSpecificItem?.specificListText==='Agency Category'">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <span *ngIf="dataItem.controllingBoardApprvl == 'Y'">Yes</span>
+        <span *ngIf="dataItem.controllingBoardApprvl == 'N'">No</span>
+      </ng-template>
+    </kendo-grid-command-column>
+    <kendo-grid-command-column field="activeind" title="Status" width="90px" [columnMenu]="false">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <span *ngIf="dataItem.activeind == 'I'">Inactive</span>
+        <span *ngIf="dataItem.activeind == 'A'">Active</span>
+      </ng-template>
+    </kendo-grid-command-column>
+    <kendo-grid-command-column title="Edit" width="43px" [columnMenu]="false">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <button type="button" class="btn btn-edit" kendoGridEditCommand (click)="EditAdministrationForm(dataItem)">
+          <span class="fas fa-pencil-alt"></span>
+        </button>
+      </ng-template>
+    </kendo-grid-command-column>
+
+  </kendo-grid>
+</div>
+<!--Delete confirmation message box-->
+<kendo-dialog title="Please confirm" *ngIf="DeleteAdministrationDialogOpened" (close)="DeleteAdministrationDialogClose()">
+  <p style="margin: 30px; text-align: center;">Are you sure you want to delete {{ itemToRemove }}?</p>
+  <kendo-dialog-actions>
+    <button class='k-button' (click)="DeleteAdministrationDialogClose()">No</button>
+    <button class='k-button k-primary' (click)="onDeleteAdministrationClick()" primary="true">Yes</button>
+  </kendo-dialog-actions>
+</kendo-dialog>
+
+<kendo-dialog *ngIf="EditAdministrationDialogOpened" (close)="EditAdministrationClose()" [width]="280">
+  <kendo-dialog-titlebar>
+    {{ isNew ? 'Administration – Add' : 'Administration – Edit' }}
+  </kendo-dialog-titlebar>
+  <form [formGroup]="administrationForm" (ngSubmit)="saveEditedAdministrationCategory()">
+    <div class="row">
+      <div class="col">
+        <label class="k-label" for="listTypeIdChild">List Type <span class="k-field-info k-required">*</span></label>
+        <input [value]="selectedFunding.fundingTypeTxt" kendoTextBox disabled />
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col">
+        <label class="k-label" for="specificListID">Specific List <span class="k-field-info k-required">*</span></label>
+        <input [value]="selectedSpecificItem.specificListText" kendoTextBox disabled />
+      </div>
+    </div>
+    <div class="row" *ngIf="selectedSpecificItem.specificListText === 'Secondary Events'">
+      <div class="col">
+        <label class="k-label" for="primaryTypeId">Primary List</label>
+        <kendo-dropdownlist name="primaryTypeId"
+                            [data]="primaryTypeList"
+                            [defaultItem]="{administrationCategoryText: 'Select Primary Events',administrationCategoryID: null }"
+                            [valuePrimitive]="false"
+                            [value]="primaryTypeId"
+                            [textField]="'administrationCategoryText'"
+                            [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="selectedPrimaryItems"
+                            [valueField]="'administrationCategoryID'"
+                            (valueChange)="changePrimaryChild($event)"
+                            [ngClass]="{ 'ng-invalid ng-touched': submitted && selectedPrimaryItems.administrationCategoryID==null}">
+        </kendo-dropdownlist>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <!--<label for="administrationCategoryText" class="control-label">State</label>-->
+        <label class="k-label" for="administrationCategoryText">Value <span class="k-field-info k-required">*</span></label>
+        <input kendoTextBox formControlName="administrationCategoryText" required />
+      </div>
+    </div>
+    <div class="row">
+      <!--<label for="activeind" class="control-label">Status</label>-->
+      <div class="col">
+        <label class="k-label" for="activeind">Status <span class="k-field-info k-required">*</span></label>
+        <input [value]="'Active'" *ngIf="isNew" kendoTextBox disabled />
+        <kendo-dropdownlist *ngIf="!isNew"
+                            formControlName="activeind"
+                            [data]="listItems"
+                            [textField]="'text'"
+                            [valueField]="'value'"
+                            [value]="value"
+                            [defaultItem]="{ text: 'Please Select Status', value: null }"
+                            [valuePrimitive]="true">
+        </kendo-dropdownlist>
+      </div>
+      <!--<div *ngIf="submitted && administrationForm.controls.activeind.errors" class="k-tooltip-validation">
+      <div *ngIf="administrationForm.controls.activeind.errors">Status is required</div>
+    </div>-->
+    </div>
+    <div class="row" *ngIf="selectedSpecificItem?.specificListText==='Agency Category'">
+      <!--<label for="activeind" class="control-label">Status</label>-->
+      <div class="col">
+        <label class="k-label" for="controllingBoardApprvl">Controlling Board Approval <span class="k-field-info k-required">*</span></label>
+        <input [value]="'Yes'" *ngIf="isNew" kendoTextBox disabled />
+        <kendo-dropdownlist *ngIf="!isNew"
+                            formControlName="controllingBoardApprvl"
+                            [data]="controllingBoardItems"
+                            [textField]="'text'"
+                            [valueField]="'value'"
+                            [value]="value"
+                            [defaultItem]="{ text: 'Please Select Controlling Board Approval', value: null }"
+                            [valuePrimitive]="true">
+        </kendo-dropdownlist>
+      </div>
+      <!--<div *ngIf="submitted && administrationForm.controls.activeind.errors" class="k-tooltip-validation">
+      <div *ngIf="administrationForm.controls.activeind.errors">Status is required</div>
+    </div>-->
+    </div>
+
+  </form>
+  <!--</div>-->
+  <kendo-dialog-actions>
+    <button class="btn" (click)="EditAdministrationClose()">Cancel</button>
+    <button class="btn btn-margin-left" (click)="saveEditedAdministrationCategory()" [disabled]="!this.administrationForm.dirty || this.administrationForm.invalid"  primary="true">Save</button>
+  </kendo-dialog-actions>
+
+</kendo-dialog>
+
+
+
+
+

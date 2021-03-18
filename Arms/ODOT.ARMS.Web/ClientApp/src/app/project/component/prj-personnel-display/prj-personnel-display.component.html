@@ -1,0 +1,66 @@
+
+<kendo-grid class="k-prjdata forms-grid extra-grid-space"
+[data]="personnel"
+[pageSize]="15"
+[pageable]="true"
+[sortable]="true"
+[reorderable]="true"
+[resizable]="true"
+[height]="480">
+
+ <!-- New Button -for adding new personnel -->
+<ng-template kendoGridToolbarTemplate>
+  <div class="row">
+    <div class="col-12 table-button ">
+      <div class="add-btn-table">
+        <div class="grid-btn-bg">
+          <button type="button" class="btn add-grid-button k-button k-grid-add-command"
+            (click)="selectedPersonnel.emit()" kendoGridAddCommand>
+            <img src="../../../../../assets/grid_toolbar_icons/Add_Toolbar_Icon.svg" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<kendo-grid-column field="contactName" title="Name">
+</kendo-grid-column>
+
+<kendo-grid-column field="contactRole" title="Role" width="200">
+</kendo-grid-column>
+
+<kendo-grid-column field="agencyName" title="Research Agency" width="200">
+</kendo-grid-column>
+
+<kendo-grid-column field="emailAddress" title="Email Address" width="200">
+</kendo-grid-column>
+<kendo-grid-column field="mobilePhone" title="Mobile Phone" width="185">
+  <ng-template kendoGridCellTemplate let-dataItem>
+    {{dataItem.mobilePhone | phone}}
+  </ng-template>
+</kendo-grid-column>
+<kendo-grid-command-column title="Lead" width="45px" [columnMenu]="false">
+  <ng-template kendoGridCellTemplate let-dataItem>
+    <span *ngIf="dataItem.isLeadInd == 'N'">No</span>
+    <span *ngIf="dataItem.isLeadInd == 'Y'">Yes</span>
+  </ng-template>
+</kendo-grid-command-column>
+
+<kendo-grid-command-column title="Status" width="60px" [columnMenu]="false">
+  <ng-template kendoGridCellTemplate let-dataItem>
+      <span *ngIf="dataItem.activeInd == 'A'" >Active</span>
+      <span *ngIf="dataItem.activeInd == 'I'" >Inactive</span>
+  </ng-template>
+</kendo-grid-command-column>
+
+  <!-- Editing Button -for editing the personnel -->
+
+  <kendo-grid-command-column title="Edit" width="43px" [columnMenu]="false">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <button type="button" class="btn btn-edit" kendoGridEditCommand (click)="selectedPersonnel.emit(dataItem)">
+        <span class="fas fa-pencil-alt"></span>
+      </button>
+    </ng-template>
+  </kendo-grid-command-column>
+</kendo-grid>

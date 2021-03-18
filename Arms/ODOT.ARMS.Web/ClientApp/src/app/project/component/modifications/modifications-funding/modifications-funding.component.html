@@ -1,0 +1,108 @@
+<kendo-grid [kendoGridBinding]="gridFundingData" #grid class="k-fin-data forms-grid extra-grid-space"
+            [pageSize]="10"
+            [pageable]="true"
+            [sortable]="true"
+            [height]="300">
+  <ng-template kendoGridToolbarTemplate>
+    <div class="row">
+      <div class="col-12 table-button ">
+        <div class="add-btn-table">
+          <div class="grid-btn-bg">
+            <button type="button" class="btn add-grid-button k-button k-grid-add-command" (click)="onAddClick(true)" kendoGridAddCommand>
+              <img src="../../../../../assets/grid_toolbar_icons/Add_Toolbar_Icon.svg" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <kendo-grid-column field="fundingType" title="Funding Type" [width]="100"></kendo-grid-column>
+  <kendo-grid-column field="fiscalYear" title="Fiscal Year" [width]="100"></kendo-grid-column>
+  <kendo-grid-column field="fundingsource" title="Funding Source" [width]="100"></kendo-grid-column>
+  <kendo-grid-column field="amount" title="Amount" [width]="100"></kendo-grid-column>
+  <kendo-grid-column field="encumbrance" title="PO/Encumbrance" [width]="100"></kendo-grid-column>
+  <kendo-grid-command-column title="Edit" width="30px">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <button type="button" class="btn btn-edit"><span class="fas fa-pencil-alt"></span></button>
+    </ng-template>
+  </kendo-grid-command-column>
+</kendo-grid>
+<!--
+  Add/Edit dialogue
+-->
+<kendo-dialog [width]="600" [height]="600" *ngIf="AddEditDialogOpened" (close)="AddEditDialogClose()">
+  <kendo-dialog-titlebar class="k-prjdata">Add Funding</kendo-dialog-titlebar>
+  <div class="row">
+    <div class="col-6">
+      <label for="statusId">Type</label>
+      <kendo-dropdownlist [data]="phaseItems"></kendo-dropdownlist>
+    </div>
+    <div class="col-6">
+      <label for="statusId">Funding Source</label>
+      <kendo-dropdownlist [data]="phaseItems"></kendo-dropdownlist>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <label for="odotfunding">Fiscal Year</label>
+      <input kendoTextBox id="title" tabindex="2" maxlength="100" />
+    </div>
+    <div class="col-6">
+      <label for="statusId">Funding Type</label>
+      <kendo-dropdownlist [data]="phaseItems"></kendo-dropdownlist>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <label for="odotfunding">Po/Encumbrance</label>
+      <input kendoTextBox id="encumbrance" tabindex="2" maxlength="100" />
+    </div>
+    <div class="col-6">
+      <label for="odotfunding">Amount</label>
+      <input kendoTextBox id="amount" tabindex="2" maxlength="100" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <label for="notes">Notes</label>
+      <textarea kendoTextArea id="notes" rows="4" cols="50" maxlength="255"></textarea>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <kendo-upload #myUpload="kendoUpload"
+                    [saveUrl]="uploadSaveUrl"
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="myFiles"
+                    [batch]="true"
+                    (upload)="uploadEventHandler($event)">
+        <ng-template kendoUploadFileTemplate let-files let-state="state">
+          <div class="row container">
+            <div class="col-2">
+              <!--<b>Type</b><br /><img class="file-icon" src="{{geticonfilepath(files[0].extension)}}" />-->
+              <b>Type</b><br /><span class="{{getIconFilePath(files[0].extension)}}"></span>
+            </div>
+
+            <div class="col-4">
+              <b>Document</b><br /> {{files[0].name}}
+            </div>
+            <div class="col-2"><b>Size</b><br /> {{files[0].size}} bytes</div>
+            <div class="col-2">
+              <b>Delete</b><br />
+              <button type="button" class="btn btn-edit" (click)="remove(myUpload, files[0].uid)"><span class="fas fa-trash-alt"></span></button>
+            </div>
+            <div class="col-2">
+              <b>Private</b><br />
+              <input type="checkbox" [checked]="files[0].extension == 'I'" [ngModelOptions]="{standalone: true}" (click)="getChecked(files[0].uid)" kendoCheckBox />
+            </div>
+          </div>
+        </ng-template>
+      </kendo-upload>
+    </div>
+  </div>
+  <kendo-dialog-actions>
+    <button class="btn" tabindex="5" (click)="AddEditDialogClose()">Cancel</button>
+    <button class="btn btn-margin-left">Save</button>
+  </kendo-dialog-actions>
+</kendo-dialog>
+

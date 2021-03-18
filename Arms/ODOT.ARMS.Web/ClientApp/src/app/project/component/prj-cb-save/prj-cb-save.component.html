@@ -1,0 +1,109 @@
+<kendo-dialog [width]="566" [height]="400" *ngIf="saveCBDialogStatus" (close)="setSaveCBDialogStatus.emit(false)">
+  <kendo-dialog-titlebar class="k-prjdata">{{ title }}</kendo-dialog-titlebar>
+  <form class="k-form" [formGroup]="cbEditForm" (ngSubmit)="onSaveCB()">
+    <div class="row">
+      <div class="col-6">
+        <label for="controllingBoardCategory">Category<span class="k-field-info k-required"> *</span></label>
+        <kendo-dropdownlist formControlName="controllingBoardCategory"
+                            [data]="cbCategoryItems"
+                            [defaultItem]="{text: 'Select Category',value: null }"
+                            [textField]="'text'"
+                            [valueField]="'value'"
+                            [value]="value"
+                            isRequired="true"
+                            [valuePrimitive]="true"
+                            required
+                            tabindex="1">
+        </kendo-dropdownlist>
+        <!--<div *ngIf="submitted && f.controllingBoardCategory.errors" class="k-tooltip-validation">
+          <div *ngIf="f.controllingBoardCategory.errors">Category is required</div>
+        </div>-->
+      </div>
+      <div class="col-6">
+
+        <label for="controllingBoardType">Type<span class="k-field-info k-required"> *</span></label>
+
+        <kendo-dropdownlist formControlName="controllingBoardType"
+                            [data]="cbtypeItems"
+                            [defaultItem]="{text: 'Select Type',value: null }"
+                            [textField]="'text'"
+                            [valueField]="'value'"
+                            [value]="value"
+                            [valuePrimitive]="true"
+                            required
+                            tabindex="2">
+        </kendo-dropdownlist>
+        <!--<div *ngIf="submitted && f.controllingBoardType.value==null" class="k-tooltip-validation">
+          <div *ngIf="submitted && f.controllingBoardType.value==null">Type is required</div>
+        </div>-->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <label for="controllingBoardNumber">Controlling Board Number</label>
+        <input kendoTextBox id="controllingBoardNumber" [readonly]="f.controllingBoardCategory.value==161" formControlName="controllingBoardNumber" tabindex="3" maxlength="50" />
+
+      </div>
+
+      <div class="col-6">
+
+        <label for="controllingBoardStatus">Status<span class="k-field-info k-required"> *</span></label>
+        <kendo-dropdownlist formControlName="controllingBoardStatus"
+                            [data]="cbStatusItems"
+                            [defaultItem]="{text: 'Select Status',value: null }"
+                            [textField]="'text'"
+                            [valueField]="'value'"
+                            [value]="value"
+                            [valuePrimitive]="true"
+                            tabindex="4"
+                            required >
+        </kendo-dropdownlist>
+        <!--<div *ngIf="submitted && f.controllingBoardStatus.value==null" class="k-tooltip-validation">
+          <div *ngIf="submitted && f.controllingBoardStatus.value==null">Status is required</div>
+        </div>-->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+
+        <label for="submissionDate">Submission Date<span class="k-field-info k-required"> *</span></label>
+        <kendo-datepicker formControlName="submissionDate"
+                          [min]="min" [format]="'MM/dd/yyyy'"
+                          [max]="max"
+                          tabindex="5"
+                          required></kendo-datepicker>
+      </div>
+
+      <div class="col-6">
+
+        <label for="controllingBoardDate">Controlling Board Date<span class="k-field-info k-required"> *</span></label>
+        <kendo-datepicker formControlName="controllingBoardDate"
+                          [min]="min" [format]="'MM/dd/yyyy'"
+                          [max]="max"
+                          tabindex="6"
+                          required></kendo-datepicker>
+      </div>
+    </div>
+
+    <div class="fade_rule col-md"></div>
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-6">
+            <label for="current-summary">Public Comments</label>
+          </div>
+          <div class="col-6">
+            <label class="float-right blue-text">{{cbEditForm.controls.publicCommentText.value.length}} OF {{maxChars}} Characters</label>
+          </div>
+        </div>
+        <textarea kendoTextArea formControlName="publicCommentText" rows="4" cols="50" maxlength="{{maxChars}}" tabindex="7"></textarea>
+      </div>
+    </div>
+  </form>
+  <kendo-dialog-actions>
+    <button class="btn " (click)="setSaveCBDialogStatus.emit(false)" tabindex="8">Cancel</button>
+    <button class="btn btn-margin-left" [disabled]="!cbEditForm.dirty || !cbEditForm.valid" (click)="onSaveCB()" primary="true" tabindex="9">Save</button>
+  </kendo-dialog-actions>
+</kendo-dialog>

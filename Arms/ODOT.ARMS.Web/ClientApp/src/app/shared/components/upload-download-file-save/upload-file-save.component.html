@@ -1,0 +1,40 @@
+<kendo-dialog class="file-add-view-dialog" *ngIf="uploadDialogStatus" (close)="setUploadEventDialogStatus.emit(false)">
+  <kendo-dialog-titlebar class="k-prjdata">{{ dlgTitle }} </kendo-dialog-titlebar>
+    <!--<form class="k-form" [formGroup]="uploadFormGroup">-->
+      <kendo-grid class="file-view-grid"
+                  [data]="uploadFiles">
+        <kendo-grid-column field="documentName" title="File Name">
+        </kendo-grid-column>
+        <kendo-grid-column field="uploadDate" title="Date Added">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            {{dataItem.uploadDate | date: 'MM/dd/yyyy'}}
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="privateInd" title="Private">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            <kendo-switch [onLabel]="'Y'" [offLabel]="'N'" [checked]="isPrivate(dataItem)" (valueChange)="flipPrivate(dataItem)"></kendo-switch>
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-command-column title="Download" [width]="75">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            <button type="button" class="btn btn-download" (click)="download.emit(dataItem)"><span class="fas fa-file-download"></span></button>
+          </ng-template>
+        </kendo-grid-command-column>
+      </kendo-grid>
+    <!--</form>-->
+
+    <!--<form #myForm="ngForm" novalidate (ngSubmit)="save(myForm.value)" class="k-form">-->
+    <!--<form #myForm="ngForm" novalidate class="k-form">-->
+    <kendo-upload class="extra-space-top"
+                  [saveUrl]="uploadSaveUrl"
+                  [withCredentials]="false"
+                  (success)="onSuccessEvent($event)">
+    </kendo-upload>
+
+    <kendo-dialog-actions>
+      <button class="btn" (click)="setUploadEventDialogStatus.emit(false)">Close</button>
+      <!--<button type="submit" class="btn btn-margin-left" primary="true">Save</button>-->
+    </kendo-dialog-actions>
+
+
+</kendo-dialog>

@@ -1,0 +1,8 @@
+Server Operation was not successful!!
+<div class="alert-msg" role="alert" *ngIf="errors && errors.length > 0">
+  <ul>
+    <li *ngFor="let error of errors">
+      {{ error }}
+    </li>
+  </ul>
+</div>

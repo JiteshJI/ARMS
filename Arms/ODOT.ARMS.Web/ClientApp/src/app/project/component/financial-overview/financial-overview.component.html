@@ -1,0 +1,64 @@
+<kendo-panelbar>
+  <kendo-panelbar-item [title]="'OverView Data'" icon="grid-layout" expanded="true">
+    <ng-template kendoPanelBarContent>
+      <div>
+        <kendo-grid [kendoGridBinding]="gridOverViewData" #grid class="k-fin-data forms-grid"
+                    [pageSize]="10"
+                    [pageable]="true"
+                    [sortable]="true"
+                    [height]="300">
+          <kendo-grid-column field="Description" [width]="100">
+            <ng-template kendoGridFooterTemplate let-column let-columnIndex="columnIndex">
+              Available Contract Funds
+            </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-column field="Amount" [width]="100">
+            <ng-template kendoGridFooterTemplate let-column let-columnIndex="columnIndex">
+              $33,910.72
+            </ng-template>
+          </kendo-grid-column>
+        </kendo-grid>
+      </div>
+    </ng-template>
+  </kendo-panelbar-item>
+  <kendo-panelbar-item [title]="'Phase Data'" icon="grid-layout" class="extra-space-top">
+    <ng-template kendoPanelBarContent>
+      <div>
+        <kendo-grid [kendoGridBinding]="gridPhaseData"
+                    class="k-fin-data forms-grid"
+                    [pageSize]="10"
+                    [pageable]="true"
+                    [sortable]="true"
+                    [height]="300">
+          <kendo-grid-column field="Phase" title="Phase" [width]="100">
+            <ng-template kendoGridFooterTemplate let-column let-columnIndex="columnIndex">
+              <div class="footer-cell">Phase Total</div>
+              <div class="footer-cell"> Grand Total</div>
+            </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-column field="Category" [width]="100"></kendo-grid-column>
+          <kendo-grid-column field="Budget" title="Budget" [width]="100">
+            <ng-template kendoGridFooterTemplate let-column let-columnIndex="columnIndex">
+              <div class="footer-cell">$96,786.18</div>
+              <div class="footer-cell">$96,786.18</div>
+            </ng-template>
+          </kendo-grid-column>
+
+          <kendo-grid-column field="Invoiced" title="Invoiced" [width]="100">
+            <ng-template kendoGridFooterTemplate let-column let-columnIndex="columnIndex">
+              <div class="footer-cell">$96,786.18</div>
+              <div class="footer-cell">$96,786.18</div>
+            </ng-template>
+          </kendo-grid-column>
+
+          <kendo-grid-column field="Available" title="Available" [width]="100">
+            <ng-template kendoGridFooterTemplate let-column let-columnIndex="columnIndex">
+              <div class="footer-cell">$0.00</div>
+              <div class="footer-cell">$0.00</div>
+            </ng-template>
+          </kendo-grid-column>
+        </kendo-grid>
+      </div>
+    </ng-template>
+  </kendo-panelbar-item>
+</kendo-panelbar>

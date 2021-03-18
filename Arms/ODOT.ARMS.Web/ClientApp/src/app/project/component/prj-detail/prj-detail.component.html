@@ -1,0 +1,83 @@
+<!--<div class="card-header">Standard Project</div>-->
+
+  <div class="pid-card card-body">
+
+    <div class="pid-display">
+        <span class="pid-text">RFP Number:</span> 23222-20 <span class="vl"> </span>
+        <span class="pid-text">PID Number:</span> 98798 <span class="vl"> </span>
+        <span class="pid-text">Agreement Number:</span> 23234 <span class="vl"> </span>
+        <span class="pid-text">Project Title</span>
+    </div>
+
+    <kendo-menu class="sub-menu menu-override">
+      <kendo-menu-item text="Project Information" [disabled]="(activeTab$ | async) === 'Project Information'">
+        <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+          <a [kendoMenuItemLink]="index" routerLink="info" [class.selected]="(activeTab$ | async) === 'Project Information'">
+            Project Information
+          </a>
+        </ng-template>
+      </kendo-menu-item>
+
+      <!--
+  <kendo-menu-item text="Phase" [disabled]="(activeTab$ | async) === 'Phase'">
+    <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+      <a [kendoMenuItemLink]="index" routerLink="phase" [class.selected]="(activeTab$ | async) === 'Phase'">
+        Phase
+      </a>
+    </ng-template>
+  </kendo-menu-item>
+
+  <kendo-menu-item text="Personnel" [disabled]="(activeTab$ | async) === 'Personnel'">
+    <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+      <a [kendoMenuItemLink]="index" routerLink="personnel" [class.selected]="(activeTab$ | async) === 'Personnel'">
+        Personnel
+      </a>
+    </ng-template>
+  </kendo-menu-item>
+
+  <kendo-menu-item text="Events" [disabled]="(activeTab$ | async) === 'Events'">
+    <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+      <a [kendoMenuItemLink]="index" routerLink="events" [class.selected]="(activeTab$ | async) === 'Events'">
+        Events
+      </a>
+    </ng-template>
+  </kendo-menu-item>
+
+  <kendo-menu-item text="Controlling Board" [disabled]="(activeTab$ | async) === 'Controlling Board'">
+    <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+      <a [kendoMenuItemLink]="index" routerLink="cb" [class.selected]="(activeTab$ | async) === 'Controlling Board'">
+        Controlling Board
+      </a>
+    </ng-template>
+  </kendo-menu-item>
+
+  <kendo-menu-item text="Modifications" [disabled]="(activeTab$ | async) === 'Modifications'">
+    <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+      <a [kendoMenuItemLink]="index" routerLink="modifications" [class.selected]="(activeTab$ | async) === 'Project Information'">
+        Modifications
+      </a>
+    </ng-template>
+  </kendo-menu-item>
+    -->
+      <kendo-menu-item text="Current Summary" [disabled]="(activeTab$ | async) === 'Summary'">
+        <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+          <a [kendoMenuItemLink]="index" routerLink="summary" [class.selected]="(activeTab$ | async) === 'Current Summary'">
+            Current Summary
+          </a>
+        </ng-template>
+      </kendo-menu-item>
+
+      <kendo-menu-item text="Project Abstract" [disabled]="(activeTab$ | async) === 'Abstract'">
+        <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+          <a [kendoMenuItemLink]="index" routerLink="abstract" [class.selected]="(activeTab$ | async) === 'Project Abstract'">
+            Project Abstract
+          </a>
+        </ng-template>
+      </kendo-menu-item>
+
+
+    </kendo-menu>
+
+    <router-outlet></router-outlet>
+
+  </div>

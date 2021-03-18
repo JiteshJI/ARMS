@@ -1,0 +1,35 @@
+<kendo-dialog title="Insert Image" *ngIf="opened" (close)="close()" [minWidth]="250" [width]="450">
+
+    <form class="k-form-inline">
+      <div class="row">
+        <div class="col-12">
+          <label>Image</label>
+          <kendo-fileselect [restrictions]="fileRestrictions"
+                            (select)="onSelect($event)"
+                            [multiple]="false">
+          </kendo-fileselect>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+            <label [for]="heightInput">Height (px)</label>
+            <kendo-numerictextbox #heightInput [format]="'n0'" [(value)]="height" [min]="0">
+            </kendo-numerictextbox>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+            <label [for]="widthInput">Width (px)</label>
+            <kendo-numerictextbox #widthInput [format]="'n0'" [(value)]="width" [min]="0">
+            </kendo-numerictextbox>
+        </div>
+      </div>
+    </form>
+
+<kendo-dialog-actions>
+  <button class="btn" (click)="close()">Cancel</button>
+  <button class="btn btn-margin-left" [disabled]="canInsert" (click)="uploadImage()" primary="true">Insert</button>
+</kendo-dialog-actions>
+</kendo-dialog>

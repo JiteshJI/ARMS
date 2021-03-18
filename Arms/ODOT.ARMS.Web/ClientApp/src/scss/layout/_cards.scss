@@ -1,0 +1,43 @@
+.card-header {
+  text-align: center;
+  font-size: 0.97rem;
+  padding: 4px 35px !important;
+  background-color: #1f2a44 !important;
+  color: #ffffff !important;
+  height: 30px;
+  width: auto;
+  display: inline-block;
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px !important;
+  border-bottom: none !important;
+  box-shadow: -2px 0px 2px 0px #adadad, 2px 0px 2px 0px #adadad;
+  margin: 0px !important; // most confusing thing ever
+}
+
+.card-body {
+  background-color: #e8e8e8;
+  padding: 15px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 0px 2px 6px 2px #adadad;
+}
+
+.card {
+  box-shadow: 0px 3px 6px 1px #a0a0a0;
+}
+
+.card-header kendo-dropdownlist, .grid-header kendo-dropdownlist {
+  width: auto !important;
+  display: inline-block !important;
+  margin-left: 10px;
+}
+
+.card-header kendo-dropdownlist.form-control.k-widget.k-dropdown {
+  height: 23px;
+}
+
+//Card save btn group
+.save-btn-wrap button.btn + .btn {
+  margin-right: 5px;
+}

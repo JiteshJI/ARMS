@@ -1,0 +1,11 @@
+<!-- This html displays the child component project-summary component using its selector <app-prj-summary> here . The entire display component loads here. The values
+  are passed between the parent component and child component using input and output properties.   -->
+
+<app-prj-summary *ngIf="selectedSummary$"
+  [currentSummary]="selectedSummary$ | async"
+  (saveCurrSummary)="saveCurrSummary($event)">
+</app-prj-summary>
+
+
+
+

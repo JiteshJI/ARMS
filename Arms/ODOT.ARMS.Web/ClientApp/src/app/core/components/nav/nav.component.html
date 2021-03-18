@@ -1,0 +1,12 @@
+<kendo-menu class="top-nav" [items]="routeItems">
+  <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+    <a [kendoMenuItemLink]="index" [routerLink]="item.path" *ngIf="!item.data">
+      <ng-container *ngIf="item.path == '/home'">
+        <img class="odot-research-logo" alt="Home" src="../../../../assets/ODOT-The-Zephyr-White.png" title="Home">
+      </ng-container>
+      <span class="{{ item.image }} nav-icon"></span>
+      <span>{{ item.text }}</span>
+      <span *ngIf="item.items && item.items.length" [kendoMenuExpandArrow]="index"></span>
+    </a>
+  </ng-template>
+</kendo-menu>

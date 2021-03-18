@@ -1,0 +1,26 @@
+<kendo-dialog title="Insert Link" *ngIf="opened" (close)="close()" [minWidth]="250" [width]="450">
+    <form class="k-form-inline" [formGroup]="urlForm">
+        <div class="row">
+            <div class="col-12">
+                <label [for]="myUrl">Url</label>
+                <input #myUrl formControlName="url" maxlength="500" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label [for]="myUrlTitle">Title</label>
+                <input #myUrlTitle formControlName="urlTitle" maxlength="200" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label [for]="myWindow">Open In New Window</label>
+                <input type="checkbox" #myWindow kendoCheckBox formControlName="newWindow" />
+            </div>
+        </div>
+    </form>
+    <kendo-dialog-actions>
+        <button class="btn" (click)="close()">Cancel</button>
+        <button class="btn btn-margin-left" [disabled]="canInsert" (click)="createLink.emit({ url: url.value, urlTitle: urlTitle.value, newWindow: newWindow.value})" primary="true">Insert</button>
+    </kendo-dialog-actions>
+</kendo-dialog>

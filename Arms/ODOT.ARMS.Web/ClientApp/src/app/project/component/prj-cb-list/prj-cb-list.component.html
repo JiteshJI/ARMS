@@ -1,0 +1,81 @@
+<kendo-grid class="k-fin-data forms-grid extra-grid-space" 
+            [data]="controllingBoardList"
+            [rowClass]="rowCallback"
+            [sortable]="true"
+            [sort]="sort"
+            (sortChange)="sortChange($event)">
+  <ng-template kendoGridToolbarTemplate>
+    <div class="row">
+      <div class="col-12 table-button ">
+        <div class="add-btn-table">
+          <div class="grid-btn-bg">
+            <button type="button" class="btn add-grid-button k-button k-grid-add-command" (click)="selectCB.emit()" kendoGridAddCommand>
+              <img src="../../../../../assets/grid_toolbar_icons/Add_Toolbar_Icon.svg" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <kendo-grid-column field="controllingBoardNumber" title="CB Number" width="200">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="controllingBoardCategory" title="Category">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{getCBCategoryDescription(dataItem.controllingBoardCategory)}}
+    </ng-template>
+  </kendo-grid-column>
+
+  <kendo-grid-column field="controllingBoardType" title="Type">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{getCBTypeDescription(dataItem.controllingBoardType)}}
+    </ng-template>
+  </kendo-grid-column>
+
+  <kendo-grid-column field="submissionDate" title="Submitted Date">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{dataItem.submissionDate | date: 'MM/dd/yyyy'}}
+    </ng-template>
+  </kendo-grid-column>
+
+  <kendo-grid-column field="controllingBoardDate" title="CB Date">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{dataItem.controllingBoardDate | date: 'MM/dd/yyyy'}}
+    </ng-template>
+  </kendo-grid-column>
+
+  <!--<kendo-grid-command-column title="Status" width="90px" [columnMenu]="false">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <span *ngIf="dataItem.activeInd == 'I'">InActive</span>
+      <span *ngIf="dataItem.activeInd == 'A'">Active</span>
+    </ng-template>
+  </kendo-grid-command-column>-->
+
+  <kendo-grid-column field="controllingBoardStatus" title="Status">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{getCBStatusDescription(dataItem.controllingBoardStatus)}}
+    </ng-template>
+  </kendo-grid-column>
+
+  <kendo-grid-column field="docCnt" title="Doc(s)" width="80px">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{formatDocCnt(dataItem.docCnt)}}
+    </ng-template>
+  </kendo-grid-column>
+
+  <kendo-grid-command-column title="Edit Files" width="65px" [columnMenu]="false">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <!--<button [disabled]="dataItem.activeInd == 'C'" type="button" class="btn btn-edit" kendoGridEditCommand (click)="selectEvent.emit(dataItem)">-->
+      <button [disabled]="dataItem.activeInd == 'C'" type="button" class="btn btn-edit" (click)="selectCBUpload.emit(dataItem)">
+        <span class="fas fa-pencil-alt"></span>
+      </button>
+    </ng-template>
+  </kendo-grid-command-column>
+
+  <kendo-grid-command-column title="Edit" width="43px">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <button type="button" class="btn btn-edit" (click)="selectCB.emit(dataItem)" [disabled]="dataItem.activeInd == 'I'" kendoGridEditCommand><span class="fas fa-pencil-alt"></span></button>
+    </ng-template>
+  </kendo-grid-command-column>
+</kendo-grid>

@@ -1,0 +1,93 @@
+<kendo-grid class="k-fin-data forms-grid extra-grid-space"
+            [kendoGridBinding]="invoiceList"
+            [sortable]="true"
+            [resizable]="true"
+            [pageable]="true"
+            [pageSize]="10"
+            [filterable]="true">
+
+  <ng-template kendoGridToolbarTemplate>
+    <div class="row">
+      <div class="col-12 table-button ">
+        <div class="add-btn-table">
+          <div class="grid-btn-bg">
+            <!--<button type="button" class="btn add-grid-button k-button k-grid-add-command" [disabled]="phaseList.length === 0" (click)="selectEvent.emit()" kendoGridAddCommand>-->
+            <button type="button" class="btn add-grid-button k-button k-grid-add-command" [disabled]="canDisable()" (click)="selectInvoice.emit()" kendoGridAddCommand>
+              <img src="../../../../../assets/grid_toolbar_icons/Add_Toolbar_Icon.svg" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <kendo-grid-column field="phaseId" title="Phase" width="200px">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{getPhaseDescription(dataItem.phaseId)}}
+    </ng-template>
+  </kendo-grid-column>
+
+  <kendo-grid-column field="invNum" title="Invoice Number">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="startDt" title="Start Date" [filterable]="false">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{dataItem.startDt | date: 'MM/dd/yyyy'}}
+    </ng-template>
+  </kendo-grid-column>
+
+  <kendo-grid-column field="endDt" title="End Date" [filterable]="false">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{dataItem.endDt | date: 'MM/dd/yyyy'}}
+    </ng-template>
+  </kendo-grid-column>
+
+  <kendo-grid-column field="properInvDt" title="Prop Inv Dt" [filterable]="false">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{dataItem.properInvDt | date: 'MM/dd/yyyy'}}
+    </ng-template>
+  </kendo-grid-column>
+
+  <kendo-grid-column field="invToFinancePaidDt" title="Dt to Fin" [filterable]="false">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{dataItem.invToFinancePaidDt | date: 'MM/dd/yyyy'}}
+    </ng-template>
+  </kendo-grid-column>
+
+
+  <kendo-grid-column field="fundingStatusCd" title="Status">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{getFundingStatusDescription(dataItem.fundingStatusCd)}}
+    </ng-template>
+  </kendo-grid-column>
+
+  <kendo-grid-column field="invAmt" title="Amount" format="{0:c}" [filterable]="false">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{getInvoiceAmt(dataItem) | currency}}
+    </ng-template>
+  </kendo-grid-column>
+
+  <kendo-grid-column field="docCnt" title="Doc(s)" width="80px" [filterable]="false">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{formatDocCnt(dataItem.docCnt)}}
+    </ng-template>
+  </kendo-grid-column>
+
+  <kendo-grid-command-column title="Edit Files" width="65px" [columnMenu]="false">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <!--<button [disabled]="dataItem.activeInd == 'C'" type="button" class="btn btn-edit" kendoGridEditCommand (click)="selectInvoice.emit(dataItem)">-->
+      <button type="button" class="btn btn-edit" (click)="selectInvoiceUpload.emit(dataItem)">
+        <span class="fas fa-pencil-alt"></span>
+      </button>
+    </ng-template>
+  </kendo-grid-command-column>
+
+  <kendo-grid-command-column title="Edit" width="40px">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <button type="button" class="btn btn-edit" (click)="selectInvoice.emit(dataItem)">
+        <span class="fas fa-pencil-alt"></span>
+      </button>
+    </ng-template>
+  </kendo-grid-command-column>
+
+</kendo-grid>

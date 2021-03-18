@@ -1,0 +1,35 @@
+<kendo-grid class="k-fin-data forms-grid extra-grid-space"
+            [kendoGridBinding]="data"
+            [sortable]="true"
+            scrollable="none">
+
+  <kendo-grid-column field="phaseTxt" title="Phase" width="200">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="catTxt" title="Category">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="titleTxt" title="Title">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="transTxt" title="Transaction Type">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="amt"
+                     title="Amount"
+                     format="{0:c}">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="balance"
+                     title="Balance"
+                     format="{0:c}">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="dt" title="Date">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{dataItem.dt | date: 'MM/dd/yyyy'}}
+    </ng-template>
+  </kendo-grid-column>
+
+</kendo-grid>
+

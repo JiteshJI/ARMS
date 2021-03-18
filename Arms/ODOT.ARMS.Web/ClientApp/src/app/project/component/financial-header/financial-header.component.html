@@ -1,0 +1,72 @@
+<div class="card-body">
+
+  <kendo-menu class="sub-menu fin-menu menu-override">
+    <kendo-menu-item text="Overview" [disabled]="(activeFinanceTab$ | async) === 'Overview'">
+      <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+        <a [kendoMenuItemLink]="index" routerLink="fin-overview" [class.selected]="(activeFinanceTab$ | async) === 'Overview'">
+          Overview
+        </a>
+      </ng-template>
+    </kendo-menu-item>>
+
+    <kendo-menu-item text="Budget" [disabled]="(activeFinanceTab$ | async) === 'Budget'">
+      <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+        <a [kendoMenuItemLink]="index" routerLink="fin-budget" [class.selected]="(activeFinanceTab$ | async) === 'Budget'">
+          Budget
+        </a>
+      </ng-template>
+    </kendo-menu-item>
+    <kendo-menu-item text="Funding" [disabled]="(activeFinanceTab$ | async) === 'Funding'">
+      <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+        <a [kendoMenuItemLink]="index" routerLink="fin-funding" [class.selected]="(activeFinanceTab$ | async) === 'Funding'">
+          Funding
+        </a>
+      </ng-template>
+    </kendo-menu-item>
+
+    <kendo-menu-item text="Invoices" [disabled]="(activeFinanceTab$ | async) === 'Invoices'">
+      <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+        <a [kendoMenuItemLink]="index" routerLink="fin-invoices" [class.selected]="(activeFinanceTab$ | async) === 'Invoices'">
+          Invoices
+        </a>
+      </ng-template>
+    </kendo-menu-item>
+
+    <kendo-menu-item text="Ledger" [disabled]="(activeFinanceTab$ | async) === 'Ledger'">
+      <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+        <a [kendoMenuItemLink]="index" routerLink="fin-ledger" [class.selected]="(activeFinanceTab$ | async) === 'Ledger'">
+          Ledger
+        </a>
+      </ng-template>
+    </kendo-menu-item>
+
+    <kendo-menu-item text="Controlling Board" [disabled]="(activeFinanceTab$ | async) === 'ControllingBoard'">
+      <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+        <a [kendoMenuItemLink]="index" routerLink="fin-cb" [class.selected]="(activeFinanceTab$ | async) === 'ControllingBoard'">
+          Controlling Board
+        </a>
+      </ng-template>
+    </kendo-menu-item>
+
+    <kendo-menu-item text="Participating Amounts" [disabled]="(activeFinanceTab$ | async) === 'ParticipatingAmounts'">
+      <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+        <a [kendoMenuItemLink]="index" routerLink="fin-pooled-participating" [class.selected]="(activeFinanceTab$ | async) === 'ParticipatingAmounts'">
+          Participating Amounts
+        </a>
+      </ng-template>
+    </kendo-menu-item>
+
+    <!--<kendo-menu-item text="Deductions" [disabled]="(activeTab$ | async) === 'Deductions'">
+      <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+        <a [kendoMenuItemLink]="index" routerLink="fin-deductions" [class.selected]="(activeTab$ | async) === 'Deductions'">
+          Deductions
+        </a>
+      </ng-template>
+    </kendo-menu-item>-->
+
+  </kendo-menu>
+  <div class="card-body">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

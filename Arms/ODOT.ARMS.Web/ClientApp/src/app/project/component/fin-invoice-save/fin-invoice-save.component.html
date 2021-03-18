@@ -1,0 +1,250 @@
+<kendo-dialog [width]="566" [height]="510" *ngIf="saveInvoiceDialogStatus" (close)="setSaveInvoiceDialogStatus.emit(false)">
+  <kendo-dialog-titlebar class="k-prjdata">{{ title }}</kendo-dialog-titlebar>
+  
+
+  <form class="k-form" [formGroup]="invoiceForm" #junkshot>
+    
+    <div class="row">
+      <div class="col-3">
+        <label for="phaseId">Phase <span class="k-field-info k-required">*</span></label>
+        <kendo-dropdownlist name="phaseId"
+                            [data]="phaseLookupList"
+                            [defaultItem]="{text: 'Select Phase',value: null }"
+                            [textField]="'text'"
+                            [valueField]="'value'"
+                            formControlName="phaseId"
+                            [valuePrimitive]="true"
+                            tabindex="1"
+                            (valueChange)="onPhaseChange($event)"
+                            [ngClass]="{ 'ng-invalid ng-touched':  phaseId.value==null}"
+                            required>
+        </kendo-dropdownlist>
+      </div>
+
+      <div class="col-3">
+        <label for="invNum">Invoice Number <span class="k-field-info k-required">*</span></label>
+        <input kendoTextBox formControlName="invNum"
+               tabindex="2"
+               maxlength="50"
+               [ngClass]="{ 'ng-invalid ng-touched':  invNum.value==null}"
+               required />
+      </div>
+
+      <div class="col-3">
+        <label for="fundingStatusCd">Funding Status <span class="k-field-info k-required">*</span></label>
+        <kendo-dropdownlist formControlName="fundingStatusCd"
+                            [data]="fundingStatusItems"
+                            [defaultItem]="{text: 'Select Funding',value: null }"
+                            [textField]="'text'"
+                            [valueField]="'value'"
+                            [valuePrimitive]="true"
+                            (valueChange)="onFundingStatusChange($event)"
+                            [ngClass]="{ 'ng-invalid ng-touched':  fundingStatusCd.value==null}"
+                            tabindex="5"
+                            required>
+        </kendo-dropdownlist>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+
+      <div class="col-2">
+        <label for="invToFinancePaidDt">Invoice to Finance Paid</label>
+        <kendo-datepicker [format]="dateFormat" formControlName="invToFinancePaidDt"
+                          [min]="minDate"
+                          [max]="maxDate"
+                          tabindex="4">
+        </kendo-datepicker>
+      </div>
+
+      <div class="col-2">
+        <label for="invDt">Invoice Date</label>
+        <kendo-datepicker [format]="dateFormat" formControlName="invDt"
+                          [min]="minDate"
+                          [max]="maxDate"
+                          tabindex="6">
+        </kendo-datepicker>
+      </div>
+
+      <div class="col-2">
+        <label for="invRcvdDt">Invoice Received Date</label>
+        <kendo-datepicker [format]="dateFormat" formControlName="invRcvdDt"
+                          [min]="minDate"
+                          [max]="maxDate"
+                          tabindex="3">
+        </kendo-datepicker>
+      </div>
+
+      <div class="col-2">
+        <label for="startDt">Invoice Start Date <span class="k-field-info k-required" *ngIf="isStartEndDateRequired">*</span></label>
+        <kendo-datepicker [format]="dateFormat" formControlName="startDt"
+                          [min]="minDate"
+                          [max]="maxDate"
+                          tabindex="7">
+        </kendo-datepicker>
+      </div>
+
+      <div class="col-2">
+        <label for="endDt">Invoice End Date <span class="k-field-info k-required" *ngIf="isStartEndDateRequired">*</span></label>
+        <kendo-datepicker [format]="dateFormat" formControlName="endDt"
+                          [min]="minDate"
+                          [max]="maxDate"
+                          tabindex="8">
+        </kendo-datepicker>
+      </div>
+
+      <div class="col-2">
+        <label for="finalNoticeInd">Final Invoice</label>
+        <input type="checkbox" [checked]="isChecked()" (click)="getChecked($event)"
+               kendoCheckBox
+               id="finalNoticeInd"
+               tabindex="9" />
+        <!--<input type="checkbox" kendoCheckBox
+      id="finalNoticeInd"
+      tabindex="4" />-->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-2">
+        <label for="properInvDt">Proper Invoice Date</label>
+        <kendo-datepicker [format]="dateFormat" formControlName="properInvDt"
+                          [min]="minDate"
+                          [max]="maxDate"
+                          tabindex="10">
+        </kendo-datepicker>
+      </div>
+    </div>
+
+    <!--<div class="fade_rule col-md"></div>-->
+
+    <kendo-panelbar>
+
+      <kendo-panelbar-item [title]="'Encumbrance'" class="extra-space-top" icon="grid-layout" *ngIf="encumbranceSummary.length > 0">
+        <ng-template kendoPanelBarContent>
+          <div class="card-body">
+            <kendo-grid class="k-fin-data forms-grid extra-grid-space"
+                        [data]="encumbranceSummary"
+                        [height]="150">
+              <kendo-grid-column field="fiscalYear" title="Fiscal Year"></kendo-grid-column>
+              <kendo-grid-column field="encumbranceNbr" title="Encum No."></kendo-grid-column>
+              <kendo-grid-column field="sac" title="SAC"></kendo-grid-column>
+              <kendo-grid-column field="poLineAmt" title="PO Line Amt" format="{0:c}"></kendo-grid-column>
+              <kendo-grid-column field="poLineAdj" title="Adjustment" format="{0:c}"></kendo-grid-column>
+              <kendo-grid-column field="poLineDisb" title="PO Line Disb." format="{0:c}"></kendo-grid-column>
+              <kendo-grid-column field="poLineBalance" title="PO Line Balance" format="{0:c}"></kendo-grid-column>
+            </kendo-grid>
+          </div>
+        </ng-template>
+      </kendo-panelbar-item>
+
+      <kendo-panelbar-item [title]="'Comments'" icon="grid-layout" class="extra-space-top">
+        <ng-template kendoPanelBarContent>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12">
+                <label for="publicCommentTxt">
+                  Public Comments
+                  <span class="blue-text char-count">{{fieldTxtLength(publicCommentTxt)}} OF {{maxChars}} Characters</span>
+                </label>
+                <textarea kendoTextArea formControlName="publicCommentTxt" rows="4" cols="50" maxlength="{{maxChars}}"></textarea>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <label for="privateCommentTxt">
+                  Private Comments
+                  <span class="blue-text char-count"> {{fieldTxtLength(privateCommentTxt)}} OF {{maxChars}} Characters</span>
+                </label>
+                <textarea kendoTextArea formControlName="privateCommentTxt" rows="4" cols="50" maxlength="{{maxChars}}" style="background-color:#ffe6e6"></textarea>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </kendo-panelbar-item>
+
+      <kendo-panelbar-item [title]="'Budget'" icon="grid-layout" class="extra-space-top" [expanded]="!invoice">
+        <ng-template kendoPanelBarContent>
+          <div class="card-body">
+            <kendo-grid class="k-fin-data forms-grid extra-grid-space"
+                        [data]="invoiceDetailList"
+                        [height]="300"
+                        (edit)="editHandler($event)" (cancel)="cancelHandler($event)"
+                        (save)="saveHandler($event)"
+                        (add)="addHandler($event)"
+                        (remove)="removeHandler($event)"
+                        [navigable]="true">
+              <ng-template kendoGridToolbarTemplate>
+                <div class="row">
+                  <div class="col-12 table-button ">
+                    <div class="add-btn-table">
+                      <div class="grid-btn-bg">
+                        <!--<button type="button" class="btn add-grid-button k-button k-grid-add-command" [disabled]="budgetCategoryList.length === 0" (click)="selectEvent.emit()" kendoGridAddCommand>-->
+                        <button type="button" class="btn add-grid-button k-button k-grid-add-command" [disabled]="budgetCategoryList.length === 0" kendoGridAddCommand>
+                          <img src="../../../../../assets/grid_toolbar_icons/Add_Toolbar_Icon.svg" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+
+              <!--<kendo-grid-column field="invDtlKey" title="Budget Category">-->
+              <kendo-grid-column title="Budget">
+                <ng-template kendoGridCellTemplate let-dataItem>
+                  {{getBudgetCategoryDescription(dataItem)}}
+                </ng-template>
+                <ng-template kendoGridEditTemplate
+                             let-dataItem="dataItem"
+                             let-formGroup="formGroup">
+                  <kendo-dropdownlist [data]="buildBudgetCategoryList(dataItem)"
+                                      (valueChange)="onBudgetCategoryChange($event, formGroup)"
+                                      textField="text"
+                                      valueField="value"
+                                      [valuePrimitive]="true"
+                                      [formControl]="formGroup.get('invDtlKey')">
+                  </kendo-dropdownlist>
+                </ng-template>
+              </kendo-grid-column>
+
+              <kendo-grid-column field="invAmt" editor="numeric" [min]="0" title="Amount" format="{0:c}"></kendo-grid-column>
+
+              <kendo-grid-command-column title="{{headerTextOne}}" width="90">
+                <ng-template kendoGridCellTemplate let-isNew="isNew">
+                  <button kendoGridEditCommand type="button" class="btn btn-edit" [primary]="true" (click)="changeText()">
+                    <span class="fas fa-pencil-alt"></span>
+                  </button>
+                  <button kendoGridSaveCommand [disabled]="formGroup?.invalid" class="btn btn-edit" (click)="changeText()">
+                    <span class="fas fa-check"></span>
+                  </button>
+                </ng-template>
+              </kendo-grid-command-column>
+
+              <kendo-grid-command-column title="{{headerTextTwo}}" width="90">
+                <ng-template kendoGridCellTemplate let-isNew="isNew">
+                  <button kendoGridRemoveCommand type="button" class="btn btn-edit" (click)="changeText()">
+                    <span class="fas fa-trash-alt"></span>
+                  </button>
+                  <button kendoGridCancelCommand type="button" class="btn btn-edit" (click)="changeText()">
+                    <span class="fas fa-ban"></span>
+                  </button>
+                </ng-template>
+              </kendo-grid-command-column>
+
+            </kendo-grid>
+          </div>
+        </ng-template>
+      </kendo-panelbar-item>
+
+    </kendo-panelbar>
+  </form>
+
+  <kendo-dialog-actions>
+    <button class="btn" (click)="setSaveInvoiceDialogStatus.emit(false)" tabindex="5">Cancel</button>
+    <button class="btn btn-margin-left" (click)="onSave()" primary="true" tabindex="6" [disabled]="!invoiceForm.dirty || !invoiceForm.valid">Save</button>
+    <!--<button class="btn btn-margin-left" [disabled]="!invoiceForm.dirty || !invoiceForm.valid" (click)="onSaveInvoice()" primary="true" tabindex="6">Save</button>-->
+  </kendo-dialog-actions>
+</kendo-dialog>

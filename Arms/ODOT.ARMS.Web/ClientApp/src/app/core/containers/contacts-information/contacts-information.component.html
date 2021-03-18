@@ -1,0 +1,168 @@
+<form class="k-form">
+  <div class="card-header">Contacts</div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-12">
+        <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+          <div class="btn-group" role="group" aria-label="First group">
+            <button type="button" class="btn btn-secondary">A-F</button>
+            <button type="button" class="btn btn-secondary">G-L</button>
+            <button type="button" class="btn btn-secondary">M-R</button>
+            <button type="button" class="btn btn-secondary">S-Z</button>
+          </div>
+          <div class="input-group">
+            <input type="text" class="control-150px-width" placeholder="Search Agency" aria-label="Search Agency" aria-describedby="btnGroupAddon">
+            <button class="btn btn-unique btn-rounded btn-sm my-0" type="submit">Go</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <kendo-grid class="forms-grid extra-grid-space"
+                [data]="formsGridView"
+                [group]="groups"
+                [sortable]="{
+                    allowUnsort: allowUnsort,
+                    mode: multiple ? 'multiple' : 'single'
+                    }"
+                [sort]="sort"
+                (sortChange)="sortChange($event)"
+                (groupChange)="groupChange($event)"
+                (add)="openAddFormDialog()"
+                (edit)="openUpdateFormDialog($event)"
+                (remove)="removeFormGridHandler($event)"
+                scrollable="none">
+      <ng-template kendoGridToolbarTemplate>
+        <div class="row">
+          <div class="col-12 table-button ">
+            <div class="add-btn-table">
+              <div class="grid-btn-bg">
+                <button type="button" class="btn btn-grid-header" (click)="open()" kendoGridAddCommand>Add*</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <kendo-grid-column field="id" title="id" [hidden]="true"></kendo-grid-column>
+      <kendo-grid-column field="classification" title="Classification" [hidden]="true"></kendo-grid-column>
+      <kendo-grid-column title="Last Name" width="200">
+      </kendo-grid-column>
+      <kendo-grid-column title="First Name">
+      </kendo-grid-column>
+      <kendo-grid-column title="Business Title">
+      </kendo-grid-column>
+      <kendo-grid-column title="Email Address">
+      </kendo-grid-column>
+      <kendo-grid-column title="Mobile Number">
+      </kendo-grid-column>
+      <kendo-grid-column title="Business Number">
+      </kendo-grid-column>
+      <kendo-grid-command-column title="Status" width="43px">
+        <ng-template kendoGridCellTemplate>
+          <button type="button" class="btn btn-edit" kendoGridEditCommand><span class="fas fa-pencil-alt"></span></button>
+        </ng-template>
+      </kendo-grid-command-column>
+      <kendo-grid-command-column title="" width="43px">
+        <ng-template kendoGridCellTemplate>
+          <button type="button" class="btn btn-delete" kendoGridRemoveCommand><span class="fas fa-trash-alt"></span></button>
+        </ng-template>
+      </kendo-grid-command-column>
+    </kendo-grid>
+  </div>
+  <!--</div>-->
+</form>
+
+<kendo-dialog class="dis-contacts" title="Contact Information" *ngIf="opened" (close)="close()">
+  <div class="row">
+    <div class="col-md">
+      <label for="clss" class="k-form-field">Classification</label>
+      <input id="clss" kendoTextBox />      
+    </div>
+    <div class="col-md">
+      <label class="k-form-field">
+        <span>
+          First Name
+        </span>
+        <input kendoTextBox />
+      </label>
+    </div>
+    <div class="col-md">
+      <label class="k-form-field">
+        <span>
+          Last Name
+        </span>
+        <input kendoTextBox />
+      </label>
+    </div>
+    <div class="col-md">
+      <label class="k-form-field">
+        <span>
+          Status
+        </span>
+        <kendo-dropdownlist>
+        </kendo-dropdownlist>
+      </label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <label class="k-form-field">
+        <span>
+          Email Address
+        </span>
+        <input kendoTextBox />
+      </label>
+    </div>a
+    <div class="col-2">
+      <label class="k-form-field">
+        <span>
+          ORIL Board Member?
+        </span>
+      </label>
+      <kendo-switch [onLabel]="'Yes'" [offLabel]="'No'"></kendo-switch>
+    </div>
+  </div>
+
+  <div class="fade_rule col-md"></div>
+
+  <kendo-grid>
+    <ng-template kendoGridToolbarTemplate>
+      <div class="row">
+        <div class="col-12 table-button ">
+          <div class="add-btn-table">
+            <div class="grid-btn-bg">
+              <button type="button" class="btn btn-grid-header" kendoGridAddCommand>Add*</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <kendo-grid-column field="ProductID" title="Agency Name" width="120">
+    </kendo-grid-column>
+    <kendo-grid-column field="ProductName" title="Business Address" width="120">
+    </kendo-grid-column>
+    <kendo-grid-column field="Category.CategoryName" title="Address 2" width="120">
+    </kendo-grid-column>
+    <kendo-grid-column field="UnitPrice" title="City" width="80">
+    </kendo-grid-column>
+    <kendo-grid-column field="UnitsInStock" title="State" width="40">
+    </kendo-grid-column>
+    <kendo-grid-column field="UnitsInStock" title="Zip Code" width="40">
+    </kendo-grid-column>
+    <kendo-grid-column field="UnitsInStock" title="Business Phone" width="40">
+    </kendo-grid-column>
+    <kendo-grid-column field="UnitsInStock" title="State" width="40">
+    </kendo-grid-column>
+  </kendo-grid>
+
+  <kendo-dialog-actions>
+    <button class="btn" (click)="close('no')">Cancel</button>
+    <button class="btn" (click)="close('yes')" primary="true">Save</button>
+  </kendo-dialog-actions>
+
+  <!--<kendo-dialog-actions>
+    <button class="btn" (click)="onCloseDialog()">Cancel</button>
+    <button class="btn" [disabled]="!parcelTitleChainForm.valid" (click)="onSaveTitleChain($event)">Save</button>
+  </kendo-dialog-actions>-->
+
+</kendo-dialog>

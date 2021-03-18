@@ -1,0 +1,16 @@
+<app-prj-uploads-list
+  [uploads]="uploads$ | async"
+  (onDelete)="onDeleteFile($event)"
+  (download)="onDownload($event)"
+  (updateFile)="onUpdateFileUpload($event)"
+  (openUploadDlg)="onSetUploadDialogStatus($event)">
+</app-prj-uploads-list>
+
+<app-prj-upload-save
+  [dlgTitle]="'Project Upload'"
+  [uploadPrjDlgStatus]="uploadPrjDlgStatus$ | async"
+  [projAltId]="projAltId$ | async"
+  [srcId]="projId$ | async"
+  (setUploadDialogStatus)="onSetUploadDialogStatus($event)"
+  (updateUploadFiles)="onUploadFilesChange($event)">
+</app-prj-upload-save>

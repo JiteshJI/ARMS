@@ -1,0 +1,56 @@
+<div>
+  <kendo-grid [kendoGridBinding]="" #grid class="k-fin-data forms-grid"
+              [pageSize]="10"
+              [pageable]="true"
+              [sortable]="true"
+              [resizable]="true"
+              [height]="300">
+      <ng-template kendoGridToolbarTemplate>
+        <div class="row">
+          <div class="col-12 table-button ">
+            <div class="add-btn-table">
+              <div class="grid-btn-bg">
+                <!--<button type="button" class="btn add-grid-button k-button k-grid-add-command" (click)="onAddClick(true)" kendoGridAddCommand>-->
+                <button type="button" class="btn add-grid-button k-button k-grid-add-command" (click)="savePooledPart.emit(true)"kendoGridAddCommand>
+                  <img src="../../../../../assets/grid_toolbar_icons/Add_Toolbar_Icon.svg" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    <kendo-grid-column field="FiscalYear" title="Fiscal Year" [width]="50"></kendo-grid-column>
+    <kendo-grid-column field="AmountCommited" title="Amount Commited" [width]="90"></kendo-grid-column>
+    <kendo-grid-column field="AmountTransferred" title="Amount Transferred" [width]="90"> </kendo-grid-column>
+    <kendo-grid-column field="FundingSource" title="Funding Source" [width]="100"></kendo-grid-column>
+    <kendo-grid-column field="FundingType" title="Funding Type" [width]="100"></kendo-grid-column>
+    <kendo-grid-column field="TransferRequestedDt" title="Transfer Requested Dt" [width]="100"></kendo-grid-column>
+    <kendo-grid-column field="FinanceRequestedDt" title="Finance Requested Dt" [width]="100"></kendo-grid-column>
+    <kendo-grid-column field="FHWAApprovedDt" title="FHWA Approved Dt" [width]="100"></kendo-grid-column>
+    <kendo-grid-column field="FinalTransferDt" title="Final Transfer Dt" [width]="80"> </kendo-grid-column>
+    <kendo-grid-column field="TransferCode" title="Transfer Code" [width]="60"></kendo-grid-column>
+    <kendo-grid-column field="TransferReconciliationDt" title="Transfer Reconciliation Dt" [width]="100"></kendo-grid-column>
+    <kendo-grid-column field="LeadStateNotDt" title="Lead State No Dt" [width]="80"></kendo-grid-column>
+    <kendo-grid-command-column title="File Upload" width="65px" [columnMenu]="false">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <button [disabled]="dataItem.activeInd == 'C'" type="button" class="btn btn-edit" (click)="selectCBUpload.emit(dataItem)">
+          <span class="fas fa-pencil-alt"></span>
+        </button>
+      </ng-template>
+    </kendo-grid-command-column>
+    <kendo-grid-command-column title="Edit" width="43px">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <button type="button" class="btn btn-edit" (click)="selectCB.emit(dataItem)" [disabled]="dataItem.activeInd == 'I'" kendoGridEditCommand>
+          <span class="fas fa-pencil-alt"></span>
+        </button>
+      </ng-template>
+    </kendo-grid-command-column>
+    <kendo-grid-command-column title="Comments" width="43px">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <button type="button" class="btn btn-edit"   kendoGridEditCommand>
+          <span class="fas fa-pencil-alt"></span>
+        </button>
+      </ng-template>
+    </kendo-grid-command-column>
+  </kendo-grid>
+</div>

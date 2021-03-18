@@ -1,0 +1,59 @@
+<div class="card-body">
+  <kendo-panelbar [items]="projectView" (stateChange)="stateChange($event)">
+  </kendo-panelbar>
+  <div class="card-footer">
+    <!--<input class="mr-sm-2" type="text" placeholder="Search" aria-label="Search">-->
+    <input class="mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+    <button class="btn btn-unique btn-rounded btn-sm my-0" type="submit">Go</button>
+  </div>
+  <!--<div class="content-pane">-->
+  <!--<router-outlet></router-outlet>-->
+  <!--</div>-->
+</div>
+
+
+<!--<div class="card-body">
+  <app-project-navigation></app-project-navigation>
+  <div class="card-footer">
+    <form class="form-inline mr-auto">
+      <input class="mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-unique btn-rounded btn-sm my-0" type="submit">Go</button>
+    </form>
+  </div>
+  <kendo-panelbar [items]="items" (stateChange)="onPanelChange($event)">
+  </kendo-panelbar>
+  <ul id="panelbar">
+    <li class="list-group-item k-state-active" style="border: none">
+      My Projects
+      <ul>
+        <li>Sub Item 1</li>
+        <li>Sub Item 2</li>
+        <li>Sub Item 3</li>
+      </ul>
+    </li>
+    <li class="list-group-item " style="border: none">
+      Standard Projects
+      <ul>
+        <li>Sub Item 1</li>
+        <li>Sub Item 2</li>
+        <li>Sub Item 3</li>
+      </ul>
+    </li>
+    <li class="list-group-item" style="border: none">
+      ROC Projects
+      <ul>
+        <li>Sub Item 1</li>
+        <li>Sub Item 2</li>
+        <li>Sub Item 3</li>
+      </ul>
+    </li>
+    <li class="list-group-item" style="border: none">
+      All Projects
+      <ul>
+        <li>Sub Item 1</li>
+        <li>Sub Item 2</li>
+        <li>Sub Item 3</li>
+      </ul>
+    </li>
+  </ul>
+</div>-->

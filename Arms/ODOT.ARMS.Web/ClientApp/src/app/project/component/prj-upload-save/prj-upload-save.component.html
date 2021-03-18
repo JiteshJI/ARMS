@@ -1,0 +1,14 @@
+<kendo-dialog class="file-add-view-dialog" *ngIf="uploadPrjDlgStatus" (close)="setUploadDialogStatus.emit(false)" [width]="300" [height]="250">
+  <kendo-dialog-titlebar class="k-prjdata">{{ dlgTitle }} </kendo-dialog-titlebar>
+
+  <kendo-upload class="extra-space-top"
+                [saveUrl]="uploadSaveUrl"
+                [withCredentials]="false"
+                (success)="onSuccessEvent($event)">
+  </kendo-upload>
+
+  <kendo-dialog-actions>
+    <button class="btn" (click)="setUploadDialogStatus.emit(false)">Close</button>
+  </kendo-dialog-actions>
+
+</kendo-dialog>

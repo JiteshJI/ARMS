@@ -1,0 +1,16 @@
+
+<app-prj-phase-list [phases]="phases$ | async"
+                    [phaseStatusList]="phaseStatuses$ | async"
+                    [mergePhases]="mergePhases$ | async"
+                    (selectPhase)="onSelectPhase($event)"
+                    (mergePhase)="onMergePhases($event)">
+</app-prj-phase-list>
+
+<app-prj-phase-save [phases]="phases$ | async"
+                    [phase]="selectedPhase$ | async"
+                    [projectId]="projectId$ | async"
+                    [phaseStatusList]="phaseStatuses$ | async"
+                    [savePhaseDialogStatus]="savePhaseDialogStatus$ | async"
+                    (savePhase)="onSavePhase($event)"
+                    (setSavePhaseDialogStatus)="onSetSavePhaseDialogStatus($event)">
+</app-prj-phase-save>

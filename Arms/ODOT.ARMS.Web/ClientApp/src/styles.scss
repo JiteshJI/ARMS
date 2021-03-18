@@ -1,0 +1,2726 @@
+/* See ~@progress/kendo-theme-bootstrap/scss/_variables.scss for more variables*/
+/* You can add global styles to this file, and also import other style files */
+@import "~@progress/kendo-theme-bootstrap/dist/all.scss";
+@import "~bootstrap/scss/bootstrap.scss";
+
+// For Roboto google font
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+// This is to change the k-icon k-i-trash so removing will work on grids
+@import url("https://use.fontawesome.com/releases/v5.7.1/css/all.css");
+
+@import "scss/base/_base.scss";
+
+@import "scss/abstracts/_variables.scss";
+@import "scss/components/_buttons.scss";
+@import "scss/components/_login.scss";
+@import "scss/layout/_cards.scss";
+@import "scss/layout/_grids.scss";
+
+li.hide {
+  display: none !important;
+}
+
+div.k-content.k-state-active {
+  //background-color: #f1f1f1 !important;
+  background-color: #e8e8e8 !important;
+  padding: 15px !important;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 0px 2px 6px 2px #adadad;
+}
+
+.k-tabstrip-items .k-list {
+  border-radius: 10px 10px 0px 0px !important;
+  margin-right: 6px !important;
+  //height: 28px !important;
+  //padding: 3px 30px !important;
+  //background-color: aquamarine !important;
+  font-size: 0.95rem !important;
+  color: #ffffff !important;
+}
+
+li[role="tab"] > span.k-link {
+  background-color: #009969 !important;
+  border-radius: 10px 10px 0px 0px !important;
+  color: #ffffff !important;
+  font-size: 0.95rem !important;
+}
+
+li[role="tab"].k-state-active > span.k-link {
+  background-color: #006161 !important;
+  border-radius: 10px 10px 0px 0px !important;
+  color: #ffffff !important;
+  font-size: 0.95rem !important;
+}
+
+li[role="tab"] > span.k-link:hover {
+  background-color: #006646 !important;
+  border-radius: 10px 10px 0px 0px !important;
+  color: #ffffff !important;
+  font-size: 0.95rem !important;
+}
+
+li[role="tab"].k-item {
+  border-radius: 10px 10px 0px 0px !important;
+  margin-right: 6px !important;
+  height: 28px !important;
+  //padding: 3px 30px !important;
+  //background-color: aquamarine !important;
+  //
+  //color: #ffffff !important;
+}
+
+.k-grid td {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.fix-search {
+  border-radius: 16px;
+}
+
+input.k-textbox.fix-search {
+  padding: 0px 0px 0px 12px;
+  opacity: 1;
+  font-size: 0.8rem !important;
+  min-width: 225px;
+}
+
+//Let give this a default min size
+kendo-grid {
+  min-height: 150px !important;
+}
+
+div.k-form.form-padding {
+  padding-top: 20px !important;
+}
+
+div.add-btn-table {
+  /*box-shadow: inset 0px -7px 7px -7px #989898;*/
+}
+
+input.k-textbox.search-text {
+  padding: 0px 0px 0px 5px !important;
+  border-radius: 0px !important;
+  height: 100% !important;
+  border: 1px solid rgba(0, 0, 0, 0.21);
+  border-bottom-color: rgba(0, 0, 0, 0.34);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.34) inset, 0 2px 0 -1px rgba(0, 0, 0, 0.13), 0 3px 0 -1px rgba(0, 0, 0, 0.08), 0 3px 13px -1px rgba(0, 0, 0, 0.21);
+  cursor: pointer;
+  transition: box-shadow .1s;
+}
+
+
+
+
+th.k-header {
+  background-color: #e8e8e8 !important;
+}
+
+div.k-grid-header-wrap {
+  background-color: #b9b9b9 !important;
+  //border-color: rgb(185, 185, 185) !important;
+}
+
+textarea.k-textarea, input.k-textbox {
+  width: 100%;
+  font-size: 12.8px !important;
+}
+
+.k-required, .k-field-info.k-required {
+  color: $red-c;
+  font-weight: bold;
+  font-size: 0.8rem !important;
+  font-family: Roboto !important;
+}
+
+.cool {
+  height: 19px !important;
+  width: 19px !important;
+  border: 1px solid rgba(33, 37, 41, 0.15);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  margin-right: 1px;
+  padding-top: 3px;
+  float: right;
+  top: -20px;
+}
+
+.coolV2 {
+  height: 20px !important;
+  width: 21px !important;
+  border: 1px solid rgba(33, 37, 41, 0.15);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  margin-right: 1px;
+  padding-top: 3px;
+  float: right;
+  top: -20px;
+  background-color: #00b5e2;
+}
+
+
+.too-cool {
+  display: inline !important;
+  padding-right: 20px !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+}
+
+.cool-span {
+  position: relative;
+  height: 20px !important;
+  width: 20px !important;
+  border-radius: 16px;
+  border: 1px solid rgba(33, 37, 41, 0.15);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  //margin-right: 1px;
+  //padding-top: 3px;
+  left: -20px;
+  //float: right;
+  //top: 3px;
+}
+
+
+
+
+kendo-popup .k-menu-link span {
+  font-size: 13px;
+}
+
+.k-multiselect .k-multiselect-wrap .k-button {
+  padding: 0px 6px !important;
+  height: 17px !important;
+  // min-height: 1px !important;
+}
+
+kendo-maskedtextbox {
+  height: 1.3rem !important;
+}
+
+.k-panelbar .k-group > .k-item > .k-link.k-state-focused.k-state-selected {
+  box-shadow: none !important;
+}
+// <-Nav settings->
+.k-menu.k-menu-horizontal:not(.k-context-menu) {
+  padding: 0px 10px;
+}
+// Nav size
+.k-menu .k-item > .k-link {
+  font-size: $navSize;
+}
+// Nav Color
+.k-menu:not(.k-context-menu) {
+  background: $primary-c;
+}
+
+.k-menu.k-menu-horizontal:not(.k-context-menu) > .k-item > .k-link {
+  color: $white-c;
+  padding: 4px 15px 4px 0px;
+}
+// Nav items icons closer to link
+.k-menu-expand-arrow.k-i-arrow-60-down {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.top-nav {
+
+
+  & ul.k-menu {
+    min-width: 1000px;
+  }
+
+  & img.odot-research-logo {
+    margin: -4px -10px -4px -12px;
+  }
+}
+
+
+
+.main-wrap {
+  display: flex;
+  min-width: 1000px;
+}
+
+main-dialog-container {
+  width: 100%;
+}
+
+.k-form {
+  padding: 0px !important;
+}
+// Search Icon
+.k-i-search::before {
+  color: $white-c;
+  padding: 0 0px 0 2px;
+  vertical-align: super;
+  font-size: 22px;
+}
+// <-Panel Heads->
+// Panel heading size
+.k-panelbar > .k-item > .k-link.k-state-selected {
+  font-size: $headerSize;
+}
+// <-Side Changes->
+// Required field color changes
+.k-required, .k-field-info.k-required {
+  color: $red-c;
+}
+
+.ng-invalid.ng-touched > .k-dropdown-wrap {
+  color: $red-c;
+}
+
+.ng-invalid.ng-dirty > .k-dropdown-wrap {
+  color: $red-c;
+}
+// <-Panaelbar Settings->
+// Panalbar header
+.k-panelbar > .k-item > .k-link.k-state-selected {
+  color: #ffffff;
+  background-color: $secondary-c;
+}
+
+.sidebar {
+  height: 100% !important;
+  padding: 15px;
+
+  & .card-body {
+    width: 230px;
+  }
+}
+// Side panelbar for Parcel Details
+.k-panelbar.sideBar > .k-item > .k-link.k-state-selected {
+  width: 300px !important;
+  color: #ffffff;
+  background-color: $secondary-c;
+  font-size: $sideNavH;
+}
+
+.k-panelbar.sideBar > .k-item > .k-link {
+  padding: 8px 15px;
+  font-size: $sideNavH;
+}
+
+.k-panelbar .k-group > .k-item > .k-link {
+  font-size: $sideNavS;
+}
+
+.k-panelbar .k-panel > .k-item > .k-link.k-state-selected {
+  color: #ffffff !important;
+  background-color: $secondary-c;
+  // border-color: $secondary-cL;
+}
+
+.k-panelbar .k-panel > .k-item > .k-link:hover {
+  color: #ffffff;
+  background-color: $action-c;
+}
+
+.discipline-child-selected > .k-link {
+  color: #ffffff !important;
+  background-color: $secondary-c;
+}
+
+input[disabled] {
+  opacity: 1 !important;
+  color: #616161;
+  background-color: #efefef;
+}
+
+.k-form-field:nth-child(1) {
+  margin-top: 0px;
+}
+
+.k-form-field > span {
+  height: 1.3rem !important;
+}
+
+.k-form-field:nth-child(n+2) {
+  margin-top: 5px;
+}
+
+.k-form-field:last-child {
+  margin-bottom: 0px;
+}
+// Takes away padding from labels
+.k-form .k-form-field, .k-form .k-form-field:last-child, .k-form-inline .k-form-field, .k-form-inline .k-form-field:last-child {
+  margin-bottom: 0px;
+}
+
+div.k-form-field > span {
+  display: inline !important;
+}
+
+.indl-field {
+  margin-top: 5px !important;
+}
+// Focused styling
+.k-autocomplete:focus, .k-combobox .k-dropdown-wrap:focus, .k-datepicker .k-picker-wrap:focus, .k-timepicker .k-picker-wrap:focus,
+.k-datetimepicker .k-picker-wrap:focus, .k-dateinput .k-dateinput-wrap:focus, .k-textbox:focus, .k-textarea:focus, .k-input.k-textbox:focus,
+.k-multiselect-wrap:focus, .k-numerictextbox .k-numeric-wrap:focus, .form-control:focus {
+  box-shadow: 0 0 1px 0px #00b5e2 !important;
+}
+
+input[type="radio"]:focus, input[type="checkbox"]:focus {
+  box-shadow: 0 0 1px 0px #00b5e2 !important;
+}
+
+.k-numerictextbox .k-numeric-wrap .k-input {
+  height: 1.3rem !important;
+  padding: 2px 0px 3px 7px !important;
+}
+
+
+.k-numerictextbox .k-numeric-wrap {
+  //padding: 2px 0px 3px 7px !important;
+  height: 1.3rem !important;
+}
+
+kendo-numerictextbox.form-control.k-widget.k-numerictextbox {
+  height: 1.3rem;
+}
+// <-Form settings->
+// Font size Control
+.form-control {
+  font-size: $paraSize;
+}
+
+.k-form {
+  font-size: $paraSize;
+}
+
+.k-textbox {
+  font-size: $paraSize;
+  height: 1.3rem !important;
+  padding: 0px 0px 1px 12px;
+}
+
+.k-widget {
+  font-size: $paraSize;
+  //height: 1.3rem !important;
+}
+// Spacing between text and form box
+.k-form-field > span {
+  margin: 0 0 0rem !important;
+  padding: 0 0 0 0.1rem;
+}
+
+.k-maskedtextbox {
+  &.form-control {
+    .k-textbox {
+      height: 1.3rem !important;
+      padding: 0px 0px 0px 0px !important;
+    }
+  }
+}
+// Input boxes shortened
+.k-form .k-form-field > input, input.form-control, .k-textbox.form-control {
+  height: 1.3rem;
+  padding: 2px 0px 3px 7px;
+}
+// Dropdown button color change
+.k-dropdown .k-dropdown-wrap {
+  color: #495057;
+  background-color: #ffffff;
+  border-color: #ced4da;
+}
+// Inline-dropdown
+.inline-drop span.k-dropdown-wrap {
+  height: 1.1rem;
+  margin: 1px 0px 0px 0px;
+}
+
+.inline-drop span.k-dropdown-wrap span.k-input {
+  height: 1.1rem !important;
+  padding: 1px 0px 2px 4px;
+}
+// Dropdown box height reduced
+//.k-widget.form-control .k-input {
+//  padding: 0px 0px 0px 0px !important;
+//  height: 20px !important;
+//height
+//}
+.k-dropdown {
+
+  .k-dropdown-wrap {
+
+    .k-input {
+      padding: 0px 0px 1px 15px !important;
+      height: 1.3rem !important;
+    }
+  }
+}
+// Datepickers for signature popups
+.k-dialog .k-datepicker.k-widget.form-control .k-input {
+  padding: 0px 0px 1px 3px;
+}
+// Dropdown reduce size
+.k-dropdown .k-dropdown-wrap {
+  font-size: $paraSize;
+  height: 1.3rem !important;
+  line-height: 1.2rem;
+}
+// Date picker dropdown color change
+.k-datepicker .k-select {
+  color: #495057;
+  background-color: #ffffff;
+  border-color: #ced4da;
+}
+
+kendo-datepicker.k-widget.k-datepicker span.k-picker-wrap span.k-select {
+  width: 20px;
+}
+
+span.k-icon.k-i-calendar {
+  font-size: 14px;
+  margin-right: .4px;
+}
+
+.k-numerictextbox .k-numeric-wrap {
+  height: 1.3rem;
+}
+
+kendo-dropdownlist.form-control.k-widget.k-dropdown {
+  height: 1.3rem;
+}
+// Date picker height
+.k-datepicker .k-picker-wrap {
+  height: 1.3rem;
+}
+
+span > .k-datepicker .k-select {
+  padding: 0 0.1rem;
+}
+
+.k-picker-wrap {
+  height: 1.3rem !important;
+}
+
+span > .k-datepicker .k-picker-wrap {
+  height: 1.3rem !important;
+}
+// Unset date display for bottom border to show
+.k-form .k-widget:not(.k-calendar) {
+  width: 100%;
+}
+
+kendo-datepicker.form-control.k-widget.k-datepicker {
+  height: 1.3rem;
+}
+
+.k-dateinput .k-dateinput-wrap {
+  display: contents;
+}
+// Milestone dates
+// This sets the min width for the milestone dates (For IE)
+.milestone-dates .k-datepicker .k-picker-wrap {
+  min-width: 182px;
+}
+// Numeric background and arrow color change
+.k-numerictextbox .k-select {
+  color: #495057;
+  background-color: #ffffff;
+  border-color: #ced4da;
+  font-size: 10px;
+}
+
+.k-numerictextbox .k-select span.k-icon.k-i-arrow-n {
+  font-size: 0.9rem
+}
+
+.k-numerictextbox .k-select span.k-icon.k-i-arrow-s {
+  font-size: 0.9rem
+}
+
+.k-numerictextbox .k-link {
+  margin: -1px 0 -1px 0px;
+}
+
+kendo-numerictextbox.form-control.k-widget.k-numerictextbox {
+  height: 1.3rem;
+}
+// Multiselect
+.k-multiselect-wrap li.k-button {
+  font-size: 0.7rem;
+  min-height: 10px;
+  margin: 5px 2px 0px 3px;
+  padding: 0px 3px 0px 7px;
+}
+//.myClass .k-multiselect-wrap {
+//  overflow: auto;
+//  max-height: 100px;
+//}
+.k-multiselect-wrap {
+  overflow: auto !important;
+  max-height: 100px !important;
+}
+
+.k-multiselect-wrap {
+  font-size: 0.7rem;
+  height: 1.4rem !important;
+}
+
+.k-multiselect {
+  height: 1.4rem !important;
+}
+
+.k-multiselect-wrap {
+  // Token
+  .k-button {
+    margin: 2px 0 2px 2px !important;
+  }
+}
+
+.k-multiselect-wrap {
+
+  .k-clear-value {
+    top: 3px !important;
+  }
+}
+// Buttons
+// Primary
+.k-button.k-primary {
+  color: #ffffff;
+  background-color: #00b5e2;
+  border-color: #00b5e2;
+}
+
+.row.extra-space-top button.k-button.k-primary.float-right {
+  margin-left: 10px;
+}
+
+.blue-text {
+  color: #00b5e2;
+}
+// Nav/popups
+// Reduce text size of popups
+.k-popup {
+  font-size: $paraSize;
+  padding: 0px 0px;
+}
+// Loading icon centered, font-size, and color
+.k-i-loading {
+  position: fixed;
+  z-index: 999;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  font-size: 90px;
+  color: #009969;
+}
+
+.loading-background {
+  position: fixed;
+  z-index: 999;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  box-shadow: inset 0px 0px 5px -1px #06553c, 0px 0px 15px -2px #06553c;
+  width: 150px;
+  height: 150px;
+  border-radius: 65%;
+  background-color: #ffffff;
+  //background: radial-gradient(circle at center, rgb(255, 255, 255) 6%, rgba(255, 255, 255, 0) 32%, rgba(255, 255, 255, 0) 0%);
+}
+
+kendo-toolbar-renderer > .k-button.k-button-icon {
+  height: 1.4rem !important;
+  min-width: 50px;
+  //margin-left: 0.2rem !important;
+  padding: 0px !important;
+  background-color: #00b5e2;
+  color: white;
+  padding: 0px 9px 1px 9px;
+  font-size: .95rem;
+  display: inline-block;
+  border: 1px solid rgba(0,0,0,0.21);
+  border-bottom-color: rgba(0,0,0,0.34);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.34) inset, 0 2px 0 -1px rgba(0,0,0,0.13), 0 3px 0 -1px rgba(0,0,0,0.08), 0 3px 13px -1px rgba(0,0,0,0.21);
+  cursor: pointer;
+  transition: box-shadow .1s;
+}
+
+kendo-toolbar-renderer > .k-button.k-button-icon:not(.k-state-disable):hover {
+  background-color: #008fb3;
+}
+//.k-button.ng-star-inserted {
+span.k-button.k-button-icon {
+  height: 1.4rem !important;
+  background-color: #00b5e2;
+  color: white;
+  padding: 4px 9px 2px 9px;
+  font-size: .95rem;
+  display: inline-block;
+  border: 1px solid rgba(0,0,0,0.21);
+  border-bottom-color: rgba(0,0,0,0.34);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.34) inset, 0 2px 0 -1px rgba(0,0,0,0.13), 0 3px 0 -1px rgba(0,0,0,0.08), 0 3px 13px -1px rgba(0,0,0,0.21);
+  cursor: pointer;
+  transition: box-shadow .1s;
+}
+
+span.k-button.k-button-icon:not(.k-state-disable):hover {
+  background-color: #008fb3;
+}
+
+li.k-button {
+  padding: 0px !important;
+  background-color: #e7e7e7;
+  color: black;
+  padding: 0px 9px 1px 9px;
+  display: inline-block;
+  border: 1px solid rgba(0,0,0,0.21);
+  border-bottom-color: rgba(0,0,0,0.34);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.34) inset, 0 2px 0 -1px rgba(0,0,0,0.13), 0 3px 0 -1px rgba(0,0,0,0.08), 0 3px 13px -1px rgba(0,0,0,0.21);
+  cursor: pointer;
+  transition: box-shadow .1s;
+}
+
+li.k-button:hover {
+  padding: 0px !important;
+  background-color: #c3c3c3;
+  color: black;
+  padding: 0px 9px 1px 9px;
+  //font-size: .95rem;
+  display: inline-block;
+  border: 1px solid rgba(0,0,0,0.21);
+  border-bottom-color: rgba(0,0,0,0.34);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.34) inset, 0 2px 0 -1px rgba(0,0,0,0.13), 0 3px 0 -1px rgba(0,0,0,0.08), 0 3px 13px -1px rgba(0,0,0,0.21);
+  cursor: pointer;
+  transition: box-shadow .1s;
+}
+//.k-button.ng-star-inserted.k-state-disabled {
+span.k-button.k-button-icon.k-state-disabled {
+  height: 1.4rem !important;
+  min-width: 50px;
+  //margin-left: 0.2rem !important;
+  padding: 0px !important;
+  background-color: #224a54;
+  color: white;
+  padding: 0px 9px 1px 9px;
+  font-size: .95rem;
+  display: inline-block;
+  border: 1px solid rgba(0,0,0,0.21);
+  border-bottom-color: rgba(0,0,0,0.34);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.34) inset, 0 2px 0 -1px rgba(0,0,0,0.13), 0 3px 0 -1px rgba(0,0,0,0.08), 0 3px 13px -1px rgba(0,0,0,0.21);
+  cursor: pointer;
+  transition: box-shadow .1s;
+}
+// Loading icon for 'Search Projects"
+.k-loading-image {
+  display: none;
+}
+
+.k-dateinput,
+.k-datepicker,
+.k-datetimepicker,
+.k-timepicker {
+  // Wrappers
+  .k-picker-wrap {
+    .k-input {
+      height: 1.3rem !important;
+    }
+  }
+}
+
+.k-colorpicker .k-tool-icon {
+  height: 1.4rem !important;
+  //padding: 0.1rem !important;
+  //min-width: 50px;
+  //margin-left: 0.2rem !important;
+  background-color: #00b5e2;
+  color: white;
+  padding: 0px;
+  //padding: 0px 9px 1px 9px;
+  font-size: .95rem;
+  display: inline-block;
+  border: 1px solid rgba(0,0,0,0.21);
+  border-bottom-color: rgba(0,0,0,0.34);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.34) inset, 0 2px 0 -1px rgba(0,0,0,0.13), 0 3px 0 -1px rgba(0,0,0,0.08), 0 3px 13px -1px rgba(0,0,0,0.21);
+  cursor: pointer;
+  transition: box-shadow .1s;
+}
+
+.k-colorpicker .k-tool-icon:hover {
+  background-color: #008fb3;
+  color: white;
+  padding: 0px;
+  //padding: 0px 9px 1px 9px;
+  font-size: .95rem;
+  display: inline-block;
+  border: 1px solid rgba(0,0,0,0.21);
+  border-bottom-color: rgba(0,0,0,0.34);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.34) inset, 0 2px 0 -1px rgba(0,0,0,0.13), 0 3px 0 -1px rgba(0,0,0,0.08), 0 3px 13px -1px rgba(0,0,0,0.21);
+  cursor: pointer;
+  transition: box-shadow .1s;
+}
+// <-Notifications->
+// Notif. containers and wraps
+.k-notification-group {
+  position: fixed !important;
+  z-index: 10002 !important;
+}
+
+.k-notification-group .k-widget.k-notification.k-notification-info {
+  margin-top: 2px;
+}
+// Success Notif.
+.k-notification-success {
+  margin-top: 2px;
+}
+
+.k-notification-success .k-notification-wrap > .k-icon {
+  font-size: 18px;
+  margin-right: 12px;
+}
+
+.k-notification-success .k-notification-content {
+  display: inline;
+  font-size: 12px;
+}
+// Error Notif.
+.k-notification-error {
+  margin-top: 2px;
+}
+
+.k-widget.k-notification.k-notification-error.k-notification-closable {
+  height: 43px;
+}
+
+.k-notification-error .k-notification-wrap > .k-icon {
+  font-size: 18px;
+  margin-right: 12px;
+}
+
+.k-notification-error .k-notification-content {
+  display: inline;
+  font-size: 12px;
+}
+// <-Order->
+// inputs
+.k-textbox-container > .k-textbox {
+  height: 27px;
+}
+
+.k-textbox-container {
+  padding-top: 1rem;
+  width: 20rem;
+}
+// Extra spacing for cards
+.extra-space-top {
+  margin-top: 20px;
+}
+
+.dis-card {
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  box-shadow: none;
+}
+// Takes background out of cards
+.dis-card > .card-header {
+  text-align: center;
+  border-radius: unset !important;
+  width: 100%;
+}
+
+
+
+.dis-card > .card-body {
+  background-color: #ffffff;
+  padding: 15px !important;
+  box-shadow: none;
+  border-radius: unset;
+}
+// Span control for date pickers
+.date-span {
+  display: inline-block !important;
+  width: 96px;
+}
+//Push elements Left
+.push-right {
+  float: right
+}
+// Dropdown Icons realign
+.k-list .k-item, .k-list-optionlabel {
+  padding: 3px .4rem;
+}
+
+.k-list .k-item:focus, .k-list .k-item.k-state-focused, .k-list-optionlabel:focus, .k-list-optionlabel.k-state-focused {
+  box-shadow: inset 0px 0px 4px 3px #54ddff;
+}
+
+label.k-label {
+  display: block;
+  font-size: 0.8rem;
+  font-family: Roboto;
+  font-weight: bold;
+}
+
+/*label.k-label {
+  display: block !important;
+  font-size: 0.8rem !important;
+  font-family: Roboto !important;
+  font-weight: bold !important;
+}*/
+
+/*
+    This will center a single button without inline but it messes up multiple buttons
+*/
+
+.k-command-cell {
+  position: relative;
+}
+
+/*
+.k-command-cell > .btn, button.btn.btn-delete-comp-sales {
+  font-size: .8rem;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+*/
+
+.grid-btn-grp {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.k-command-cell > .btn, button.btn.btn-delete-comp-sales {
+  padding: 1px 4.5px 0px;
+  font-size: .8rem;
+  margin: 0 auto;
+  display: block;
+}
+// Reset Padding (Left or Right)
+.paddingL {
+  padding-left: 2px;
+}
+
+.paddingR {
+  padding-right: 2px;
+}
+
+.paddingLR {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.padlz {
+  padding-left: 0px;
+}
+
+.padrz {
+  padding-right: 0px;
+}
+
+.padlrz {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.btn-group button.btn {
+  margin: 0px !important;
+}
+
+button.btn.btn-special {
+  margin: 10px !important;
+}
+// btn links
+.btn-link {
+  color: #00b5e2;
+  //text-decoration: underline;
+  background-color: transparent;
+  border: none;
+}
+
+.btn-margin-left {
+  margin-left: 6px !important;
+}
+
+.split-btn {
+  width: auto !important;
+  display: inline-block !important;
+}
+
+.k-split-button.k-button-group .k-button:first-child {
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+  background-color: #00b5e2;
+  color: white;
+  padding: 4px 15px;
+  font-size: .95rem;
+  display: inline-block;
+  border: 1px solid rgba(0, 0, 0, 0.21);
+  border-bottom-color: rgba(0, 0, 0, 0.34);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: box-shadow .1s;
+}
+
+.k-split-button.k-button-group .k-button:nth-child(2) {
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  background-color: #00b5e2;
+  color: white;
+  padding: 4px 5px;
+  height: auto;
+  font-size: .95rem;
+  display: inline-block;
+  border: 1px solid rgba(0, 0, 0, 0.21);
+  border-bottom-color: rgba(0, 0, 0, 0.34);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: box-shadow .1s;
+}
+
+.k-pager-numbers .k-state-selected.k-link {
+  color: #fff;
+  //background-color: $secondary-c;
+  background-color: #766e63;
+  //border: solid 1px #ffffff;
+  border: solid 1px #615b51;
+}
+
+.k-pager-wrap .k-link, .k-pager-wrap .k-pager-nav {
+  color: black;
+}
+
+.k-link.k-pager-nav:hover {
+  //border-color: rgba(33, 37, 41, 0.125);
+  // color: #0056b3;
+  color: #f68d2e;
+  // background-color: #ebebeb;
+}
+
+.k-pager-numbers .k-link:hover, .k-pager-numbers .k-link.k-state-hover {
+  //border-color: rgba(33, 37, 41, 0.125);
+  color: #f68d2e;
+  //background-color: #ebebeb;
+}
+
+.k-pager-numbers .k-state-selected.k-link {
+  color: #fff;
+}
+
+.k-grid a:not([href]):not([tabindex]) {
+  color: #009969;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.split-btn-popup {
+  width: 133px;
+}
+
+kendo-splitbutton.split-btn.k-widget.k-split-button.k-button-group {
+  margin: 0px 5px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.34) inset, 0 2px 0 -1px rgba(0, 0, 0, 0.13), 0 3px 0 -1px rgba(0, 0, 0, 0.08), 0 3px 13px -1px rgba(0, 0, 0, 0.21);
+}
+
+td.k-command-cell {
+  padding: 1px 6px;
+}
+//Adjustment of comboboxes in grids
+kendo-grid kendo-searchbar input {
+  margin-right: 7px !important;
+}
+
+kendo-grid span.k-icon.k-clear-value.k-i-close {
+  right: 16px !important;
+  top: 7px;
+  z-index: 10000;
+}
+
+td.num-cell, .num-cell input, .num-right input, .num-cell-footer input {
+  text-align: right;
+}
+
+td.num-cell {
+  padding: 0px 6px;
+}
+
+.num-cell-footer span.k-numeric-wrap {
+  width: 109%;
+  margin: -0.1rem -0.35rem;
+}
+// Extends maskedtextbox to the full length of table
+.k-grid-content tr .k-maskedtextbox {
+  width: 100%;
+}
+// Yes and No button for auto saving (need to finish)
+.k-dialog-buttongroup {
+  padding: 11px 15px;
+  border-color: #dddddd;
+  background-color: #f1f1f1;
+  border-radius: 0px 0px 20px 20px;
+}
+
+.k-dialog-wrapper .k-dialog {
+  border-radius: 35px !important;
+}
+
+
+.k-dialog-buttongroup .k-button {
+  font-size: $paraSize;
+}
+
+.k-window-content, .k-prompt-container {
+  background-color: #f1f1f1;
+}
+//.k-menu.k-menu-horizontal:not(.k-context-menu) {
+//  height: 65px;
+//}
+.container-fluid {
+  padding-top: 15px;
+}
+
+// Nav Icons
+.odot-logo {
+  height: 45px;
+  padding-right: 18px;
+  padding-left: 4px;
+}
+
+.nav-icon {
+  font-size: 18px;
+  margin: 0 5px 1px 0;
+}
+
+
+.grid-header-maint {
+  margin-top: 5px;
+  margin-top: 5px;
+  font-size: 1.05rem;
+  height: 32px;
+}
+//Contacts Add Agency Table Add button
+button.Ag-btn.k-button.k-grid-add-command {
+  font-size: .72rem;
+}
+// Parcel table
+// BD button
+button.bs-btn.k-button.k-grid-add-command {
+  font-size: .72rem;
+}
+// (+) button and cell to show BS
+.k-grid .k-hierarchy-cell > .k-icon {
+  padding: 0 0 0 0;
+}
+//BS Badge
+span.badge.badge-pill.badge-primary {
+  margin-top: -3.5px;
+  padding: 3.5px .5px 0px 0px;
+  vertical-align: super;
+  height: 14px;
+  width: 15px;
+  font-size: .55rem;
+  background-color: $action-c;
+}
+// input fields titles
+.k-form .k-form-field > span:not(.k-widget) {
+  font-size: $formTextSize;
+  display: inline-block;
+}
+
+.row-label {
+  margin-bottom: 0.4rem;
+}
+
+.col-label {
+  font-size: $formTextSize;
+  margin-bottom: -2px;
+}
+// Popup dialog boxes
+//dialog boxes
+.k-dialog-wrapper .k-dialog {
+  border-radius: 10px;
+  border: none;
+}
+
+.k-window-titlebar {
+  border-color: #1f2a44;
+  color: white;
+  background-color: #1f2a44;
+  border-radius: 20px 20px 0px 0px;
+  padding: 8px 1rem;
+}
+
+.k-window-content .alert-danger {
+  height: 50px;
+  padding: 5px 20px 0 0;
+  margin: 0 0 0 0;
+}
+
+.alert-msg {
+  color: #dc0e00;
+}
+
+.alert-msg > ul {
+  color: $red-c;
+}
+
+
+.card-header.grant-header {
+  height: 46px;
+  padding: 13px 0px 0px 0px;
+}
+
+.card.card-shadow-grantor {
+  box-shadow: -2px 6px 18px 3px lightgrey;
+}
+
+.card.card-shadow-description {
+  box-shadow: 4px 5px 15px 0px lightgrey;
+}
+// Cards that hold just a delete function
+.delete-card .card-header {
+  height: 22px;
+}
+
+.delete-card .card-body {
+  box-shadow: 4px 5px 22px 2px lightgrey;
+}
+
+.delete-card .btn {
+  width: 38px;
+  height: 1.3rem;
+  padding: 0px;
+}
+
+.delete-card .k-icon.k-i-delete {
+  margin-bottom: 3.5px;
+}
+// Icons
+// History icon
+.fa-history {
+  font-size: 11px;
+}
+
+.card-header .fas.fa-history,
+.grid-header .fas.fa-history {
+  color: white;
+  font-size: 12px;
+  position: relative;
+  top: -1px;
+  left: 3px;
+  cursor: pointer;
+}
+
+.fa-history:hover,
+.card-header .fas.fa-history:hover,
+.grid-header .fas.fa-history:hover {
+  color: #00b5e2;
+}
+// Radio button layout
+.radio-group-label {
+  display: inline-block;
+}
+
+.k-checkbox-label, .k-radio-label {
+  padding-left: calc( 12px + 0.5rem);
+}
+
+.k-form .k-radio-label {
+  margin-right: 12px;
+  bottom: 1px;
+}
+
+.inline-radio {
+  margin-left: 12px;
+}
+
+.inline-radio .k-form .k-radio-label {
+  margin-right: 7px;
+  bottom: 1px;
+}
+
+.k-form .k-radio-label:last-of-type {
+  margin-right: 2px
+}
+// Label Radio Buttons
+.label-text {
+  margin-right: 8px;
+}
+
+.radio-group-label.k-checkbox-label::before, .radio-group-label.k-radio-label::before {
+  width: 10px;
+  height: 10px;
+  margin-top: 2px;
+}
+
+.radio-group-label.k-radio-label::after {
+  width: 3px;
+  height: 3px;
+  margin-top: 2px;
+}
+
+.k-checkbox-label::before, .k-radio-label::before {
+  width: 12px;
+  height: 12px;
+  margin-top: 2px;
+}
+
+.k-radio-label::after {
+  width: 4px;
+  height: 4px;
+  margin-top: 2px;
+}
+
+.k-checkbox-label, .k-radio-label {
+  padding-left: calc( 7px + 0.5rem);
+}
+
+.k-radio-label::before {
+  border-color: #999ca0;
+  background-color: #e1e5e9;
+}
+
+span.radio-group-label {
+  display: block !important;
+}
+// Inset background borders for notifications
+// Success
+.n-border-success {
+  animation: borderSuccess 8s;
+  animation-delay: 5s;
+}
+
+@keyframes borderSuccess {
+  0% {
+    box-shadow: 0px 0px 0px 0px white inset;
+  }
+
+  10% {
+    box-shadow: 0px 0px 15px 4px green inset;
+  }
+
+  70% {
+    box-shadow: 0px 0px 15px 4px green inset;
+  }
+
+  100% {
+    box-shadow: 0px 0px 0px 0px white inset;
+  }
+}
+// Failures
+.n-border-failure {
+  animation: borderFailure 8s;
+  animation-delay: 5s;
+}
+
+@keyframes borderFailure {
+  0% {
+    box-shadow: 0px 0px 0px 0px white inset;
+  }
+
+  10% {
+    box-shadow: 0px 0px 15px 4px red inset;
+  }
+
+  70% {
+    box-shadow: 0px 0px 15px 4px red inset;
+  }
+
+  100% {
+    box-shadow: 0px 0px 0px 0px white inset;
+  }
+}
+// Warnings
+.n-border-warning {
+  animation: border-warning 8s;
+  animation-delay: 5s;
+}
+
+@keyframes border-warning {
+  0% {
+    box-shadow: 0px 0px 0px 0px white inset;
+  }
+
+  10% {
+    box-shadow: 0px 0px 15px 4px yellow inset;
+  }
+
+  70% {
+    box-shadow: 0px 0px 15px 4px yellow inset;
+  }
+
+  100% {
+    box-shadow: 0px 0px 0px 0px white inset;
+  }
+}
+// Tooltips changes
+.k-tooltip-content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 250px;
+  text-align: center;
+}
+// Inline textboxes size
+.inline-textbox {
+  width: 100%;
+  height: 1.3rem;
+}
+// New k-form-field styles (replace)
+kendo-dropdownlist.k-widget.k-dropdown {
+  width: 100%;
+  height: 21px !important;
+}
+
+.k-dateinput-wrap .k-input, .k-dropdown-wrap .k-input, .k-picker-wrap .k-input, .k-numeric-wrap .k-input {
+  width: 100%;
+  height: 20px;
+  padding: 1px 6px 0px;
+}
+// New Icons
+span.fas.fa-pencil-alt, span.fas.fa-file-download, span.fas.fa-trash-alt {
+  font-size: 13px;
+}
+// dialog header
+.k-window-titlebar {
+  z-index: 101; // for popup reasons...
+}
+// Border wall around the whole project details and down
+kendo-splitter.k-widget.k-splitter.k-splitter-flex.k-splitter-vertical {
+  border-style: none !important;
+}
+// k-icon
+.k-button .k-icon {
+  font-size: 13px;
+  //top: -0.125px;
+}
+
+kendo-toolbar {
+  & .k-button .k-icon {
+    font-size: 16px;
+    bottom: 2px;
+  }
+
+  & kendo-buttongroup .k-button .k-icon {
+    bottom: 6px;
+  }
+
+  & span.k-button-icon.k-button.k-state-disabled .k-icon {
+    bottom: 2px;
+  }
+
+  & kendo-dropdownlist.k-widget.k-dropdown, & kendo-dropdownlist.k-widget.k-dropdowntree {
+    width: 12.4em;
+  }
+
+  & .k-button-group .k-button.k-state-active {
+    background-color: #1f2a44;
+    border-color: #1f2a44 !important;
+  }
+}
+
+// New Serach project styles
+// filter button
+kendo-grid-filter-cell-operators.k-filtercell-operator kendo-dropdownlist.k-dropdown-operator.k-widget.k-dropdown.k-header {
+  width: 44%;
+  height: 38px;
+}
+// info icons for FA in project...
+th.gHeader.k-header.k-grid-draggable-header span.k-icon.k-i-info {
+  position: relative;
+  bottom: 1px;
+  font-size: 14px;
+}
+// Notification close button
+.k-notification-closable > .k-notification-wrap {
+  padding-bottom: 0px;
+  margin-bottom: -6px;
+  max-width: 475px;
+  line-height: 15px;
+}
+
+.k-notification-error .k-notification-wrap > a.k-icon.k-i-close {
+  position: absolute;
+  right: -7px;
+  top: 6px;
+}
+// combobox resize
+kendo-combobox .k-dropdown-wrap {
+  height: 1.3rem;
+}
+
+.k-combobox .k-select {
+  background-color: white;
+  color: black;
+  border: 0px;
+}
+
+.k-combobox span.k-select {
+  width: 22px;
+}
+
+.k-combobox input {
+  margin-right: 24px;
+}
+
+.k-combobox > :hover .k-select {
+  background-color: white;
+  color: black;
+}
+
+kendo-combobox.form-control.k-widget.k-combobox.k-header.k-combobox-clearable {
+  height: 1.3rem;
+}
+// Combobox and Multiselect closeing X display
+span.k-icon.k-clear-value.k-i-close {
+  height: 18px;
+}
+
+kendo-combobox span.k-icon.k-clear-value.k-i-close {
+  height: 8px;
+}
+// New lines
+.show-new-lines {
+  white-space: pre-line;
+}
+/////////////////// Media quier for laptop views /////////////////////////
+@media only screen and (max-width: 1400px) {
+  // Title Chain specific
+  kendo-dialog.title-dialog .k-dialog {
+    min-height: 200px;
+    max-height: 534px;
+    width: 1200px;
+  }
+  // Cards
+  .card-header {
+    font-size: 0.8rem;
+    padding-top: 3px;
+    height: 25px;
+  }
+  //labels
+  .k-form .k-form-field > span:not(.k-widget), .k-form .k-radio-label, label.k-radio-label {
+    font-size: 0.61rem;
+  }
+
+  .k-switch-handle {
+    width: 18px !important;
+    height: 18px !important;
+    margin: -4px 0px 0px 0px;
+    top: .5px;
+    left: 1.5px;
+  }
+  // switches
+  .k-switch-label-on, .k-switch-label-off {
+    font-size: 0.61rem;
+  }
+
+  .k-form .k-form-field > input, input.form-control {
+    font-size: .7rem;
+    padding: 0px 4px;
+  }
+
+  .k-dateinput-wrap .k-input, .k-dropdown-wrap .k-input, .k-picker-wrap .k-input, .k-numeric-wrap .k-input {
+    font-size: .7rem;
+    padding: 1px 4px 0px;
+  }
+
+  .k-textarea, .k-multiselect-wrap .k-searchbar .k-input, .k-multiselect-wrap, .k-textbox {
+    font-size: 0.7rem !important;
+  }
+
+  .k-multiselect-wrap li.k-button {
+    font-size: 0.65rem !important;
+  }
+
+  .k-multiselect-wrap li.k-button span.k-select {
+    margin-left: 5px;
+  }
+  // Date picker buttons
+  .k-datepicker .k-select {
+    height: 20px;
+    width: 21px;
+  }
+
+  kendo-datepicker.k-widget.k-datepicker span.k-picker-wrap span.k-select span.k-icon.k-i-calendar {
+    font-size: 14px;
+  }
+  // panels
+  .k-panelbar > .k-item > .k-link.k-state-selected {
+    font-size: .9rem;
+    padding: 8px 25px;
+  }
+  // Icon size
+  .k-button .k-icon {
+    font-size: 12px;
+  }
+
+  td {
+    font-size: 0.7rem !important;
+  }
+
+  th.k-header {
+    font-size: 0.68rem;
+  }
+  // Icons
+  // Button icons for grids
+  span.fas.fa-pencil-alt, span.fas.fa-file-download, span.fas.fa-trash-alt {
+    font-size: 12px;
+    bottom: -0.4px;
+    position: relative;
+  }
+  // Numeric box arrows
+  .k-numerictextbox .k-select {
+    width: 20px;
+    height: 16px;
+    position: relative;
+    right: 2px;
+    top: 2px;
+  }
+
+  td span.k-select {
+    height: 19px;
+    position: relative;
+    top: 1px;
+  }
+
+  .k-grid th:first-child {
+    border-bottom-width: 1.5px;
+  }
+
+  .grid-btn-bg, .grid-btn-maint {
+    margin: .2px 0px 0px 0px;
+  }
+}
+////////////////// End of Media Q for laptops /////////////////
+// New to order
+.grid-header kendo-dropdownlist {
+  position: relative;
+  bottom: 1px;
+}
+
+.k-dropdown-wrap .k-clear-value {
+  right: calc(calc( 0.1rem + 17px) + 6.5px) !important;
+}
+
+.k-grid-header {
+  //text-transform: uppercase;
+  font-weight: bold;
+  background: #c9c9c9;
+  border-color: #b9b9b9;
+}
+// New Dialog iteams
+kendo-dialog-titlebar span.k-icon.k-i-x {
+  font-size: 22px;
+}
+
+kendo-dialog-titlebar .k-window-actions {
+  margin-right: 0px;
+}
+
+.k-content.k-window-content.k-dialog-content kendo-dropdownlist.k-widget.k-dropdown.k-header {
+  //width: 100%;
+}
+// checkboxs
+// checkbox box
+.k-checkbox-label::before {
+  background-color: #c6ccd2;
+  border-color: #6b6d6f;
+}
+// checkbox label
+label.k-checkbox-label {
+  display: block;
+}
+///////////////////////// Newly added //////////////////////////
+.inline-input {
+  display: inline !important;
+  height: 18px;
+  font-size: 11px;
+}
+
+label.k-form-field {
+  padding-top: 10px;
+}
+
+.k-panelbar .k-group > .k-item > .k-link.k-state-focused.k-state-selected {
+  box-shadow: none;
+  box-shadow: inset 0 0 0 3px #006adb;
+}
+
+.k-radio:checked + .k-radio-label::before {
+  background-color: #00b5e2 !important;
+  box-shadow: 0 0 1px 0 #00b5e2 inset !important;
+}
+
+.k-grid-edit-row .k-textbox {
+  width: 100%;
+}
+
+.k-checkbox-label::after {
+  width: 11px;
+  height: 18px;
+  font-size: 11.5px;
+}
+// collapse discipline panel
+/*kendo-splitter-bar.k-splitbar.k-splitbar-horizontal {
+  z-index: 151;
+  width: 14px;
+  height: 30px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  position: relative;
+  top: 1px;
+}*/
+
+.dis-window {
+  z-index: 150;
+  margin-left: -15px;
+  overflow-x: hidden !important;
+}
+
+.k-splitbar-horizontal .k-i-arrow-60-left, .k-splitbar-horizontal .k-i-arrow-60-right {
+  margin-bottom: 0px !important;
+  margin-top: 0px !important;
+}
+
+.collapse {
+  height: 30px;
+  width: 15px;
+}
+// Nav styles (Ben)
+li.list-group-item {
+  border: 1px solid #d8d8d8 !important;
+}
+
+ul.list-group.list-group-flush {
+  background-color: #e8e8e8;
+  border: 1px solid #d8d8d8;
+  color: black;
+}
+// New side Nav styles
+/*span.k-link {
+    background: #e8e8e8;
+  }*/
+span.k-header {
+  background: #e8e8e8 !important;
+}
+
+div.k-group div.ng-trigger {
+  padding-left: 20px;
+  background: #e8e8e8;
+}
+
+div.k-group kendo-panelbar-item span.k-link {
+  margin-left: 15px !important;
+  padding-left: 20px !important;
+  border-top: 1px solid #e0e0e0;
+}
+
+span.k-link.k-header.k-state-selected {
+  color: #000000;
+  font-size: 13px !important;
+  border: none !important;
+}
+
+.k-panelbar .k-panel > .k-item > .k-link.k-state-selected {
+  background-color: #e8e8e8;
+  color: black !important;
+}
+
+
+kendo-panelbar.k-widget.k-panelbar {
+  height: auto;
+  overflow: visible;
+  background-color: rgba(0, 0, 0, 0);
+  border-color: rgba(0, 0, 0, 0);
+  //background-color: #e8e8e8;
+  //border-color: #e8e8e8 !important;
+  //padding: 9px !important;
+  //border-bottom-left-radius: 10px;
+  //border-bottom-right-radius: 10px;
+  //border-top-right-radius: 10px;
+  //box-shadow: 0px 2px 6px 2px #adadad;
+}
+
+
+span.k-link.k-header.k-state-selected.k-state-focused {
+  box-shadow: none !important;
+  //color: red !important;
+}
+
+.k-panelbar .k-panel > .k-item > .k-link:hover {
+  color: #f68d2e;
+  background-color: #e8e8e8;
+}
+
+/*span.k-link.k-header:hover {
+  color: #f68d2e !important;
+}*/
+
+.card-footer {
+  background-color: #e8e8e8;
+}
+//kendo-panelbar-item[aria-expanded] kendo-panelbar-item:not([aria-expanded]) {
+//  content: "\f56f";
+//background: red;
+//}
+//kendo-panelbar-item[aria-expanded] kendo-panelbar-item:not([aria-expanded]) span {
+//  background: yellow;
+//}
+kendo-panelbar-item[aria-expanded] kendo-panelbar-item:not([aria-expanded]) span.k-link.k-state-selected {
+  color: #00b5e2 !important;
+  font-weight: bold;
+  //text-shadow: 1px 1px #000000;
+}
+
+.fade_rule {
+  height: 1px;
+  background-color: black;
+  margin: 12px 0px 0px 0px;
+  padding: 0px !important;
+  background-image: linear-gradient(left, #D6D2C4 2%, #E6E6E6 50%, #D6D2C4 98%);
+  background-image: -o-linear-gradient(left, #D6D2C4 2%, #E6E6E6 50%, #D6D2C4 98%);
+  background-image: -moz-linear-gradient(left, #D6D2C4 2%, #E6E6E6 50%, #D6D2C4 98%);
+  background-image: -webkit-linear-gradient(left, #D6D2C4 2%, #E6E6E6 50%, #D6D2C4 98%);
+  background-image: -ms-linear-gradient(left, #D6D2C4 2%, #E6E6E6 50%, #D6D2C4 98%);
+  background-image: -webkit-gradient( linear, left bottom, right bottom, color-stop(0.02, #D6D2C4), color-stop(0.5, gray), color-stop(0.98, #D6D2C4) );
+}
+
+label {
+  margin-top: 5px;
+  margin-bottom: 2px;
+  /*width: 100%;*/
+}
+
+.char-count {
+  font-weight: 500;
+  float: right !important;
+}
+
+.dis-contacts .k-widget.k-window.k-dialog {
+  width: 30% !important;
+}
+
+.dis-phase .k-widget.k-window.k-dialog {
+  width: 30% !important;
+}
+
+.dis-contactagency .k-widget.k-window.k-dialog {
+  width: 700px !important;
+}
+//kendo-grid.k-widget.k-grid {
+//   padding-top: 10px;
+//}
+.table-button {
+  text-align: right;
+  padding-right: 0px;
+  padding-left: 0px;
+  /*background-color: #e8e8e8;*/
+}
+
+kendo-dialog kendo-grid-list.k-grid-container.ng-star-inserted {
+  max-height: 500px;
+}
+
+.fixed-save button.btn {
+  margin: 5px;
+}
+
+.fixed-save {
+  position: fixed;
+  width: 78vw;
+  top: 93.4vh;
+  background-color: rgba(197, 197, 197, 0.5);
+  height: 35px;
+  border-radius: 6px;
+}
+
+.col {
+  margin-top: 10px !important;
+}
+
+.k-grid .k-grid-pager {
+  color: #343a40 !important;
+  background-color: #bebebe !important;
+  font-size: 10px !important;
+  padding: 12px 4px 4px !important;
+  border-bottom-right-radius: 7px;
+  border-bottom-left-radius: 7px;
+  position: relative;
+  top: -7px;
+  box-shadow: 0px 1px 7px 1px #8c8c8c;
+}
+//=============================================================
+.tall-menu {
+  height: 30px !important;
+  //margin: 0px 2px 0px 0px !important;
+}
+
+a.roc-tab.k-link.k-menu-link {
+  background-color: $base-tab-roc !important;
+  @extend .tall-menu;
+  //height: 35px !important;
+  //margin: 0px 2px 0px 0px !important;
+}
+
+a.roc-tab.k-link.k-menu-link:hover {
+  background-color: $base-tab-roc-hoover !important;
+  @extend .tall-menu;
+  //height: 35px !important;
+  //margin: 0px 2px 0px 0px !important;
+}
+
+a.roc-tab.k-link.k-menu-link.selected {
+  background-color: $base-tab-roc !important;
+  @extend .tall-menu;
+  //box-shadow: -2px -2px 6px 6px #766e63;
+  box-shadow: 0 0 2px 2px $base-tab-roc-selected;
+  font-weight: normal;
+  //box-shadow: 0px 2px 6px 2px #766e63;
+  //height: 35px !important;
+  //margin: 0px 2px 0px 0px !important;
+}
+
+a.roc-tab.k-link.k-menu-link {
+  background-color: $base-tab-roc !important;
+  @extend .tall-menu;
+  //height: 35px !important;
+  //margin: 0px 2px 0px 0px !important;
+}
+
+a.pooled-tab.k-link.k-menu-link {
+  background-color: $base-tab-pooled !important;
+  @extend .tall-menu;
+  //height: 35px !important;
+  //margin: 0px 2px 0px 0px !important;
+}
+
+a.pooled-tab.k-link.k-menu-link:hover {
+  background-color: $base-tab-pooled-hoover !important; //#c54c20 !important;
+  @extend .tall-menu;
+  //height: 35px !important;
+  //margin: 0px 2px 0px 0px !important;
+}
+
+a.pooled-tab.k-link.k-menu-link.selected {
+  background-color: $base-tab-pooled !important;
+  //box-shadow: 0px 2px 6px 2px #766e63;
+  box-shadow: 0 0 2px 2px $base-tab-pooled-selected;
+  @extend .tall-menu;
+  font-weight: normal;
+  //height: 35px !important;
+  //margin: 0px 2px 0px 0px !important;
+}
+
+a.oril-tab.k-link.k-menu-link {
+  background-color: $base-tab-oril !important;
+  @extend .tall-menu;
+  //height: 35px !important;
+  //margin: 0px 2px 0px 0px !important;
+}
+
+a.oril-tab.k-link.k-menu-link:hover {
+  background-color: $base-tab-oril-hoover !important;
+  @extend .tall-menu;
+  //height: 35px !important;
+  //margin: 0px 2px 0px 0px !important;
+}
+
+a.oril-tab.k-link.k-menu-link.selected {
+  background-color: $base-tab-oril !important;
+  //box-shadow: 0px 2px 6px 2px #766e63;
+  box-shadow: 0 0 2px 2px $base-tab-oril-selected;
+  @extend .tall-menu;
+  font-weight: normal;
+  //height: 35px !important;
+  //margin: 0px 2px 0px 0px !important;
+}
+
+a.standard-tab.k-link.k-menu-link {
+  background-color: $base-tab-standard !important;
+  @extend .tall-menu;
+  //height: 35px !important;
+  //margin: 0px 2px 0px 0px !important;
+}
+
+a.standard-tab.k-link.k-menu-link:hover {
+  background-color: $base-tab-standard-hoover !important;
+  @extend .tall-menu;
+  //height: 35px !important;
+  //margin: 0px 2px 0px 0px !important;
+}
+
+a.standard-tab.k-link.k-menu-link.selected {
+  background-color: $base-tab-standard !important;
+  box-shadow: 0 0 2px 2px $base-tab-standard-selected;
+  @extend .tall-menu;
+  font-weight: normal;
+  //height: 35px !important;
+  //margin: 0px 2px 0px 0px !important;
+}
+
+a.finance-tab.k-link.k-menu-link {
+  background-color: $base-tab-finance !important;
+  @extend .tall-menu;
+  //height: 35px !important;
+  //margin: 0px 2px 0px 0px !important;
+}
+
+a.finance-tab.k-link.k-menu-link:hover {
+  background-color: $base-tab-finance-hoover !important;
+  @extend .tall-menu;
+  //height: 35px !important;
+  //margin: 0px 2px 0px 0px !important;
+}
+
+a.finance-tab.k-link.k-menu-link.selected {
+  background-color: $base-tab-finance !important;
+  box-shadow: 0 0 2px 2px $base-tab-finance-selected;
+  @extend .tall-menu;
+  font-weight: normal;
+  //height: 35px !important;
+  //margin: 0px 2px 0px 0px !important;
+}
+
+a.modifications-tab.k-link.k-menu-link {
+  background-color: $base-tab-modifications !important;
+  @extend .tall-menu;
+  //height: 35px !important;
+  //margin: 0px 2px 0px 0px !important;
+}
+
+a.modifications-tab.k-link.k-menu-link:hover {
+  background-color: $base-tab-modifications-hoover !important;
+  @extend .tall-menu;
+  //height: 35px !important;
+  //margin: 0px 2px 0px 0px !important;
+}
+
+a.modifications-tab.k-link.k-menu-link.selected {
+  background-color: $base-tab-modifications !important;
+  box-shadow: 0 0 2px 2px $base-tab-modifications-selected;
+  @extend .tall-menu;
+  font-weight: normal;
+  //height: 35px !important;
+  //margin: 0px 2px 0px 0px !important;
+}
+
+
+
+
+.main-menu .k-menu .k-link {
+  padding: 3px 30px !important;
+  background-color: #00b5e2 !important;
+  border-radius: 10px 10px 0px 0px;
+  margin-right: 6px;
+}
+
+.main-menu .k-menu .k-link {
+  padding: 3px 30px !important;
+  background-color: #00b5e2 !important;
+  border-radius: 10px 10px 0px 0px;
+  margin-right: 6px;
+}
+
+.main-menu .k-menu li a.selected {
+  background-color: #1f2a44 !important;
+  //height: 20px !important;
+  font-weight: bold;
+}
+
+.main-menu .k-menu li a:hover {
+  background-color: #0088aa !important;
+}
+
+.k-menu:not(.k-context-menu) > .k-item:focus, .k-menu:not(.k-context-menu) > .k-item.k-state-focused {
+  box-shadow: none !important;
+}
+
+
+form.k-form.project-search.ng-untouched.ng-pristine.ng-valid {
+  margin: 0px 10px 0px 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 0px 2px 6px 2px #adadad;
+}
+
+.sub-menu li.k-state-disabled {
+  opacity: 1 !important;
+}
+
+
+///////////////////////// sub-menu //////////////////////////
+form.k-form.project-search.ng-untouched.ng-pristine.ng-valid {
+  margin: 0px 10px 0px 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 0px 2px 6px 2px #adadad;
+}
+
+.sub-menu li.k-state-disabled {
+  opacity: 1 !important;
+}
+
+.image-scale {
+  height: 12px !important;
+  width: 12px !important;
+  padding: 0px 0px 2px 0px;
+}
+
+.k-refdata tr.k-alt {
+  background-color: #f8e1cc !important;
+}
+
+.k-refdata tr.k-alt:hover {
+  background-color: #dec0a3 !important;
+}
+
+.k-refdata .k-window-titlebar {
+  background-color: #f68d2e !important;
+}
+
+.k-prjdata tr.k-alt {
+  background-color: #9dccfb !important;
+}
+
+.k-prjdata tr.k-alt:hover {
+  background-color: #6cb3f9 !important;
+}
+
+.k-prjdata .k-window-titlebar {
+  background-color: #3b99f7 !important;
+}
+
+.k-fin-data tr.k-alt {
+  background-color: #c9f7c9 !important;
+}
+
+.k-fin-data tr.k-alt:hover {
+  background-color: #a4caa4 !important;
+}
+
+.k-fin-data .k-window-titlebar {
+  background-color: #8cd98c !important;
+}
+
+.k-textboxsmall {
+  width: 100px !important;
+}
+
+.k-textboxmedium {
+  width: 300px !important;
+}
+
+.k-textboxsmall-x {
+  width: 200px !important;
+}
+
+.k-textboxlarge {
+  width: 600px !important;
+}
+
+.k-grid-header {
+
+  .k-grid-filter {
+    padding: 0px !important;
+    width: 8px !important;
+    bottom: -7px !important;
+  }
+}
+
+.k-notification-success {
+  border-color: #37b400;
+  color: #fff;
+  background-color: #37b400;
+}
+
+.k-grid tr.deleteEven {
+  background-color: #D9D9D9 !important;
+}
+
+.k-grid tr.deleteOdd {
+  background-color: #D9D9D9 !important;
+}
+
+.k-refdata tr.k-alt.deleteOdd {
+  background-color: #D9D9D9 !important;
+}
+
+.card-body {
+  position: relative !important;
+}
+
+.notification-container {
+  width: 100%;
+  height: 180px;
+  border: 1px solid #ddd;
+  margin-bottom: 25px;
+}
+
+.required {
+  color: red;
+}
+
+
+.k-multiselect-wrap {
+  font-size: 0.7rem;
+  height: auto !important;
+}
+
+.k-multiselect, .k-dropdowntree {
+  height: auto !important;
+}
+
+.k-panelbar > .k-item > .k-link {
+  padding: 0.25rem 1.25rem !important;
+  font-weight: bold;
+}
+
+
+.k-switch-label-on, .k-switch-label-off {
+  display: block !important;
+}
+//junk below
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: "RobotoRegular",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  margin: 0;
+}
+
+my-app {
+  display: block;
+  box-sizing: border-box;
+  padding: 30px;
+}
+
+my-app > .k-icon.k-i-loading {
+  font-size: 64px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.example-wrapper {
+  min-height: 280px;
+  align-content: flex-start;
+}
+
+.example-wrapper p, .example-col p {
+  margin: 0 0 10px;
+}
+
+.example-wrapper p:first-child, .example-col p:first-child {
+  margin-top: 0;
+}
+
+.example-col {
+  display: inline-block;
+  vertical-align: top;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+
+.example-config {
+  margin: 0 0 20px;
+  padding: 20px;
+  background-color: rgba(0,0,0,.03);
+  border: 1px solid rgba(0,0,0,.08);
+}
+
+.event-log {
+  margin: 0;
+  padding: 0;
+  max-height: 100px;
+  overflow-y: auto;
+  list-style-type: none;
+  border: 1px solid rgba(0,0,0,.08);
+  background-color: \\#fff;
+}
+
+.event-log li {
+  margin: 0;
+  padding: .3em;
+  line-height: 1.2em;
+  border-bottom: 1px solid rgba(0,0,0,.08);
+}
+
+.event-log li:last-child {
+  margin-bottom: -1px;
+}
+
+.k-icon-32 {
+  font-size: 32px; /* Sets icon size to 32px */
+}
+
+.k-excel {
+  color: forestgreen; /* Sets icon size to 32px */
+}
+
+.k-word {
+  color: blue; /* Sets icon size to 32px */
+}
+
+.k-pdf {
+  color: red; /* Sets icon size to 32px */
+}
+
+input[readonly="readonly"], input[readonly] {
+  color: black;
+  font-color: black;
+  background-color: #dddddd;
+}
+
+.events-grid .k-grid-aria-root {
+  height: 500px;
+  overflow: auto !important;
+}
+
+.file-add-view-dialog .k-dialog {
+  width: 85vw;
+  min-width: 900px;
+  height: 80vh;
+  min-height: 400px;
+}
+
+.file-add-view-dialog .file-view-grid {
+  max-height: 250px;
+}
+/*.k-edit-field {
+  display: contents;
+}
+.k-editor-dialog .k-edit-label {
+  width: auto !important;
+  padding: 0px;
+  margin: 10px 0px 0px 0px;
+}*/
+kendo-dropdownlist .k-dropdown .k-dropdown-wrap span.k-input {
+}
+//k switch styles
+.k-switch-label-on {
+  top: 9px !important;
+  left: 16px !important;
+}
+
+.k-switch-label-off {
+  top: 9px !important;
+  left: 22px !important;
+}
+
+.k-switch-container {
+  height: 20px;
+}
+
+.k-switch-off .k-switch-handle {
+  height: 16px;
+  width: 16px;
+  top: -4px;
+}
+
+.k-switch-on .k-switch-handle {
+  height: 16px;
+  width: 16px;
+  top: -4px;
+  left: 43px;
+}
+// the below styles are for updating headers. some styles have duplicate headers, will merge later on
+.sub-menu .k-menu {
+  background: #e8e8e8;
+}
+
+.sub-menu .k-menu .k-link {
+  padding: 3px 30px !important;
+  background-color: #00b5e2 !important;
+  border: 1px solid #dddddd;
+}
+//Old code
+/*.sub-menu .k-menu .k-link {
+  padding: 3px 30px !important;
+  background-color: #00b5e2 !important;
+  border-radius: 10px 10px 0px 0px;
+  margin-right: 6px;
+}*/
+.sub-menu .k-menu {
+  color: black;
+  padding: 0px !important;
+
+  & li.k-item a {
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+  }
+  /*& li.k-item a:nth-child(1) {
+    border-top-left-radius: 7px;
+  }
+
+  & li.k-item a:last-child {
+    border-top-left-radius: 7px;
+  }*/
+}
+
+.sub-menu .k-menu li a:hover {
+  background-color: #0088aa !important;
+}
+
+.sub-menu .k-menu li a.selected {
+  background-color: #1f2a44 !important;
+  font-weight: bold;
+}
+
+.sub-menu.fin-menu .k-menu li a {
+  background-color: #009969 !important;
+}
+
+.sub-menu.fin-menu .k-menu li a:hover {
+  background-color: #006646 !important;
+}
+
+.sub-menu.fin-menu .k-menu li a.selected {
+  background-color: #004630 !important;
+  font-weight: bold;
+}
+
+/*.sub-fin-menu .k-menu {
+  background-color: white;
+  color: black;
+  padding: 10px 0px 0px 10px !important;
+}
+
+.sub-fin-menu .k-menu .k-link {
+  padding: 3px 30px !important;
+  margin-right: 6px;
+  border: 1px solid #dddddd;
+}
+
+.sub-fin-menu .k-menu li a.selected {
+  background-color: #006161 !important;
+  font-weight: bold;
+}*/
+
+
+.main-menu .k-menu {
+  background-color: white;
+  color: black;
+  padding: 10px 0px 0px 0px !important;
+}
+//Styles for minimal screen width
+.mainrouteroutlet {
+  min-width: 1000px;
+}
+
+.navbar {
+  min-width: 1000px;
+}
+//New Filter buttons (mainly on search screen)
+.k-filter-row {
+
+  & button.k-button.k-button-icon.k-clear-button-visible {
+    height: 18px;
+    width: 22px;
+    bottom: 4px;
+    display: inline-flex;
+    left: 3px;
+  }
+
+  & button.k-button.k-button-icon {
+    height: 0px;
+    display: none;
+  }
+
+  & input.k-textbox {
+    padding-left: 2px;
+  }
+}
+
+//radio btn wraps
+.radio-wrap-inline {
+  & label.k-label {
+    display: inline-block !important;
+    width: fit-content !important;
+
+    & + label.k-label {
+      padding-left: 20px;
+    }
+  }
+}
+
+//Bottom padding for full pages
+.pb-wrap {
+  padding-bottom: 15px;
+}
+
+.proj-mini-info {
+
+  & .card-body {
+    box-shadow: unset; // need to take of after alignment
+  }
+
+  & {
+  }
+}
+
+.red-box {
+  background-color: red;
+}
+
+
+// Mainly for adding invoices dialog overview text
+.k-grid td {
+  & span {
+    color: black;
+    font-weight: 400;
+
+    &.fa {
+      color: white;
+    }
+  }
+
+  & .k-reset {
+    color: black;
+    font-weight: 400;
+  }
+}
+
+.k-datepicker .k-dateinput-wrap input {
+  padding: 0px 0px 3px 5px !important;
+}
+
+kendo-datepicker {
+  width: 100% !important;
+}
+
+kendo-dialog .k-widget.k-window.k-dialog {
+  width: unset !important;
+  height: unset !important;
+  min-width: 900px;
+  min-height: 600px;
+  max-height: 80vh;
+  max-width: 80vw;
+}
+
+.fa, .fas {
+  font-weight: 900 !important;
+  color: white !important;
+}
+
+.fin-encum-grid .k-grid-aria-root {
+  max-height: 150px;
+  overflow: auto;
+}
+
+.home-search-grid {
+
+  & .k-grid-aria-root {
+    height: 250px;
+  }
+}
+
+
+//New for collapsing panels
+kendo-panelbar-item {
+  border-color: rgba(0, 0, 0, 0) !important;
+}
+
+kendo-panelbar-item .k-content {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+kendo-panelbar-item[aria-expanded=false] span.k-header {
+  background-color: #00b5e2 !important;
+  top: 0px;
+  left: 0px;
+  width: fit-content;
+  color: white !important;
+  border-top-right-radius: 7px;
+  border-top-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  border-bottom-left-radius: 7px;
+  animation-name: collapse;
+  animation-duration: .8s;
+}
+
+@keyframes collapse {
+  from {
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+
+  to {
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+  }
+}
+
+kendo-panelbar-item[aria-expanded=false] span.k-header:hover {
+  background-color: #007896 !important;
+}
+
+kendo-panelbar-item[aria-expanded=false] {
+  border-color: rgba(0, 0, 0, 0) !important;
+}
+
+kendo-panelbar-item.k-state-expanded span.k-header {
+  top: 0px;
+  left: 0px;
+  width: fit-content;
+  background-color: #1f2a44 !important;
+  color: white !important;
+  border-top-right-radius: 7px;
+  border-top-left-radius: 7px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.k-panelbar .k-panelbar-expand, .k-panelbar .k-panelbar-collapse {
+  margin-top: 0px;
+  position: static !important;
+}
+
+//Project header
+.project-headers-wrap {
+  text-align: center;
+  border-radius: 7px;
+  /*background-color: #1f2a44;*/
+  background-color: #e8e8e8;
+  padding: 7px 0 px;
+  box-shadow: 0px 2px 6px 2px #adadad;
+}
+
+.pid-text {
+  vertical-align: text-bottom;
+  font-size: .6rem;
+  margin: 0 0 0 5px;
+  /*font-weight: bold;*/
+  color: black;
+  /*color: #cdcdcd;*/
+}
+
+.pid-text-lg {
+  font-size: .8rem;
+  color: black;
+  font-weight: bold;
+  /*color: white;*/
+}
+
+label.pid-label {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  width: inherit !important;
+  max-width: inherit !important;
+}
+
+.vl {
+  border-right: 2px solid white;
+  padding: 3px 0 3px 0px;
+  margin: 0px 3px 0px 5px;
+}
+
+
+.pid-display {
+  margin: 7px 0px;
+  /*
+  border-top-right-radius: 10px;
+  color: white;
+  background-color: #1f2a44;
+  text-align: left;
+  */
+}
+
+.card-body-pid {
+  //background-color: #e8e8e8;
+  // padding: 15px !important;
+  //border-bottom-left-radius: 10px;
+  // border-bottom-right-radius: 10px;
+  border-top-right-radius: 0px !important;
+  //box-shadow: 0px 2px 6px 2px #adadad;
+}
+
+.pid-card {
+  padding: 0px !important;
+}
+
+.k-group-indicator.k-grid-draggable-header {
+  height: 25px;
+}
+
+kendo-grid-group-panel.k-grouping-header.k-grouping-header-flex {
+  height: 38px;
+}
+
+
+/*kendo-grid-group-panel.k-grouping-header:before, kendo-grid-group-panel.k-grouping-header:after {
+  content: " ";
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 15px;
+}
+
+kendo-grid-group-panel.k-grouping-header:before {
+  box-shadow: -15px 0 15px -15px inset;
+  left: -15px;
+}
+
+kendo-grid-group-panel.k-grouping-header:after {
+  box-shadow: 15px 0 15px -15px inset;
+  right: -15px;
+}
+
+kendo-grid-group-panel.k-grouping-header {
+  background: #EEEEEE;
+  height: 100px;
+  position: relative;
+}*/
+
+//panelbar grid icons
+kendo-panelbar-item span.k-icon.k-i-grid-layout {
+  margin-right: 4px;
+}
+
+//grid row width adjusted
+kendo-grid.k-grid .k-grid-toolbar {
+
+  & .row {
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+
+    & .col-6:first-child {
+      padding-left: 0px;
+    }
+
+    & .col-6:last-child {
+      padding-right: 0px;
+    }
+  }
+}
+
+kendo-panelbar-item.k-item div.k-content {
+  margin-top: -13px;
+}

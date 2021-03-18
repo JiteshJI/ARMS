@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-sm-4">
+    <div class="form-inline">
+      <div class="form-group mb-2">
+        <label for="contingencyAmount" class="sr-only">Contingency Amount</label>
+        <input type="text" readonly class="form-control-plaintext" id="contingencyAmount" value="Contingency Amount">
+      </div>
+      <div class="form-group mx-sm-3 mb-2">
+        <label for="inputPassword2" class="sr-only"></label>
+        <!--<input type="text" class="form-control" id="contingencyamtId" disabled="disabled" placeholder="{{contingencyAmount}}">-->
+
+        <kendo-numerictextbox id="contingencyamtId" [value]="contingencyAmount" [format]="'c2'" [min]="0" [disabled]="true"
+                              [max]="10000000000000"></kendo-numerictextbox>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4"></div>
+ 
+    <form class="form-inline" [formGroup]="prjInfoForm">
+      <div class="form-group mb-2">
+        <label for="withholdingAmount" class="sr-only">Withholding Amount</label>
+        <input type="text" readonly class="form-control-plaintext" id="withholdingAmount" value="Withholding Amount">
+      </div>
+      <div class="form-group mx-sm-3 mb-2">
+        <label for="withoutAmountLbl" class="sr-only"></label>
+        <!--<input type="text" class="form-control" id="inputPassword2" placeholder="">-->
+        <!--<input formControlName="propFiscalYr" kendoTextBox id="inputPassword2" maxlength="100" tabindex="3" />-->
+        <kendo-numerictextbox id="withoutAmountLbl" formControlName="withholdingAmount" [format]="'c2'" [min]="0"
+                              [max]="10000000000000"></kendo-numerictextbox>
+
+      </div>
+      <button type="submit" class="btn float-right" [disabled]="!prjInfoForm.valid || prjInfoForm.pristine" (click)="save()" tabindex="19">Save</button>
+    </form>
+  
+</div>

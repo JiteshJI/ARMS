@@ -1,0 +1,48 @@
+// specific for Review screen
+.btn-comment {
+  font-size: 13px !important;
+  padding: 2px 6px !important;
+  clear: both;
+}
+.btn-send {
+  background-color: #2196F3;
+  color: white;
+  max-height: 32px;
+  padding: 7px 8px;
+  font-size: 12px;
+}
+
+// Default btns
+button.btn {
+  background-color: #00b5e2;
+  color: white;
+  padding: 0px 9px 1px 9px;
+  font-size: .95rem;
+  display: inline-block;
+  border: 1px solid rgba(0,0,0,0.21);
+  border-bottom-color: rgba(0,0,0,0.34);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.34) inset, 0 2px 0 -1px rgba(0,0,0,0.13), 0 3px 0 -1px rgba(0,0,0,0.08), 0 3px 13px -1px rgba(0,0,0,0.21);
+  cursor: pointer;
+  transition: box-shadow .1s;
+}
+button.btn:hover, button.btn.hover {
+  background-color: $action-c-hover;
+  color: #FFFFFF;
+  border-color: #4e6480;
+}
+button.btn:active, button.btn.active {
+  top: 1px;
+  background-color: #017e9c;
+  border-color: rgba(0, 0, 0, 0.34) rgba(0, 0, 0, 0.21) rgba(0, 0, 0, 0.21);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.89), 0 1px rgba(0, 0, 0, 0.05) inset !important;
+  position: relative;
+}
+button.btn:focus, button.btn.focus {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.34) inset, 0 2px 0 -1px rgba(0, 0, 0, 0.13), 0 3px 0 -1px rgba(0, 0, 0, 0.08), 0 3px 13px -1px rgba(0, 0, 0, 0.21), 0 0 0 0.2rem rgba(0, 181, 226, 0.35);
+}
+button.btn:disabled, button.btn:disabled {
+  background-color: #000000;
+  border-color: #000000;
+  cursor: not-allowed;
+}

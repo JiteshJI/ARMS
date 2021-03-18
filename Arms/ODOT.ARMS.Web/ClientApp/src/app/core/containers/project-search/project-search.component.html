@@ -1,0 +1,152 @@
+
+<div class="card-header">Search Projects</div>
+<div #appendTo class="card-body">
+
+  <div class="row">
+    <div class="col-6">
+      <label class="k-form-field">
+        <span>
+          List projects that are:
+        </span>
+      </label>
+      <div class="radio-wrap-inline">
+        <label class="k-label" [for]="myprj"><input type="radio" name="prj" value="M" #myprj [(ngModel)]="model.prjSearch" (click)="radioByUserClick($event)" kendoRadioButton /> My Projects</label>
+        <label class="k-label" [for]="allprj"><input type="radio" name="prj" value="A" #allprj [(ngModel)]="model.prjSearch" (click)="radioByUserClick($event)" kendoRadioButton /> All Projects</label>
+      </div>
+    </div>
+
+    <!--<div class="col-2">
+      <label class="k-form-field">
+        <span>
+          Project status:
+        </span>
+      </label>
+      <div class="radio-wrap">
+        <label class="k-label" [for]="actvprj"><input type="radio" name="prjState" value="AP" #actvprj [(ngModel)]="model.prjState" (click)="radioStatusClick($event)" kendoRadioButton /> Active, Proposed</label>
+        <label class="k-label" [for]="allprjStates"><input type="radio" name="prjState" value="API" #allprjStates [(ngModel)]="model.prjState" (click)="radioStatusClick($event)" kendoRadioButton /> All Status Types</label>
+      </div>
+    </div>-->
+    <!--<div class="form-inline col-8">
+      <div class="form-group">
+        <kendo-dropdownlist [defaultItem]="selectedSearchParam"
+                            [textField]="'text'"
+                            [valueField]="'value'"
+                            [data]="searchParams"
+                            [value]="selectedSearchParam"
+                            (valueChange)="handleSearchBy($event)"
+                            style="width: 100px;">
+        </kendo-dropdownlist>
+        <input type="search" #searchBox aria-label="Search" [(ngModel)]="searchValue" kendoTextBox (keyup.enter)="doSearch()" (input)="onFilter($event.target.value)"
+               class="k-textbox fix-search k-textboxmedium too-cool" placeholder="Search" />
+        <span class="fas fa-search cool-span" (click)="doSearch()"></span>
+        <button class="btn btn-secondary" (click)="onClear()">Clear Search</button>
+        <button class="btn btn-secondary print-rslt" (click)="onPrint()">Print Results</button>
+      </div>
+    </div>-->
+
+  </div>
+
+  <ng-template #template let-anchor>
+    <span>{{ anchor.nativeElement.innerText }}</span>
+  </ng-template>
+  <kendo-grid class="forms-grid extra-grid-space"
+              [kendoGridBinding]="data"
+              [sortable]="true"
+              [resizable]="true"
+              [pageable]="true"
+              [filterable]="true"
+              [pageSize]="10">
+
+    <kendo-grid-column field="projectAltId" title="ID" width="40" [filterable]="false">
+    </kendo-grid-column>
+
+    <kendo-grid-column field="pm" title="ODOT PM" width="160">
+    </kendo-grid-column>
+
+    <kendo-grid-column field="pi" title="PI" width="160">
+    </kendo-grid-column>
+
+    <kendo-grid-column field="rfpNum" title="RFP" width="120">
+    </kendo-grid-column>
+
+    <kendo-grid-column field="pidNum" title="PID" width="120">
+    </kendo-grid-column>
+
+    <kendo-grid-column field="agencyName" title="Agency Name" width="140">
+    </kendo-grid-column>
+
+    <kendo-grid-column field="projectType" title="Project Type" width="140">
+    </kendo-grid-column>
+
+    <kendo-grid-column field="projectTitleTxt" title="Project Title" width="200">
+    </kendo-grid-column>
+
+    <kendo-grid-column field="projectStatusTxt" title="Status" width="120">
+    </kendo-grid-column>
+
+    <kendo-grid-command-column title="View" width="60">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <button type="button" class="btn btn-edit" kendoGridEditCommand (click)="onItemSelect(dataItem)"><span class="fa fa-eye"></span></button>
+      </ng-template>
+    </kendo-grid-command-column>
+
+  </kendo-grid>
+
+  <!--Old grid below-->
+  <!--<ng-template #template let-anchor>
+    <span>{{ anchor.nativeElement.innerText }}</span>
+  </ng-template>
+  <div kendoTooltip
+       showOn="none"
+       [tooltipTemplate]="template"
+       filter=".k-grid td"
+       (mouseover)="showTooltip($event)">
+    <kendo-grid class="forms-grid extra-grid-space"
+                [kendoGridBinding]="data"
+                [sortable]="true"
+                [resizable]="true"
+                [pageable]="true"
+                [filterable]="true"
+                [pageSize]="10">
+
+      <kendo-grid-column field="projectAltId" title="ID" width="50" [filterable]="false">
+      </kendo-grid-column>
+
+      <kendo-grid-column field="pm" title="ODOT PM" width="150" [filterable]="false">
+      </kendo-grid-column>
+
+      <kendo-grid-column field="pi" title="PI" width="80">
+      </kendo-grid-column>
+
+      <kendo-grid-column field="rfpNum" title="RFP">
+      </kendo-grid-column>
+
+      <kendo-grid-column field="pidNum" title="PID">
+      </kendo-grid-column>
+
+      <kendo-grid-column field="agencyName" title="Agency Name">
+      </kendo-grid-column>
+
+      <kendo-grid-column field="projectType" title="Project Type">
+      </kendo-grid-column>
+
+      <kendo-grid-column field="projectTitleTxt" title="Project Title">
+      </kendo-grid-column>
+
+      <kendo-grid-column field="projectStatusTxt" title="Status" width="60">
+      </kendo-grid-column>
+
+      <kendo-grid-command-column title="View" width="60">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <button type="button" class="btn btn-edit" kendoGridEditCommand (click)="onItemSelect(dataItem)"><span class="fa fa-eye"></span></button>
+        </ng-template>
+      </kendo-grid-command-column>
+
+    </kendo-grid>
+  </div>-->
+
+</div>
+
+
+
+

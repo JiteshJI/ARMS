@@ -1,0 +1,44 @@
+<kendo-grid class="forms-grid extra-grid-space"
+            [data]="formsGridView"
+            [group]="groups"
+            [sortable]="{
+                    allowUnsort: allowUnsort,
+                    mode: multiple ? 'multiple' : 'single'
+                    }"
+            [sort]="sort"
+            (sortChange)="sortChange($event)"
+            (groupChange)="groupChange($event)"
+            scrollable="none">
+  <ng-template kendoGridToolbarTemplate>
+    <div class="row">
+      <div class="col-12 table-button ">
+        <div class="add-btn-table">
+          <div class="grid-btn-bg">
+            <button type="button" class="btn add-grid-button k-button k-grid-add-command" kendoGridAddCommand>
+              <img src="../../../../../assets/grid_toolbar_icons/Add_Toolbar_Icon.svg" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <kendo-grid-column title="Addendum Letter" width="200">
+  </kendo-grid-column>
+  <kendo-grid-column title="Mod Type">
+  </kendo-grid-column>
+  <kendo-grid-column title="Request Date">
+  </kendo-grid-column>
+  <kendo-grid-column title="Status">
+  </kendo-grid-column>
+  <kendo-grid-column title="Notes">
+  </kendo-grid-column>
+  <kendo-grid-command-column title="Delete" width="43px">
+    <ng-template kendoGridCellTemplate>
+      <button type="button" class="btn btn-delete" kendoGridEditCommand><span class="fas fa-pencil-alt"></span></button>
+    </ng-template>
+  </kendo-grid-command-column>
+  <kendo-grid-command-column title="" width="43px">
+    <ng-template kendoGridCellTemplate>
+      <button type="button" class="btn btn-edit" kendoGridRemoveCommand><span class="fas fa-trash-alt"></span></button>
+    </ng-template>
+  </kendo-grid-command-column>

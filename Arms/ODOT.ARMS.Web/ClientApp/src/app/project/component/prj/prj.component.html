@@ -1,0 +1,64 @@
+
+<div class="card-body">
+
+  <kendo-menu class="sub-menu menu-override">
+    <kendo-menu-item text="Information" [disabled]="(activeProjectTab$ | async) === 'Information'">
+      <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+        <a [kendoMenuItemLink]="index" routerLink="info" [class.selected]="(activeProjectTab$ | async) === 'Information'">
+          Information
+        </a>
+      </ng-template>
+    </kendo-menu-item>
+
+    <kendo-menu-item *ngIf="(isNewProject$ | async) === false" text="Current Summary" [disabled]="(activeProjectTab$ | async) === 'Current Summary'">
+      <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+        <a [kendoMenuItemLink]="index" routerLink="currentSummary" [class.selected]="(activeProjectTab$ | async) === 'Current Summary'">
+          Current Summary
+        </a>
+      </ng-template>
+    </kendo-menu-item>
+
+    <kendo-menu-item *ngIf="(isNewProject$ | async) === false" text="Abstract" [disabled]="(activeProjectTab$ | async) === 'Abstract'">
+      <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+        <a [kendoMenuItemLink]="index" routerLink="abstract" [class.selected]="(activeProjectTab$ | async) === 'Abstract'">Abstract</a>
+      </ng-template>
+    </kendo-menu-item>
+
+    <kendo-menu-item *ngIf="(isNewProject$ | async) === false" text="Events" [disabled]="(activeProjectTab$ | async) === 'Events'">
+      <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+        <a [kendoMenuItemLink]="index" routerLink="events" [class.selected]="(activeProjectTab$ | async) === 'Events'">Events</a>
+      </ng-template>
+    </kendo-menu-item>
+
+    <!--
+    <kendo-menu-item text="Controlling Board" [disabled]="isDisableTab">
+      <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+        <a [kendoMenuItemLink]="index" routerLink="cb" [class.selected]="activeTab === 'Controlling Board'">Controlling Board</a>
+      </ng-template>
+    </kendo-menu-item>
+      -->
+
+    <kendo-menu-item *ngIf="(isNewProject$ | async) === false" text="Phase" [disabled]="(activeProjectTab$ | async) === 'Phase'">
+      <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+        <a [kendoMenuItemLink]="index" routerLink="phase" [class.selected]="(activeProjectTab$ | async) === 'Phase'">Phase</a>
+      </ng-template>
+    </kendo-menu-item>
+
+    <kendo-menu-item *ngIf="(isNewProject$ | async) === false" text="Personnel" [disabled]="(activeProjectTab$ | async) === 'Personnel'">
+      <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+        <a [kendoMenuItemLink]="index" routerLink="personnel" [class.selected]="(activeProjectTab$ | async) === 'Personnel'">Personnel</a>
+      </ng-template>
+    </kendo-menu-item>
+
+    <kendo-menu-item *ngIf="(isNewProject$ | async) === false" text="Uploads" [disabled]="(activeProjectTab$ | async) === 'Uploads'">
+      <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+        <a [kendoMenuItemLink]="index" routerLink="uploads" [class.selected]="(activeProjectTab$ | async) === 'Uploads'">Uploads</a>
+      </ng-template>
+    </kendo-menu-item>
+
+  </kendo-menu>
+
+
+
+  <router-outlet></router-outlet>
+</div>

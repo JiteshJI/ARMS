@@ -1,0 +1,39 @@
+<div class="row">
+  <kendo-grid class="k-fin-data forms-grid extra-grid-space"
+              [kendoGridBinding]="SummaryData"
+              [sortable]="true"
+              scrollable="none">
+
+    <kendo-grid-column field="fiscalYr" title="Fiscal Year" width="100">
+    </kendo-grid-column>
+
+    <kendo-grid-column field="encNum" title="Encum No" width="100">
+    </kendo-grid-column>
+
+    <kendo-grid-column field="sac"
+                       title="SAC"
+                       format="{0:c}">
+    </kendo-grid-column>
+
+    <kendo-grid-column field="poLnAmt"
+                       title="PO Line Amt"
+                       format="{0:c}">
+    </kendo-grid-column>
+
+    <kendo-grid-column field="adj"
+                       title="Adjustment"
+                       format="{0:c}">
+    </kendo-grid-column>
+
+    <kendo-grid-column field="poLnDisb"
+                       title="PO Line Disb."
+                       format="{0:c}">
+    </kendo-grid-column>
+
+    <kendo-grid-column field="poLinBal"
+                       title="PO Line Balance"
+                       format="{0:c}">
+    </kendo-grid-column>
+
+  </kendo-grid>
+</div>

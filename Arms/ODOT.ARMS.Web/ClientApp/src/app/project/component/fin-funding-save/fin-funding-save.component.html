@@ -1,0 +1,90 @@
+<!--
+  Add/Edit dialogue
+-->
+<kendo-dialog [width]="600" [height]="600" *ngIf="saveFundingDialogStatus" (close)="setSaveFundingDialogStatus.emit(false)">
+  <kendo-dialog-titlebar class="k-prjdata">Add Funding</kendo-dialog-titlebar>
+  <form class="k-form" [formGroup]="fundingForm" (ngSubmit)="onSaveFunding()">
+    <div class="row">
+      <div class="col-6">
+        <label for="phase"> Funding Category <span class="k-field-info k-required">*</span></label>
+        <kendo-dropdownlist formControlName="categoryId"
+                            [data]="fundingCategory"
+                            [defaultItem]="{text: 'Select Category',value: null }"
+                            [textField]="'text'"
+                            [valueField]="'value'"
+                            [valuePrimitive]="true"
+                            [ngClass]="{ 'ng-invalid ng-touched':  categoryId==null}"
+                            required>
+        </kendo-dropdownlist>
+      </div>
+      <div class="col-6">
+        <label for="phase"> Funding Source <span class="k-field-info k-required">*</span></label>
+        <kendo-dropdownlist formControlName="fundingSrcCD"
+                            [data]="fundingSource"
+                            [defaultItem]="{text: 'Select Primary Type',value: null }"
+                            [textField]="'text'"
+                            [valueField]="'value'"
+                            [valuePrimitive]="true"
+                            [ngClass]="{ 'ng-invalid ng-touched':  fundingSrcCD==null}"
+                            required>
+        </kendo-dropdownlist>
+
+
+
+
+      </div>
+      
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <label for="phase">Funding Type <span class="k-field-info k-required">*</span></label>
+        <kendo-dropdownlist formControlName="fundingTypeCD"
+                            [data]="fundingType"
+                            [defaultItem]="{text: 'Select Primary Type',value: null }"
+                            [textField]="'text'"
+                            [valueField]="'value'"
+                            [valuePrimitive]="true"
+                            [ngClass]="{ 'ng-invalid ng-touched':  fundingType==null}"
+                            required>
+        </kendo-dropdownlist>
+      </div>
+      <div class="col-6">
+        <label for="odotfunding">Fiscal Year <span class="k-field-info k-required">*</span></label>
+        <input formControlName="fiscalYr" kendoTextBox id="title" tabindex="2" maxlength="100" />
+      </div>
+    
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <label for="odotfunding">Po/Encumbrance</label>
+        <input formControlName="encubrancePONum" kendoTextBox id="encumbrance" maxlength="6" tabindex="2" />
+      </div>
+      <div class="col-6">
+        <label for="odotfunding">Amount <span class="k-field-info k-required">*</span></label>
+        <kendo-numerictextbox id="amount" formControlName="amount" [format]="'c2'" [min]="0"
+                              [max]="10000000000000"></kendo-numerictextbox>
+      </div>
+      <!--<div class="col-12">
+    <label for="notes">Notes</label>
+    <textarea formControlName="amount" kendoTextArea id="notes" rows="4" cols="50" maxlength="255"></textarea>
+  </div>-->
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-6">
+            <label for="current-summary">Notes</label>
+          </div>
+          <div class="col-6">
+            <label class="float-right blue-text">{{notes?.value?.length}} OF {{maxChars}} Characters</label>
+          </div>
+        </div>
+        <textarea kendoTextArea formControlName="notes" rows="4" cols="50" maxlength="{{maxChars}}" style="background-color:#ffe6e6"></textarea>
+      </div>
+    </div>
+  </form>
+  <kendo-dialog-actions>
+    <button class="btn" (click)="setSaveFundingDialogStatus.emit(false)" tabindex="5">Cancel</button>
+    <button class="btn btn-margin-left" [disabled]="!fundingForm.dirty || !fundingForm.valid" (click)="onSaveFunding()" primary="true" tabindex="6">Save</button>
+  </kendo-dialog-actions>
+</kendo-dialog>

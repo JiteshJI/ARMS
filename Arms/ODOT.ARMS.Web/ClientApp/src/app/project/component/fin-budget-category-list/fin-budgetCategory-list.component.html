@@ -1,0 +1,92 @@
+<kendo-grid class="k-prjdata events-grid forms-grid extra-grid-space"
+            [kendoGridBinding]="gridData"
+            [pageSize]="state.take"
+            [filterable]="true"
+            [filter]="state.filter"
+            (dataStateChange)="dataStateChange($event)"
+            [skip]="state.skip"
+            [sort]="state.sort"
+            [group]="state.group"
+            [sortable]="{ mode: 'multiple' }"
+            [height]="530"
+            [pageable]="true"
+            [groupable]="{ showFooter: true }">
+  <ng-template kendoGridToolbarTemplate>
+    <div class="row">
+      <div class="col-6">
+        <span class="grid-header">Budgets</span>
+      </div>
+      <div class="col-6 table-button">
+        <div class="add-btn-table">
+          <div class="grid-btn-bg">
+            <div class="grid-inline-input">
+              <label class="k-form-field">
+                <span>
+                  Budget Category:
+                </span>
+              </label>
+              <kendo-dropdownlist [defaultItem]="this.budgetDefault"
+                                  [data]="this.allBudgetCategories"
+                                  [textField]="'text'"
+                                  [valueField]="'value'"
+                                  [value]="selectedBudget"
+                                  (valueChange)="handleBudgetCategoryChange($event)">
+              </kendo-dropdownlist>
+            </div>
+            <button type="button" class="btn add-grid-button k-button k-grid-add-command" (click)="onAddClick()" kendoGridAddCommand>
+              <img src="../../../../../assets/grid_toolbar_icons/Add_Toolbar_Icon.svg" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </ng-template>
+  <kendo-grid-column field="bcAltId" title="AltId" [hidden]="true"></kendo-grid-column>
+  <kendo-grid-column field="notes" [hidden]="true"></kendo-grid-column>
+  <kendo-grid-column field="budgetId" title="Id" [hidden]="true"></kendo-grid-column>
+  <kendo-grid-column field="phaseId" [hidden]="true"></kendo-grid-column>
+  <kendo-grid-column field="budgetCategoryValue" [hidden]="true"></kendo-grid-column>
+
+  <kendo-grid-column field="phaseTxt" title="Phase" [width]="100"></kendo-grid-column>
+  <kendo-grid-column field="budgetCategoryText" title="Budget Category" [width]="100"></kendo-grid-column>
+  <kendo-grid-column field="budgetTitle" title="Title" [width]="100"></kendo-grid-column>
+
+  <kendo-grid-column field="odotFunding" title="ODOT Funding" format="{0:c}" [width]="100">
+    <ng-template kendoGridGroupFooterTemplate
+                 let-group="group"
+                 let-aggregates>Sub-Total: {{SignDescription(aggregates["odotFunding"]?.sum)}}</ng-template>
+    <ng-template kendoGridFooterTemplate
+                 let-column="column">Total: {{SignDescription(total["odotFunding"]?.sum)}}</ng-template>
+  </kendo-grid-column>
+
+  <kendo-grid-column field="orgCostSharing" format="{0:c}" title="Org Cost Sharing"  [width]="100">
+    <ng-template kendoGridGroupFooterTemplate
+                 let-group="group"
+                 let-aggregates>Sub-Total: {{SignDescription(aggregates["orgCostSharing"]?.sum)}}</ng-template>
+    <ng-template kendoGridFooterTemplate
+                 let-column="column">Total : {{SignDescription(total["orgCostSharing"]?.sum)}}</ng-template>
+  </kendo-grid-column>
+
+  <!--<kendo-grid-column field="orgCostSharing" format="{0:c}" title="Org Cost Sharing" [width]="100">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{SignDescription(dataItem.orgCostSharing)}}
+    </ng-template>
+  </kendo-grid-column>-->
+  <kendo-grid-column field="qty" title="Qty" [width]="100">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{getDescription(dataItem.qty)}}
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="activeInd" title="Status" [width]="100" [hidden]="true">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <span *ngIf="dataItem.activeInd == 'I'">InActive</span>
+      <span *ngIf="dataItem.activeInd == 'A'">Active</span>
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-command-column title="Edit" width="30px">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <button type="button" kendoGridEditCommand class="btn btn-edit" (click)="editBudget.emit(dataItem)"><span class="fas fa-pencil-alt"></span></button>
+    </ng-template>
+  </kendo-grid-command-column>
+</kendo-grid>

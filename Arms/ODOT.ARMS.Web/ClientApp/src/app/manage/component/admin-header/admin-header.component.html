@@ -1,0 +1,21 @@
+<kendo-menu class="main-menu">
+
+  <kendo-menu-item text="Administration" [disabled]="(activeAdminTab$ | async) === 'Administration'">
+    <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+      <a [kendoMenuItemLink]="index" class="tall-menu" routerLink="admin-view" [class.selected]="(activeAdminTab$ | async)  === 'Administration'">
+        Administration
+      </a>
+    </ng-template>
+  </kendo-menu-item>
+  
+  <kendo-menu-item text="Notification" [disabled]="(activeAdminTab$ | async) === 'Notification'">
+    <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+      <a [kendoMenuItemLink]="index" class="tall-menu" routerLink="admin-notification" [class.selected]="(activeAdminTab$ | async)  === 'Notification'">
+        Notification
+      </a>
+    </ng-template>
+  </kendo-menu-item>
+  
+</kendo-menu>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,139 @@
+<div class="pid-display">
+  <div class="row">
+    <div class="col-12">
+      <div class="project-headers-wrap">
+        <div class="">
+          <span class="pid-text">RFP Number: </span> <span class="pid-text-lg">{{(project$ | async)?.rfpNum}}</span>
+          <span class="pid-text">PID Number: </span> <span class="pid-text-lg">{{(project$ | async)?.pidNum}}</span>
+          <span class="pid-text">Agreement Number: </span> <span class="pid-text-lg">{{(project$ | async)?.agreementNum}}</span>
+        </div>
+        <div class="">
+          <span class="pid-text">Project Title: </span> <span class="pid-text-lg">{{(project$ | async)?.projectTitleTxt}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--test examples
+<div class="proj-mini-info">
+  <div class="row">
+    <div class="col-12">
+      <div class="project-headers-wrap">
+        <span class="pid-text">RFP Number:</span> {{(project$ | async)?.rfpNum}}
+        <span class="pid-text">PID Number:</span> {{(project$ | async)?.pidNum}}
+        <span class="pid-text">Agreement Number:</span> {{(project$ | async)?.agreementNum}}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pid-display">
+  <div class="row">
+    <div class="col">
+      <label class="pid-label">
+        <span class="pid-text">Project Title: {{(project$ | async)?.projectTitleTxt}}</span>
+      </label>
+    </div>
+  </div>
+</div>-->
+
+<!--old headers-->
+<!--<div class="proj-mini-info">
+  <div class="row">
+    <div class="col-3">
+      <div class="card-body">
+        <span class="pid-text">RFP Number:</span> {{(project$ | async)?.rfpNum}}
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="card-body">
+        <span class="pid-text">PID Number:</span> {{(project$ | async)?.pidNum}}
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="card-body">
+        <span class="pid-text">Agreement Number:</span> {{(project$ | async)?.agreementNum}}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pid-display">
+  <div class="row">
+    <div class="col">
+      <label class="pid-label">
+        <span class="pid-text">Project Title: {{(project$ | async)?.projectTitleTxt}}</span>
+      </label>
+    </div>
+  </div>
+</div>-->
+
+<kendo-menu class="main-menu">
+
+  <kendo-menu-item *ngIf="(project$ | async)?.projectType === 'ROC'" text="ROC" [disabled]="(activeTab$ | async) === 'Project'">
+    <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+      <a [kendoMenuItemLink]="index" class="roc-tab" routerLink="prj" [class.selected]="(activeTab$ | async) === 'Project'">
+        Researcher On Call (ROC)
+      </a>
+    </ng-template>
+  </kendo-menu-item>
+
+  <kendo-menu-item *ngIf="(project$ | async)?.projectType === 'STANDARD'" text="STANDARD" [disabled]="(activeTab$ | async) === 'Project'">
+    <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+      <a [kendoMenuItemLink]="index" class="standard-tab" routerLink="prj" [class.selected]="(activeTab$ | async) === 'Project'">
+        Standard Project
+      </a>
+    </ng-template>
+  </kendo-menu-item>
+
+  <kendo-menu-item *ngIf="(project$ | async)?.projectType === 'POOLED'" text="POOLED" [disabled]="(activeTab$ | async) === 'Project'">
+    <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+      <a [kendoMenuItemLink]="index" class="pooled-tab" routerLink="prj" [class.selected]="(activeTab$ | async) === 'Project'">
+        Pooled Funding
+      </a>
+    </ng-template>
+  </kendo-menu-item>
+
+  <kendo-menu-item *ngIf="(project$ | async)?.projectType === 'ORIL'" text="ORIL" [disabled]="(activeTab$ | async) === 'Project'">
+    <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+      <a [kendoMenuItemLink]="index" class="oril-tab" routerLink="prj" [class.selected]="(activeTab$ | async) === 'Project'">
+        ORIL
+      </a>
+    </ng-template>
+  </kendo-menu-item>
+  <kendo-menu-item *ngIf="(project$ | async)?.projectType === 'POOLED-PARTICIPANT'" text="Pool Participant" [disabled]="(activeTab$ | async) === 'Project'">
+    <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+      <a [kendoMenuItemLink]="index" class="oril-tab" routerLink="prj" [class.selected]="(activeTab$ | async) === 'Project'">
+        Pool Participant
+      </a>
+    </ng-template>
+  </kendo-menu-item>
+  <kendo-menu-item *ngIf="(project$ | async)?.projectType === 'POOLED-LEAD'" text="Pooled Lead" [disabled]="(activeTab$ | async) === 'Project'">
+    <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+      <a [kendoMenuItemLink]="index" class="oril-tab" routerLink="prj" [class.selected]="(activeTab$ | async) === 'Project'">
+        Pooled Lead
+      </a>
+    </ng-template>
+  </kendo-menu-item>
+
+
+  <kendo-menu-item *ngIf="(isNewProject$ | async) === false" text="finance" [disabled]="(activeTab$ | async) === 'Finance'">
+    <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+      <a [kendoMenuItemLink]="index" class="finance-tab" routerLink="finance" [class.selected]="(activeTab$ | async) === 'Finance'">
+        Financials
+      </a>
+    </ng-template>
+  </kendo-menu-item>
+
+  <kendo-menu-item *ngIf="(isNewProject$ | async) === false" text="modifications" [disabled]="(activeTab$ | async) === 'Modifications'">
+    <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+      <a [kendoMenuItemLink]="index" class="modifications-tab" routerLink="modifications" [class.selected]="(activeTab$ | async) === 'Modifications'">
+        Modifications
+      </a>
+    </ng-template>
+  </kendo-menu-item>
+
+</kendo-menu>
+
+
+
+<router-outlet></router-outlet>

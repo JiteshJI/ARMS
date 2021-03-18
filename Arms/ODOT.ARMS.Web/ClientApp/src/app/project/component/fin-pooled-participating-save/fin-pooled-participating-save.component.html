@@ -1,0 +1,129 @@
+<kendo-dialog [width]="566" [height]="400" *ngIf="showDialogStatus" (close)="setSaveDialogStatus()">
+  <kendo-dialog-titlebar class="k-prjdata">{{getTitle()}}</kendo-dialog-titlebar>
+  <form class="k-form" [formGroup]="pooledParticipatingForm">
+
+    <div class="row">
+      <div class="col-4">
+        <label for="fiscalYear">Fiscal Year<span class="k-field-info k-required"> *</span></label>
+        <input formControlName="fiscalYear" kendoTextBox id="fiscalYear" maxlength="4" tabindex="1" />
+      </div>
+      <div class="col-4">
+        <label for="fundingSource">Funding Source</label>
+        <kendo-dropdownlist formControlName="fundingSource"
+                            [data]=""
+                            [defaultItem]="{text: 'Select funding source',value: null }"
+                            [textField]="'text'"
+                            [valueField]="'value'"
+                            [value]="value"
+                            isRequired="true"
+                            [valuePrimitive]="true"
+                            required
+                            tabindex="2">
+        </kendo-dropdownlist>
+      </div>
+      <div class="col-4">
+        <label for="fundingType">Funding Type</label>
+        <kendo-dropdownlist formControlName="fundingType"
+                            [data]=""
+                            [defaultItem]="{text: 'Select funding type',value: null }"
+                            [textField]="'text'"
+                            [valueField]="'value'"
+                            [value]="value"
+                            isRequired="true"
+                            [valuePrimitive]="true"
+                            required
+                            tabindex="3">
+        </kendo-dropdownlist>
+      </div>
+      <div class="col-4">
+        <label for="amountCommited">Amount Commited<span class="k-field-info k-required"> *</span></label>
+        <input formControlName="amountCommited" kendoTextBox id="amountCommited" maxlength="4" tabindex="4" />
+      </div>
+      <div class="col-4">
+        <label for="amountTransferred">Amount Transferred<span class="k-field-info k-required"> *</span></label>
+        <input formControlName="amountTransferred" kendoTextBox id="amountTransferred" maxlength="4" tabindex="5" />
+      </div>
+
+      <div class="col-4">
+        <label for="transferCode">Transfer Code<span class="k-field-info k-required"> *</span></label>
+        <input formControlName="transferCode" kendoTextBox id="transferCode" maxlength="4" tabindex="6" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4">
+        <label for="transferRequestedDt">Transfer Requested Dt</label>
+        <kendo-datepicker formControlName="transferRequestedDt"
+                          [format]="'MM/dd/yyyy'"
+                          tabindex="7"
+                          required>
+        </kendo-datepicker>
+      </div>
+      <div class="col-4">
+        <label for="financeRequestedDt">Finance Requested Dt</label>
+        <kendo-datepicker formControlName="financeRequestedDt"
+                          [format]="'MM/dd/yyyy'"
+                          tabindex="8"
+                          required>
+        </kendo-datepicker>
+
+      </div>
+
+      <div class="col-4">
+        <label for="transferReconciliationDt">Transfer Reconciliation Dt</label>
+        <kendo-datepicker formControlName="transferReconciliationDt"
+                          [format]="'MM/dd/yyyy'"
+                          tabindex="9"
+                          required>
+        </kendo-datepicker>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4">
+        <label for="fhwaApprovedDt">FHWA Approved Dt</label>
+        <kendo-datepicker formControlName="fhwaApprovedDt"
+                          [format]="'MM/dd/yyyy'"
+                          tabindex="10"
+                          required>
+        </kendo-datepicker>
+      </div>
+
+      <div class="col-4">
+        <label for="finalTransferDt">Final Transfer Dt</label>
+        <kendo-datepicker formControlName="finalTransferDt"
+                          [format]="'MM/dd/yyyy'"
+                          tabindex="11"
+                          required>
+        </kendo-datepicker>
+      </div>
+
+      <div class="col-4">
+        <label for="leadStateNotificationDt">Lead State Notification Dt</label>
+        <kendo-datepicker formControlName="leadStateNotificationDt"
+                          [format]="'MM/dd/yyyy'"
+                          tabindex="12"
+                          required>
+        </kendo-datepicker>
+      </div>
+    </div>
+    <div class="fade_rule col-md">
+      <div class="row">
+        <div class="col-6">
+          <label for="publicCommentText">Public Comments</label>
+        </div>
+        <div class="col-6">
+          <label class="float-right blue-text" style="float: right;"> {{pooledParticipatingForm.controls.publicCommentText.value.length}} OF {{maxChars}} Characters</label>
+        </div>
+      </div>
+      <textarea kendoTextArea formControlName="publicCommentText" rows="4" cols="50" maxlength="{{maxChars}}" tabindex="13"></textarea>
+    </div>
+  </form>
+
+  <kendo-dialog-actions>
+    <button class="btn " tabindex="14">Cancel</button>
+    <button class="btn btn-margin-left" (click)="savePooledParticipating.emit(pooledParticipatingForm.value)" primary="true" tabindex="15">Save</button>
+  </kendo-dialog-actions>
+</kendo-dialog>
+

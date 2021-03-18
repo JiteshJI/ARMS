@@ -1,0 +1,483 @@
+<div class="card-header">Contacts</div>
+<div class="card-body">
+  <!--Old filter-->
+  <!--<div class="row">
+    <div class="col-10">
+      <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group" role="group" aria-label="First group">
+          <button type="button" class="btn btn-secondary" (click)="onContactClickAF()">A-F</button>
+          <button type="button" class="btn btn-secondary" (click)="onContactClickGL()">G-L</button>
+          <button type="button" class="btn btn-secondary" (click)="onContactClickMR()">M-R</button>
+          <button type="button" class="btn btn-secondary" (click)="onContactClickSZ()">S-Z</button>
+          <span>
+            <input #searchBox placeholder="Search Contacts" kendoTextBox (input)="onFilter($event.target.value)" class="search-text" />
+          </span>
+          <button type="button" class="btn btn-secondary" (click)="onClear()">Clear</button>
+        </div>
+      </div>
+    </div>
+  </div>-->
+  <kendo-grid class=" k-refdata forms-grid"
+              [kendoGridBinding]="gridView"
+              [pageSize]="15"
+              [pageable]="true"
+              [sortable]="true"
+              [reorderable]="true"
+              [resizable]="true"
+              [filterable]="true"
+              [columnMenu]="{ filter: true }">
+    <ng-template kendoGridToolbarTemplate>
+      <div class="row">
+        <div class="col-12 table-button ">
+          <div class="add-btn-table">
+            <div class="grid-btn-bg">
+              <button type="button" class="btn add-grid-button k-button k-grid-add-command"
+                      (click)="onContactAddClick()" kendoGridAddCommand>
+                <img src="../../../../../assets/grid_toolbar_icons/Add_Toolbar_Icon.svg" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <!-- main contact display Grid -->
+    <kendo-grid-column field="id" title="id" [hidden]="true"></kendo-grid-column>
+    <kendo-grid-column field="classification" title="Classification" [hidden]="true"></kendo-grid-column>
+    <kendo-grid-column field="lastName" title="Last Name" width="200">
+    </kendo-grid-column>
+    <kendo-grid-column field="firstName" title="First Name">
+    </kendo-grid-column>
+    <kendo-grid-column field="businessTitle" title="Classification">
+    </kendo-grid-column>
+    <kendo-grid-column field="emailAddress" title="Email Address">
+    </kendo-grid-column>
+    <kendo-grid-column field="mobilePhone" title="Mobile Phone">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        {{dataItem.mobilePhone | phone}}
+      </ng-template>
+    </kendo-grid-column>
+    <!--<kendo-grid-column title="Mobile Number">
+    </kendo-grid-column>-->
+    <kendo-grid-column field="businessPhone" title="Business Phone">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        {{dataItem.businessPhonee | phone}}
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-command-column title="Status" width="90px" [columnMenu]="false">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <span *ngIf="dataItem.activeInd == 'I'">Inactive</span>
+        <span *ngIf="dataItem.activeInd == 'A'">Active</span>
+      </ng-template>
+    </kendo-grid-command-column>
+    <kendo-grid-command-column title="Edit" width="43px" [columnMenu]="false" [reorderable]="false">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <button type="button" class="btn btn-edit" kendoGridEditCommand (click)="EditContactForm(dataItem)">
+          <span class="fas fa-pencil-alt"></span>
+        </button>
+      </ng-template>
+    </kendo-grid-command-column>
+  </kendo-grid>
+</div>
+<!-- Kendo Dialog for Editing Contacts -->
+<kendo-dialog [width]="1200" [height]="430" *ngIf="EditContactDialogOpened" (close)="EditContactDialogClose()">
+  <kendo-dialog-titlebar>Contacts – Edit</kendo-dialog-titlebar>
+  <form class="k-form" [formGroup]="contactsEditForm">
+    <div class="row">
+
+      <div class="col-md">
+        <label for="bsnsTitle">Classification</label>
+        <input kendoTextBox id="bsnsTitle" formControlName="BusinessTitle" />
+
+        <div *ngIf="this.contactsEditForm.get('BusinessTitle').invalid &&
+              this.contactsEditForm.get('BusinessTitle').errors &&
+              (this.contactsEditForm.get('BusinessTitle').dirty || this.contactsEditForm.get('BusinessTitle').touched)">
+          <small class="text-danger" *ngIf="this.contactsEditForm.get('BusinessTitle').hasError('pattern')">
+            Accepts only alphabets.
+          </small>
+        </div>
+      </div>
+
+      <div class="col-md">
+        <label for="j-first-name">First Name</label>
+        <input kendoTextBox id="j-first-name" formControlName="FirstName" />
+
+        <div *ngIf="this.contactsEditForm.get('FirstName').invalid &&
+              this.contactsEditForm.get('FirstName').errors &&
+              (this.contactsEditForm.get('FirstName').dirty || this.contactsEditForm.get('FirstName').touched)">
+          <small class="text-danger" *ngIf="this.contactsEditForm.get('FirstName').hasError('pattern')">
+            Accepts only alphabets.
+          </small>
+        </div>
+      </div>
+
+      <div class="col-md">
+        <label for="j-last-name">Last Name</label>
+        <input id="j-last-name" kendoTextBox formControlName="LastName" />
+
+        <div *ngIf="this.contactsEditForm.get('LastName').invalid &&
+                    this.contactsEditForm.get('LastName').errors &&
+                    (this.contactsEditForm.get('LastName').dirty || this.contactsEditForm.get('LastName').touched)">
+          <small class="text-danger" *ngIf="this.contactsEditForm.get('LastName').hasError('pattern')">
+            Accepts only alphabets.
+          </small>
+        </div>
+      </div>
+
+      <div class="col-md">
+        <label for="j-status">Status</label>
+        <kendo-dropdownlist id="j-status" formControlName="ActiveInd" [data]="ActiveIn" [textField]="'text'"
+                            [valueField]="'value'" [valuePrimitive]="true">
+        </kendo-dropdownlist>
+      </div>
+
+    </div>
+    <div class="row">
+
+      <div class="col-6">
+        <label for="j-email">Email Address</label>
+        <input id="j-email" kendoTextBox formControlName="EmailAddress" />
+      </div>
+
+      <div class="col-2">
+        <label for="j-OrilBrdMbr">ORIL Board Member?</label>
+        <kendo-dropdownlist id="j-OrilBrdMbr" formControlName="OrilBrdMbr" [data]="OrilOptions" [textField]="'text'"
+                            [valueField]="'value'" [valuePrimitive]="true">
+        </kendo-dropdownlist>
+
+      </div>
+    </div>
+    <div class="fade_rule col-md"></div>
+    <kendo-grid class=" k-refdata forms-grid extra-grid-space"
+                [rowClass]="rowCallback"
+                [data]="contactGridData"
+                (groupChange)="groupChange($event)"
+                (add)="openAddFormDialog($event)"
+                (edit)="editAgencyHandler($event)"
+                scrollable="none">
+      <ng-template kendoGridToolbarTemplate>
+        <div class="row">
+          <div class="col-12 table-button ">
+            <div class="add-btn-table">
+              <div class="grid-btn-bg">
+                <button type="button" class="btn add-grid-button k-button k-grid-add-command"
+                        (click)="onContactAgencyAddClick(contactsEditForm)" kendoGridAddCommand>
+                  <img src="../../../../../assets/grid_toolbar_icons/Add_Toolbar_Icon.svg" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <kendo-grid-column field="agencyName" title="Agency Name" width="120">
+      </kendo-grid-column>
+      <kendo-grid-column field="address1" title="Business Address" width="120">
+      </kendo-grid-column>
+      <kendo-grid-column field="address2" title="Address 2" width="120">
+      </kendo-grid-column>
+      <kendo-grid-column field="city" title="City" width="80">
+      </kendo-grid-column>
+      <kendo-grid-column field="state" title="State" width="40">
+      </kendo-grid-column>
+      <kendo-grid-column field="zip" title="Zip Code" width="40">
+      </kendo-grid-column>
+      <kendo-grid-column field="businessPhone" title="Business Phone" width="40">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          {{dataItem.businessPhone | phone}}
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="mobilePhone" title="Mobile Phone" width="40">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          {{dataItem.mobilePhone | phone}}
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-command-column title="Status" width="43px">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <span *ngIf="dataItem.activeInd == 'I'">Inactive</span>
+          <span *ngIf="dataItem.activeInd == 'A'">Active</span>
+        </ng-template>
+      </kendo-grid-command-column>
+      <kendo-grid-command-column title="Edit" width="43px">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <button type="button" class="btn btn-edit" kendoGridEditCommand (click)="EditContactAgencyForm(dataItem)" [disabled]="dataItem.activeInd == 'I'">
+            <span class="fas fa-pencil-alt"></span>
+          </button>
+        </ng-template>
+      </kendo-grid-command-column>
+    </kendo-grid>
+  </form>
+  <kendo-dialog-actions>
+    <button class="btn " (click)="EditContactDialogClose('no')">Cancel</button>
+    <button class="btn btn-margin-left" [disabled]="!this.contactsEditForm.dirty || this.contactsEditForm.invalid" (click)="saveEditedContact()" primary="true">Save</button>
+  </kendo-dialog-actions>
+</kendo-dialog>
+
+<!--========================================================================================================================================
+  Kendo dialog for editing Contact Agency
+===========================================================================================================================================-->
+<kendo-dialog [width]="500" [height]="430" *ngIf="EditContactAgencyDialogOpened" (close)="EditContactAgencyDialogClose()">
+  <kendo-dialog-titlebar>Contacts – Edit Agency</kendo-dialog-titlebar>
+  <form class="k-form" [formGroup]="contactAgencyEditForm">
+
+    <div class="row">
+
+      <div class="col-8">
+        <label for="agncyNme">Agency Name</label>
+        <input id="agncyNme" kendoTextBox [readonly]="'true'" formControlName="AgencyName" class="k-textboxmedium" />
+      </div>
+
+      <div class="col-4">
+        <label for="business-phone">Business Phone</label>
+        <kendo-maskedtextbox id="business-phone" [mask]="'(999) 000-0000'" formControlName="BusinessPhone" class="k-textboxsmall" tabindex="6"></kendo-maskedtextbox>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-8">
+        <label for="addr1">Address 1</label>
+        <input kendoTextBox id="addr1" formControlName="Address1" tabindex="1" />
+      </div>
+
+      <div class="col-4">
+        <label for="bus-ph-ex">Business Ext</label>
+        <input kendoTextBox id="bus-ph-ex" formControlName="BusinessPhoneExt" class="k-textboxsmall" tabindex="7" />
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-8">
+        <label for="addr2">Address 2</label>
+        <input kendoTextBox id="addr2" bformControlName="Address2" tabindex="2" />
+      </div>
+
+      <div class="col-4">
+        <label for="mobile-ph">Mobile Phone</label>
+        <kendo-maskedtextbox id="mobile-ph" [mask]="'(999) 000-0000'" formControlName="MobilePhone" class="k-textboxsmall" tabindex="8"></kendo-maskedtextbox>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-8">
+        <label for="big-city">City</label>
+        <input kendoTextBox id="big-city" formControlName="City" class="k-textboxmedium" tabindex="3" />
+      </div>
+
+      <div class="col-4">
+        <label for="smrt">Status</label>
+        <kendo-dropdownlist id="smrt" formControlName="ActiveInd" [data]="ActiveIn" [textField]="'text'"
+                            [valueField]="'value'" [valuePrimitive]="true" class="k-textboxsmall" tabindex="9">
+        </kendo-dropdownlist>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-3">
+        <label for="big-country">State</label>
+        <input kendoTextBox id="big-country" formControlName="State" class="k-textboxsmall" tabindex="4" />
+      </div>
+
+      <div class="col-9">
+        <label for="zip-cd">Zip</label>
+        <kendo-maskedtextbox id="zip-cd"
+                             formControlName="Zip"
+                             class="k-textboxsmall"
+                             tabindex="5"
+                             minlength="5"
+                             maxlength="5"
+                             [mask]="'00000'">
+        </kendo-maskedtextbox>
+      </div>
+
+    </div>
+
+    <!--<div class="fade_rule col-md"></div>-->
+
+  </form>
+  <kendo-dialog-actions>
+    <button class="btn" (click)="EditContactAgencyDialogClose('no')" tabindex="10">Cancel</button>
+    <button class="btn btn-margin-left" (click)="savEditedContactAgency()" primary="true" tabindex="11">Save</button>
+  </kendo-dialog-actions>
+</kendo-dialog>
+
+<!--========================================================================================================================================
+  Kendo dialog for Add Contact Agency
+===========================================================================================================================================-->
+
+<kendo-dialog [width]="500" [height]="430" *ngIf="ContactAgencyAddDialogOpened" (close)="ContactAgencyAddDialogClose()">
+  <kendo-dialog-titlebar class="k-refdata">Contacts – Add Agency</kendo-dialog-titlebar>
+  <form class="k-form" [formGroup]="contactAgencyAddForm">
+    <div class="row">
+
+      <div class="col-8">
+        <label for="agency-name">Agency Name</label>
+        <kendo-dropdownlist formControlName="AgencyID"
+                            id="agency-name"
+                            [data]="agencyDetail"
+                            [textField]="'agencyNameTxt'"
+                            [valueField]="'agencyId'"
+                            [valuePrimitive]="true"  class="k-textboxmedium" tabindex="1">
+        </kendo-dropdownlist>
+      </div>
+
+      <div class="col-4">
+        <label for="biz-phone">Business Phone</label>
+        <kendo-maskedtextbox id="biz-phone" [mask]="'(999) 000-0000'"  formControlName="BusinessPhone"  class="k-textboxsmall" tabindex="7">
+        </kendo-maskedtextbox>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-8">
+        <label for="address-1">Address 1</label>
+        <input kendoTextBox id="address-1" formControlName="Address1" tabindex="2" />
+      </div>
+
+      <div class="col-4">
+        <label for="biz-ext">Business Ext</label>
+        <input kendoTextBox id="biz-ext" formControlName="BusinessPhoneExt" class="k-textboxsmall" tabindex="8" />
+      </div>
+
+    </div>
+    <div class="row">
+
+      <div class="col-8">
+        <label for="address-2">Address 2</label>
+        <input kendoTextBox id="address-2" formControlName="Address2" tabindex="3" />
+      </div>
+
+      <div class="col-4">
+        <label for="moby-ph">Mobile Phone</label>
+        <kendo-maskedtextbox id="moby-ph" [mask]="'(999) 000-0000'"  formControlName="MobilePhone" class="k-textboxsmall" tabindex="9">
+        </kendo-maskedtextbox>
+      </div>
+
+    </div>
+    <div class="row">
+
+      <div class="col-8">
+        <label for="syncro-city">City</label>
+        <input kendoTextBox id="syncro-city" formControlName="City"  class="k-textboxmedium"  tabindex="4" />
+      </div>
+
+      <div class="col-4">
+        <label for="actv">Status</label>
+        <kendo-dropdownlist formControlName="ActiveInd"
+                            id="actv"
+                            [data]="ActiveIn"
+                            [textField]="'text'"
+                            [valueField]="'value'"
+                            [valuePrimitive]="true" class="k-textboxsmall" tabindex="10">
+        </kendo-dropdownlist>
+      </div>
+
+    </div>
+    <div class="row">
+
+      <div class="col-3">
+        <label for="osu">State</label>
+        <input kendoTextBox id="osu" formControlName="State" class=" k-textboxsmall" tabindex="5"   />
+      </div>
+
+      <div class="col-9">
+        <label for="k-tel">Zip</label>
+        <kendo-maskedtextbox id="k-tel" [mask]="'99999'"  formControlName="Zip"  class="k-textboxsmall" tabindex="6">
+        </kendo-maskedtextbox>
+      </div>
+
+    </div>
+
+    <!--<div class="fade_rule col-md"></div>-->
+
+  </form>
+  <kendo-dialog-actions>
+    <button class="btn" (click)="ContactAgencyAddDialogClose('no')" tabindex="11">Cancel</button>
+    <button class="btn btn-margin-left" (click)="saveAddContactAgency()" primary="true" tabindex="12">Save</button>
+  </kendo-dialog-actions>
+</kendo-dialog>
+
+<!--========================================================================================================================================
+  Kendo dialog for adding new contact
+===========================================================================================================================================-->
+
+<kendo-dialog [width]="1200" [height]="430" *ngIf="opened" (close)="close()">
+  <kendo-dialog-titlebar class="k-refdata">Contacts – Add</kendo-dialog-titlebar>
+  <form class="k-form" [formGroup]="contactsInfoForm">
+    <div class="row">
+
+      <div class="col-md">
+        <label for="business-title">Classification</label>
+        <input id="business-title" kendoTextBox formControlName="BusinessTitle" />
+      </div>
+
+      <div class="col-md">
+        <label for="first-name">First Name</label>
+        <input id="first-name" kendoTextBox formControlName="FirstName" />
+      </div>
+
+      <div class="col-md">
+        <label for="last-name">Last Name</label>
+        <input id="last-name" kendoTextBox formControlName="LastName" />
+      </div>
+
+      <div class="col-md">
+        <label for="status">Status</label>
+        <kendo-dropdownlist id="status" formControlName="ActiveInd" [data]="ActiveIn" [textField]="'text'"
+                            [valueField]="'value'" [valuePrimitive]="true">
+        </kendo-dropdownlist>
+
+      </div>
+
+    </div>
+    <div class="row">
+
+      <div class="col-6">
+        <label for="email">Email Address</label>
+        <input id="email" kendoTextBox formControlName="EmailAddress" />
+      </div>
+
+      <div class="col-2">
+        <label for="board-member">ORIL Board Member?</label>
+        <kendo-dropdownlist id="board-member" formControlName="OrilBrdMbr" [data]="OrilOptions" [textField]="'text'"
+                            [valueField]="'value'" [valuePrimitive]="true">
+        </kendo-dropdownlist>
+      </div>
+    </div>
+
+    <div class="fade_rule col-md"></div>
+
+    <kendo-grid>
+      <ng-template kendoGridToolbarTemplate>
+      </ng-template>
+      <kendo-grid-column field="" title="Agency Name" width="120">
+      </kendo-grid-column>
+      <kendo-grid-column field="" title="Business Address" width="120">
+      </kendo-grid-column>
+      <kendo-grid-column field="" title="Address 2" width="120">
+      </kendo-grid-column>
+      <kendo-grid-column field="" title="City" width="80">
+      </kendo-grid-column>
+      <kendo-grid-column field="" title="State" width="40">
+      </kendo-grid-column>
+      <kendo-grid-column field="" title="Zip Code" width="40">
+      </kendo-grid-column>
+      <kendo-grid-column field="" title="Business Phone" width="40">
+      </kendo-grid-column>
+      <kendo-grid-column field="" title="State" width="40">
+      </kendo-grid-column>
+    </kendo-grid>
+
+  </form>
+  <kendo-dialog-actions>
+    <button class="btn" (click)="close('no')">Cancel</button>
+    <button class="btn btn-margin-left" (click)="save()" primary="true">Save</button>
+  </kendo-dialog-actions>
+</kendo-dialog>
+

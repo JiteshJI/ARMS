@@ -1,0 +1,62 @@
+
+<div class="row">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-6">
+        <label for="current-summary">Public Comments <span class="k-field-info k-required">*</span></label>
+      </div>
+      <div class="col-6">
+        <label class="float-right blue-text">0 OF {{maxChars}} Characters</label>
+      </div>
+    </div>
+    <!--<textarea kendoTextArea rows="4" cols="50" maxlength="{{maxChars}}"></textarea>-->
+    <textarea kendoTextArea rows="4" cols="50"></textarea>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-6">
+        <label for="current-summary">Private Comments</label>
+      </div>
+      <div class="col-6">
+        <label class="float-right blue-text">0 OF {{maxChars}} Characters</label>
+      </div>
+    </div>
+    <!--<textarea kendoTextArea rows="4" cols="50" maxlength="{{maxChars}}" style="background-color:#ffe6e6"></textarea>-->
+    <textarea kendoTextArea rows="4" cols="50" style="background-color:#ffe6e6"></textarea>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <kendo-upload #myUpload="kendoUpload"
+                  [saveUrl]="uploadSaveUrl"
+                  [ngModelOptions]="{standalone: true}"
+                  [(ngModel)]="myFiles"
+                  [batch]="true"
+                  (upload)="uploadEventHandler($event)">
+      <ng-template kendoUploadFileTemplate let-files let-state="state">
+        <div class="row container">
+          <div class="col-2">
+            <!--<b>Type</b><br /><img class="file-icon" src="{{geticonfilepath(files[0].extension)}}" />-->
+            <b>Type</b><br /><span class="{{getIconFilePath(files[0].name)}}"></span>
+          </div>
+
+          <div class="col-4">
+            <b>Document</b><br /> {{files[0].name}}
+          </div>
+          <div class="col-2"><b>Size</b><br /> {{files[0].size}} bytes</div>
+          <div class="col-2">
+            <b>Delete</b><br />
+            <button type="button" class="btn btn-edit" (click)="remove(myUpload, files[0].uid)"><span class="fas fa-trash-alt"></span></button>
+          </div>
+          <div class="col-2">
+            <b>Private</b><br />
+            <input type="checkbox" [checked]="files[0].extension == 'I'" [ngModelOptions]="{standalone: true}" (click)="getChecked(files[0].uid)" kendoCheckBox />
+          </div>
+        </div>
+      </ng-template>
+    </kendo-upload>
+  </div>
+</div>
+

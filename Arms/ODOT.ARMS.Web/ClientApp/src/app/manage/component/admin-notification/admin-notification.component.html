@@ -1,0 +1,25 @@
+<div class="card-body">
+  <form [formGroup]="notificationForm">
+    <div class="row">
+      <div class="col-12">
+        <label class="k-label">
+          Enter text which will appear on the ARMS login Page:
+        </label>
+        <textarea kendoTextArea rows="4" cols="50" [maxlength]="maxChars" ng-trim="false" formControlName="notificationTxt"></textarea>
+      </div>
+    </div>
+  </form>
+  <div class="row">
+    <div class="col">
+      <label class="float-right">{{CheckNotificationTextLength()}} OF {{maxChars}} Characters</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button type="submit" class="btn float-right" (click)="saveNotificationTxt.emit(this.notificationForm.controls['notificationTxt'].value)">Save</button>
+      <button type="submit" class="btn float-right" (click)="saveNotificationTxt.emit('')">Clear Text</button>
+    </div>
+  </div>
+</div>
+
+

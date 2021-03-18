@@ -1,0 +1,93 @@
+<kendo-grid #grid class="k-prjdata forms-grid extra-grid-space" [data]="gridView" [sort]="sort"
+            (sortChange)="sortChange($event)" [rowClass]="rowCallback" [reorderable]="true" [resizable]="true"
+            scrollable="none">
+  <ng-template kendoGridToolbarTemplate>
+    <div class="row">
+      <div class="col-12 table-button ">
+        <div class="add-btn-table">
+          <div class="grid-btn-bg">
+            <!--<button type="button" class="btn add-grid-button k-button k-grid-add-command" (click)="onPhaseMergeClick(grid);" kendoGridAddCommand>
+              <i class="fas fa-compress-arrows-alt"></i>
+            </button>-->
+            <button type="button" class="btn add-grid-button k-button k-grid-add-command"
+                    (click)="selectPhase.emit()" kendoGridAddCommand>
+              <img src="../../../../../assets/grid_toolbar_icons/Add_Toolbar_Icon.svg" />
+            </button>
+            <button type="button" class="btn add-grid-button w-grid-header-btn k-button"
+                    (click)="mergePhase.emit(mergePhases)" [disabled]="canMerge()">
+              Merge
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <kendo-grid-column field="projId" hidden="hidden">
+  </kendo-grid-column>
+  <kendo-grid-column field="isOld" hidden="hidden">
+  </kendo-grid-column>
+  <kendo-grid-column field="phaseNum" title="Phase" width="100">
+    <ng-template kendoGridFooterTemplate let-column let-columnIndex="columnIndex">
+      {{phaseString == '' ? '' : 'Merged'}}
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="phaseTitle" title="Title">
+    <ng-template kendoGridFooterTemplate let-column let-columnIndex="columnIndex">
+      {{phaseString == '' ? '' : phaseString }}
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="amount" title="Amount" format="{0:c}" filter="numeric">
+    <ng-template kendoGridFooterTemplate let-column let-columnIndex="columnIndex">
+      {{phaseString == '' ? '' : '$' + mergePhaseSum.toFixed(2)  }}
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="beginDate" title="Begin Date">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{dataItem.beginDate | date: 'MM/dd/yyyy'}}
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="endDate" title="End Date">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{dataItem.endDate | date: 'MM/dd/yyyy'}}
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="statusId" title="Status" width="143px">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{getStatusDescription(dataItem.statusId)}}
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-checkbox-column field="mergeInd" title="Merge" width="70px">
+    <!--<ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+      <input [kendoGridSelectionCheckbox]="rowIndex"  [checked]="true" [disabled]="dataItem.activeInd == 'I'" />
+    </ng-template>-->
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <!--<input type="checkbox" [checked]="dataItem.mergeInd == 'M'"
+         [disabled]="dataItem.activeInd == 'I' || dataItem.mergeInd == 'M'" (click)="this.handleMerge(dataItem,$event)" />-->
+      <input type="checkbox" [checked]="canCheck(dataItem)" [disabled]="dataItem.mergeInd == 'M'" (click)="this.handleMerge(dataItem,$event)" />
+    </ng-template>
+  </kendo-grid-checkbox-column>
+  <kendo-grid-command-column title="Edit" width="50px">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <button type="button" class="btn btn-edit" kendoGridEditCommand (click)="selectPhase.emit(dataItem)"
+              [disabled]="dataItem.activeInd == 'I'">
+        <span class="fas fa-pencil-alt"></span>
+      </button>
+    </ng-template>
+  </kendo-grid-command-column>
+  <!--<kendo-grid-command-column title="Inactivate" width="43px" [columnMenu]="false">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <button *ngIf="dataItem.activeInd == 'A'" type="button" class="btn btn-delete" kendoGridRemoveCommand (click)="DeletePhase(dataItem)">
+        <span class="fas fa-trash-alt"></span>
+      </button>
+      <button *ngIf="dataItem.activeInd == 'I'" type="button" class="btn btn-delete" kendoGridRemoveCommand (click)="DeletePhase(dataItem)">
+        <span class="fas k-icon k-i-cancel"></span>
+      </button>
+    </ng-template>
+  </kendo-grid-command-column>-->
+</kendo-grid>
+<!-- <div class="row">
+  <div class="col">
+    <button type="submit" class="btn float-right" (click)="mergePhase.emit(mergePhases)">Save</button>
+  </div>
+</div> -->

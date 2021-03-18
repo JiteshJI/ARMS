@@ -1,0 +1,35 @@
+<kendo-grid class="k-prjdata events-grid forms-grid extra-grid-space"
+                  [data]="data"
+                  [pageSize]="state.take"
+                  [skip]="state.skip"
+                  [sort]="state.sort"
+                  [filter]="state.filter"
+                  [sortable]="true"
+                  [pageable]="true"
+                  [filterable]="true"
+                  (dataStateChange)="dataStateChange($event)">
+  <kendo-grid-column field="phase" title="Phase" width="200">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="category" title="Category">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="title" title="Title">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="transactionType" title="Transaction Type">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="amount"
+                                            title="Amount"
+                                            format="{0:c}">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="user"
+                                            title="User">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="date" title="Date" filter="date" format="{0:d}">
+  </kendo-grid-column>
+
+</kendo-grid>

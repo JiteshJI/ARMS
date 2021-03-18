@@ -1,0 +1,51 @@
+<kendo-grid class=""
+            [data]="data"
+            [pageSize]="state.take"
+            [skip]="state.skip"
+            [sort]="state.sort"
+            [filter]="state.filter"
+            [sortable]="true"
+            [pageable]="true"
+            [filterable]="true"
+            (dataStateChange)="dataStateChange($event)">
+  <ng-template kendoGridToolbarTemplate>
+    <div class="row">
+      <div class="col-12 table-button ">
+        <div class="add-btn-table">
+          <div class="grid-btn-bg">
+            <button type="button" class="btn add-grid-button k-button k-grid-add-command" (click)="selectFunding.emit()" kendoGridAddCommand>
+              <img src="../../../../../assets/grid_toolbar_icons/Add_Toolbar_Icon.svg" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <kendo-grid-column field="categoryTxt" title="Funding Category" [width]="100"></kendo-grid-column>
+  <kendo-grid-column field="fundingTypeTxt" title="Funding Type" [width]="100"></kendo-grid-column>
+  <kendo-grid-column field="fiscalYr" title="Fiscal Year" [width]="100"></kendo-grid-column>
+  <kendo-grid-column field="fundingSrcTxt" title="Funding Source" [width]="100"></kendo-grid-column>
+  <kendo-grid-column field="amount" title="Amount" format="{0:c}" [width]="100"></kendo-grid-column>
+  <kendo-grid-column field="encubrancePONum" title="PO/Encumbrance" [width]="100"></kendo-grid-column>
+  <kendo-grid-column field="docCnt" title="Doc(s)" width="80px">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{formatDocCnt(dataItem?.docCnt)}}
+    </ng-template>
+  </kendo-grid-column>
+
+  <kendo-grid-command-column title="Edit Files" width="65px" [columnMenu]="false">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <!--<button [disabled]="dataItem.activeInd == 'C'" type="button" class="btn btn-edit" kendoGridEditCommand (click)="selectEvent.emit(dataItem)">-->
+      <button [disabled]="dataItem.activeInd == 'C'" type="button" class="btn btn-edit" (click)="selectFundingUpload.emit(dataItem)">
+        <span class="fas fa-pencil-alt"></span>
+      </button>
+    </ng-template>
+  </kendo-grid-command-column>
+  <kendo-grid-command-column title="Edit Event" width="70px" [columnMenu]="false">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <button [disabled]="dataItem.activeInd == 'C'" type="button" class="btn btn-edit" kendoGridEditCommand (click)="selectFunding.emit(dataItem)">
+        <span class="fas fa-pencil-alt"></span>
+      </button>
+    </ng-template>
+  </kendo-grid-command-column>
+</kendo-grid>

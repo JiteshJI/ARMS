@@ -1,0 +1,152 @@
+<kendo-dialog [width]="566" [height]="510" *ngIf="saveEventDialogStatus" (close)="setSaveEventDialogStatus.emit(false)">
+  <kendo-dialog-titlebar class="k-prjdata">{{ title }}</kendo-dialog-titlebar>
+  <form class="k-form" [formGroup]="eventForm" (ngSubmit)="onSaveEvent()">
+    <div class="row">
+      <div class="col-6">
+        <label for="eventSrc">Phase <span class="k-field-info k-required">*</span></label>
+
+        <kendo-dropdownlist name="eventSrc"
+                            [data]="phaseLookupList"
+                            [defaultItem]="{text: 'Select Phase',value: null }"
+                            [textField]="'text'"
+                            [valueField]="'value'"
+                            formControlName="eventSrc"
+                            [valuePrimitive]="true"
+                            [ngClass]="{ 'ng-invalid ng-touched':  eventSrc.value==null}"
+                            required>
+        </kendo-dropdownlist>
+
+        <!-- 1-->
+      </div>
+      <div class="col-6">
+        <label for="beginDate">Begin Date</label>
+        <kendo-datepicker [format]="dateFormat" formControlName="beginDate"
+                          [min]="minDate"
+                          [max]="maxDate" (valueChange)="onChangeEndDate($event)">
+        </kendo-datepicker>
+
+        <!--<label for="beginDate">
+          <span>Begin Date</span>
+          <kendo-datepicker [format]="dateFormat" formControlName="beginDate"
+                            [min]="minDate"
+                            [max]="maxDate" (valueChange)="onChangeEndDate($event)">
+          </kendo-datepicker>
+        </label>-->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <label for="primaryTypeId">
+          Primary Type <span class="k-field-info k-required">*</span>
+        </label>
+
+        <kendo-dropdownlist formControlName="primaryTypeId"
+                            [data]="primaryEvents"
+                            [defaultItem]="{text: 'Select Primary Type',value: null }"
+                            [textField]="'text'"
+                            [valueField]="'value'"
+                            [valuePrimitive]="true"
+                            [ngClass]="{ 'ng-invalid ng-touched':  primaryTypeId.value==null}"
+                            (valueChange)="handlePrimaryTypeChange($event)"
+                            required>
+        </kendo-dropdownlist>
+
+        <!--2-->
+
+      </div>
+      <div class="col-6">
+        <label for="endDate">
+          End Date
+        </label>
+        <kendo-datepicker [format]="dateFormat" formControlName="endDate"
+                          [min]="endMinDate"
+                          [max]="maxDate">
+        </kendo-datepicker>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <label *ngIf="secondaryTypeItems?.length > 0">
+          Secondary Type <span class="k-field-info k-required">*</span>
+
+          <kendo-dropdownlist formControlName="secondaryTypeId"
+                              [data]="secondaryTypeItems"
+                              [defaultItem]="{text: 'Select Secondary Type',value: null }"
+                              [textField]="'text'"
+                              [valueField]="'value'"
+                              [valuePrimitive]="true"
+                              [ngClass]="{ 'ng-invalid ng-touched':  secondaryTypeId.value==null}">
+          </kendo-dropdownlist>
+          <!--3-->
+        </label>
+      </div>
+      <div class="col-6">
+        <label for="activeInd">
+          Status <span class="k-field-info k-required">*</span>
+        </label>
+
+        <kendo-dropdownlist formControlName="activeInd"
+                            [data]="eventStatuses"
+                            [defaultItem]="{text: 'Select Status',value: null }"
+                            [textField]="'text'"
+                            [valueField]="'value'"
+                            [valuePrimitive]="true"
+                            [ngClass]="{ 'ng-invalid ng-touched':  activeInd.value==null}"
+                            required>
+        </kendo-dropdownlist>
+        <!--4-->
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12" *ngIf="!isEdit">
+        <label for="prjType">Personnel</label>
+          <kendo-dropdownlist formControlName="contactId"
+                              [data]="contactRoleList"
+                              [defaultItem]="{text: 'Select Personnel',value: null }"
+                              [textField]="'text'"
+                              [valueField]="'value'"
+                              [valuePrimitive]="true">
+          </kendo-dropdownlist>
+      </div>
+      <div class="col-12" *ngIf="isEdit">
+        <label for="prjType">Personnel</label>
+          <kendo-formfield>
+            <kendo-multiselect formControlName="contactId"
+                               [data]="contactRoleList"
+                               [placeholder]="'Select Personnel'"
+                               [textField]="'text'"
+                               [valueField]="'value'"
+                               [valuePrimitive]="true"
+                               (valueChange)="handleChange($event)"
+                               tabindex="12">
+            </kendo-multiselect>
+          </kendo-formfield>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <label for="publicCommentTxt">
+          Public Comments <span class="k-field-info k-required">*</span>
+          <span class="blue-text char-count">{{fieldTxtLength(publicCommentTxt)}} OF {{maxChars}} Characters</span>
+        </label>
+        <textarea kendoTextArea formControlName="publicCommentTxt" rows="4" cols="50" maxlength="{{maxChars}}" required></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label for="privateCommentTxt">
+          Private Comments
+          <span class="blue-text char-count"> {{fieldTxtLength(privateCommentTxt)}} OF {{maxChars}} Characters</span>
+        </label>
+        <textarea kendoTextArea formControlName="privateCommentTxt" rows="4" cols="50" maxlength="{{maxChars}}" style="background-color:#ffe6e6"></textarea>
+      </div>
+    </div>
+  </form>
+
+  <kendo-dialog-actions>
+    <button class="btn" (click)="setSaveEventDialogStatus.emit(false)" tabindex="5">Cancel</button>
+    <button class="btn btn-margin-left" [disabled]="!eventForm.dirty || !eventForm.valid" (click)="onSaveEvent()" primary="true" tabindex="6">Save</button>
+  </kendo-dialog-actions>
+</kendo-dialog>

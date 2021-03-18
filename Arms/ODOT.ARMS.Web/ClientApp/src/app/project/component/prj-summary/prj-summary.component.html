@@ -1,0 +1,22 @@
+<form [formGroup]="prjCurrSummaryForm">
+  <div class="row">
+    <div class="col">
+      <div class="row">
+        <div class="col-9">
+          <label for="current-summary">Current Summary</label>
+        </div>
+        <div class="col-3">
+          <label class="float-right blue-text">
+            {{CheckSummTextLength()}} OF {{maxChars}} Characters
+          </label>
+        </div>
+      </div>
+      <textarea kendoTextArea formControlName="summaryTxt" rows="4" cols="50" maxlength="{{maxChars}}"></textarea>
+    </div>
+  </div>
+  </form>
+  <div class="row">
+    <div class="col">
+      <button type="submit" class="btn float-right" [disabled]="!prjCurrSummaryForm.dirty" (click)="Save()">Save</button>
+    </div>
+  </div>

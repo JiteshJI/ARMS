@@ -1,0 +1,31 @@
+<app-fin-invoice-list [invoiceList]="invoices$ | async"
+                      [phaseList]="phaseList$ | async"
+                      [fundingStatusItems]="fundingStatuses$ | async"
+                      (selectInvoice)="onSelectInvoice($event)"
+                      (selectInvoiceUpload)="onSelectUploadDoc($event)">
+</app-fin-invoice-list>
+
+<app-fin-invoice-save [invoice]="selectedInvoice$ | async"
+                      [invoiceList]="invoices$ | async"
+                      [phaseList]="phaseList$ | async"
+                      [saveInvoiceDialogStatus]="saveInvoiceDialogStatus$ | async"
+                      [fundingStatusItems]="fundingStatuses$ | async"
+                      [budgetCategoryItems]="budgetCategories$ | async"
+                      [encumbranceSummary]="encumbranceSummary$ | async"
+                      [projectBalance]="projectBalances$ | async"
+                      (setSaveInvoiceDialogStatus)="onSetSaveInvoiceDialogStatus($event)"
+                      (saveInvoice)="onSaveInvoice($event)">
+
+</app-fin-invoice-save>
+
+
+<app-upload-file-save [dlgTitle]="'Invoice Documents Upload'"
+                      [uploadDialogStatus]="uploadDialogStatus$ | async"
+                      [projAltId]="(selectUploadSrc$ | async)?.projAltId"
+                      [srcId]="(selectUploadSrc$ | async)?.srcId"
+                      [uploadFiles]="uploads$ | async"
+                      (setUploadEventDialogStatus)="onSetUploadDialogStatus($event)"
+                      (updateUploadFiles)="onUploadFilesChange($event)"
+                      (download)="onDownload($event)"
+                      (updateFile)="onUpdateFileUpload($event)">
+</app-upload-file-save>

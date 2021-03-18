@@ -1,0 +1,29 @@
+
+<app-prj-cb-save [controllingBoard]="selectedCB$ | async"
+                 [cbCategoryItems]="cbCategoryItems$ | async"
+                 [cbtypeItems]="cbTypeItems$ | async"
+                 [cbStatusItems]="cbStatusItems$ | async"
+                 [saveCBDialogStatus]="saveCBDialogStatus$ | async"
+                 (saveControllingBoard)="onSaveControllingBoard($event)"
+                 (setSaveCBDialogStatus)="onSetSaveCBDialogStatus($event)">
+</app-prj-cb-save>
+  
+
+<app-prj-cb-list [controllingBoardList]="controllingBoardList$ | async"
+                 [cbCategoryItems]="cbCategoryItems$ | async"
+                 [cbTypeItems]="cbTypeItems$ | async"
+                 [cbStatusItems]="cbStatusItems$ | async"
+                 (selectCB)="onSelectCB($event)"
+                 (selectCBUpload)="onSelectUploadDoc($event)">
+</app-prj-cb-list>
+
+<app-upload-file-save [dlgTitle]="'Controlling Board Documents Upload'"
+                      [uploadDialogStatus]="uploadDialogStatus$ | async"
+                      [projAltId]="(selectUploadSrc$ | async)?.projAltId"
+                      [srcId]="(selectUploadSrc$ | async)?.srcId"
+                      [uploadFiles]="uploads$ | async"
+                      (setUploadEventDialogStatus)="onSetUploadDialogStatus($event)"
+                      (updateUploadFiles)="onUploadFilesChange($event)"
+                      (download)="onDownload($event)"
+                      (updateFile)="onUpdateFileUpload($event)">
+</app-upload-file-save>

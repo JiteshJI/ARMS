@@ -1,0 +1,140 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <IsPackable>false</IsPackable>
+    <SpaRoot>ClientApp\</SpaRoot>
+    <DefaultItemExcludes>$(SpaRoot)\node_modules\**;$(SpaRoot)\dist\**;$(DefaultItemExcludes)</DefaultItemExcludes>
+
+    <!-- Set this to true if you enable server-side prerendering -->
+    <BuildServerSideRenderer>false</BuildServerSideRenderer>
+    <RootNamespace>ODOT.ARMS.Web</RootNamespace>
+    <AssemblyName>ODOT.ARMS.Web</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.1" />
+    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.2" />
+	<PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="ClientApp_bkp\**" />
+    <Compile Remove="ind\**" />
+    <Compile Remove="test\**" />
+    <Content Remove="$(SpaRoot)**" />
+    <Content Remove="ClientApp_bkp\**" />
+    <Content Remove="ind\**" />
+    <Content Remove="test\**" />
+    <EmbeddedResource Remove="ClientApp_bkp\**" />
+    <EmbeddedResource Remove="ind\**" />
+    <EmbeddedResource Remove="test\**" />
+    <None Remove="$(SpaRoot)**" />
+    <None Remove="ClientApp_bkp\**" />
+    <None Remove="ind\**" />
+    <None Remove="test\**" />
+    <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="ClientApp\src\app\project\services\personnel.resolver.cs" />
+    <Compile Remove="Entities\WarehouseContext.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\kendo-ui-license.txt" />
+    <None Remove="ClientApp\src\app\core\containers\home-page\event-alerts.ts" />
+    <None Remove="ClientApp\src\app\core\models\fin-invoice-reference-data.ts" />
+    <None Remove="ClientApp\src\app\core\models\project-cb-reference-data.ts" />
+    <None Remove="ClientApp\src\app\core\models\project-events-reference-data.ts" />
+    <None Remove="ClientApp\src\app\core\state\reducers\index.ts" />
+    <None Remove="ClientApp\src\app\manage\models\config-raw.ts" />
+    <None Remove="ClientApp\src\app\project\component\prj-abstract\dialog.component.ts" />
+    <None Remove="ClientApp\src\app\project\component\prj-abstract\link-dlg.component.ts" />
+    <None Remove="ClientApp\src\app\project\component\prj-abstract\upload.component.ts" />
+    <None Remove="ClientApp\src\app\project\models\cb-raw.ts" />
+    <None Remove="ClientApp\src\app\project\models\encumbrance-raw.ts" />
+    <None Remove="ClientApp\src\app\project\models\event-raw.ts" />
+    <None Remove="ClientApp\src\app\project\models\invoice-raw.ts" />
+    <None Remove="ClientApp\src\app\project\models\phase-raw.ts" />
+    <None Remove="ClientApp\src\app\project\models\project-balance-raw.ts" />
+    <None Remove="ClientApp\src\app\project\models\project-for-update.ts" />
+    <None Remove="ClientApp\src\app\project\models\project-header.ts" />
+    <None Remove="ClientApp\src\app\project\services\edit-project-resolver.service.ts" />
+    <None Remove="ClientApp\src\app\project\services\project.service.ts" />
+    <None Remove="ClientApp\src\app\project\state\actions\edit-project-page.actions.ts" />
+    <None Remove="ClientApp\src\app\project\state\effects\project.effects.ts" />
+    <None Remove="ClientApp\src\app\project\state\reducers\edit-project-page.reducer.ts" />
+    <None Remove="ClientApp\src\app\project\state\reducers\index.ts" />
+    <None Remove="ClientApp\src\app\project\state\selector\edit-fin-invoice-page.selectors.ts" />
+    <None Remove="ClientApp\src\app\shared\models\constants.ts" />
+    <None Remove="ClientApp\src\app\shared\models\lookup-item.ts" />
+    <None Remove="ClientApp\src\app\shared\validators\rfpNumber.validator.ts" />
+    <None Remove="ClientApp\src\app\shared\validators\rfpNumber.validator.ts.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\app\core\guards\" />
+    <Folder Include="ClientApp\src\app\core\state\actions\" />
+    <Folder Include="ClientApp\src\app\core\state\effects\" />
+    <Folder Include="ClientApp\src\app\manage\component\" />
+    <Folder Include="ClientApp\src\app\manage\containers\" />
+    <Folder Include="ClientApp\src\app\manage\state\selector\" />
+    <Folder Include="ClientApp\src\app\project\containers\modifications\" />
+    <Folder Include="ClientApp\src\app\shared\services\" />
+    <Folder Include="ClientApp\src\app\shared\state\actions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\core\containers\home-page\event-alerts.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\core\models\fin-invoice-reference-data.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\core\models\project-cb-reference-data.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\core\models\project-events-reference-data.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\core\models\project.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\core\state\reducers\index.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\manage\models\config-raw.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\project\models\cb-raw.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\project\models\encumbrance-raw.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\project\models\event-raw.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\project\models\invoice-raw.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\project\models\phase-raw.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\project\models\project-balance-raw.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\project\models\project-for-update.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\project\models\project-header.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\project\services\edit-project-resolver.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\project\services\project.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\project\state\actions\edit-project-page.actions.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\project\state\effects\project.effects.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\project\state\reducers\edit-project-page.reducer.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\project\state\reducers\index.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\project\state\selector\edit-fin-invoice-page.selectors.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\models\constants.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\models\lookup-item.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\validators\rfpNumber.validator.ts" />
+  </ItemGroup>
+
+</Project>

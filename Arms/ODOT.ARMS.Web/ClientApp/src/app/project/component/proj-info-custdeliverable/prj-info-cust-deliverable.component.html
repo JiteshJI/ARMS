@@ -1,0 +1,51 @@
+
+  <kendo-dialog [width]="1200" [height]="430" *ngIf="custDeliverableDialogStatus" (close)="setcustomDeliverableDialog.emit(false)">
+  <kendo-dialog-titlebar>Custom Deliverables – Manage</kendo-dialog-titlebar>
+      <kendo-grid
+          [data]="customDeliverables"
+          (dataStateChange)="onStateChange($event)"
+          (edit)="edit($event)"
+          (save)="save($event)"
+          (add)="add($event)"
+          (cancel)="cancel($event)"
+          (remove)="remove($event)"
+          [navigable]="true"
+        >
+  <ng-template kendoGridToolbarTemplate>
+    <div class="row">
+      <div class="col-12 table-button ">
+        <div class="add-btn-table">
+          <div class="grid-btn-bg">
+            <button type="button" class="btn add-grid-button k-button k-grid-add-command" kendoGridAddCommand>
+              <img src="../../../../../assets/grid_toolbar_icons/Add_Toolbar_Icon.svg" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+        <kendo-grid-column field="deliverableTxt" title="Deliverable"></kendo-grid-column>
+        <kendo-grid-column field="activeInd" title="Status"></kendo-grid-column>
+        <kendo-grid-command-column title="add/edit">
+        <ng-template kendoGridCellTemplate>
+                 <button kendoGridEditCommand type="button" class="btn btn-edit" [primary]="true">
+                  <span class="fas fa-pencil-alt"></span>
+                 </button>
+                 <button kendoGridSaveCommand [disabled]="prjCustDeliverable?.invalid" class="btn btn-edit">
+                  <span class="fas fa-check"></span>
+                </button>
+
+        </ng-template>
+        </kendo-grid-command-column>
+        <kendo-grid-command-column title="discard changes/cancel">
+        <ng-template kendoGridCellTemplate >
+                <button kendoGridRemoveCommand type="button" class="btn btn-edit">
+                  <span class="fas fa-trash-alt"></span>
+                 </button>
+                <button kendoGridCancelCommand type="button" class="btn btn-edit">
+                  <span class="fas fa-ban"></span>
+                </button>
+        </ng-template>
+        </kendo-grid-command-column>
+      </kendo-grid>
+</kendo-dialog>

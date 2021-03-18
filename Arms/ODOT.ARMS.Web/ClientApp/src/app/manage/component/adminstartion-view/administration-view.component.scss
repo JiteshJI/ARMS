@@ -1,0 +1,63 @@
+/* Variables & Mixins */
+$bg: #fff; /* Changes Entire Color Scheme */
+$text: lighten($bg,35%);
+
+.roundedborder {
+  //@include border-radius (.2em);
+  border: 1px solid #807d7d;
+}
+
+/* Text Input */
+input[type='text'] {
+  @extend .roundedborder;
+  background-color: #ffffff;
+  color: black;
+  font-size: .85em;
+  padding: 0.15em;
+  height: 20px;
+  width: 100%;
+}
+
+/* Text Area */
+textarea {
+  @extend .roundedborder;
+  /*background-color: darken(black, 5%);*/
+  background-color: white;
+  /*color: lighten($text, 10%);*/
+  color: black;
+  font-size: 1em;
+  height: 10em;
+  margin: .5em 0 1em;
+  padding: 1em;
+  width: 100%;
+}
+
+
+/* Submit Button */
+input[type='submit'] {
+  border: 3px solid #e6e5e5;
+  background-color: #357ebd;
+  cursor: pointer;
+  color: white;
+  float: right;
+  font-size: .85em;
+  padding: .25em 1em;
+  //@include text-shadow(.1em .1em .2em #333);
+}
+
+input[type='submit']:hover {
+  background-color: darken(#428bca,5%);
+}
+
+/*.k-grid .k-grid-pager {
+  color: black !important;
+  background-color: white !important;
+  font-size: .7rem !important;
+  padding: .1rem 0 .1rem .3rem !important;
+}*/
+.k-switch-container, .km-switch-container {
+  border-radius: 3em;
+}
+.k-content.k-window-content.k-dialog-content kendo-dropdownlist.k-widget.k-dropdown.k-header {
+  width: 100%!important;
+}

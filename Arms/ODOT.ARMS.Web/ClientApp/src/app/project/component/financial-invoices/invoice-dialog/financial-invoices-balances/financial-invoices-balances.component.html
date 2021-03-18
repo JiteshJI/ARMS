@@ -1,0 +1,120 @@
+<div class="row">
+  <div class="col-3">
+    <label for="phaseId">Type</label>
+    <kendo-dropdownlist id="phaseId" tabindex="1"></kendo-dropdownlist>
+  </div>
+  <div class="col-3">
+    <label for="invNum">Invoice Number</label>
+    <input kendoTextBox id="invNum" tabindex="2" maxlength="50" />
+  </div>
+  <div class="col-2">
+    <label for="finalInv">Final Invoice</label>
+    <input type="checkbox" kendoCheckBox id="finalInv" />
+  </div>
+  <div class="col-3">
+    <label for="invStatus">Status</label>
+    <kendo-dropdownlist id="invStatus"
+                        [textField]="'text'"
+                        [valueField]="'value'">
+    </kendo-dropdownlist>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-2">
+    <label for="propInvDt">Proper Invoice</label>
+    <kendo-datepicker id="propInvDt"
+                      format="MM/dd/yyyy"
+                      formatPlaceholder="formatPattern"
+                      tabindex="3"></kendo-datepicker>
+  </div>
+  <div class="col-2">
+    <label for="invRecDt">Invoice Received</label>
+    <kendo-datepicker id="invRecDt"
+                      format="MM/dd/yyyy"
+                      formatPlaceholder="formatPattern"
+                      tabindex="3"></kendo-datepicker>
+  </div>
+  <div class="col-2">
+    <label for="invDt">Invoice???</label>
+    <kendo-datepicker id="invDt"
+                      format="MM/dd/yyyy"
+                      formatPlaceholder="formatPattern"
+                      tabindex="3"></kendo-datepicker>
+  </div>
+  <div class="col-2">
+    <label for="invStartDt">Invoice Start</label>
+    <kendo-datepicker id="invStartDt"
+                      format="MM/dd/yyyy"
+                      formatPlaceholder="formatPattern"
+                      tabindex="3"></kendo-datepicker>
+  </div>
+  <div class="col-2">
+    <label for="invEndDt">Invoice End</label>
+    <kendo-datepicker id="invEndDt"
+                      format="MM/dd/yyyy"
+                      formatPlaceholder="formatPattern"
+                      tabindex="3"></kendo-datepicker>
+  </div>
+  <div class="col-2">
+    <label for="invFinPaidDt">Finance Paid</label>
+    <kendo-datepicker id="invFinPaidDt"
+                      format="MM/dd/yyyy"
+                      formatPlaceholder="formatPattern"
+                      tabindex="3"></kendo-datepicker>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <label class="k-form-field">
+      <span>
+        Override Project details?
+      </span>
+      <!--<kendo-switch formControlName="overrideRouteSection" (valueChange)="onOverrideRouteSection($event)" [onLabel]="'Yes'" [offLabel]="'No'"></kendo-switch>-->
+      <kendo-switch [onLabel]="'Yes'" [offLabel]="'No'"></kendo-switch>
+    </label>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <kendo-grid #grid class="k-fin-data forms-grid extra-grid-space"
+                [data]="gridCostData"
+                [skip]="state.skip"
+                [sort]="state.sort"
+                [group]="state.group"
+                [sortable]="{ mode: 'multiple' }"
+                [pageable]="false"
+                [groupable]="{ showFooter: true }">
+
+
+      <kendo-grid-column field="itm" title="Budget Category">
+      </kendo-grid-column>
+
+      <kendo-grid-column field="BudgetTxt" title="Budget Balance">
+        <ng-template kendoGridGroupHeaderColumnTemplate let-group="group" let-aggregates="aggregates">
+          <span title="Group Header Column Template for ProductName">
+            {{ formatter.format(aggregates.BudgetBalance.average) }}
+          </span>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="invAmt" title="Invoiced Amount">
+        <ng-template kendoGridGroupHeaderColumnTemplate let-group="group" let-aggregates="aggregates">
+          <span title="Group Header Column Template for ProductName">
+            {{ formatter.format(aggregates.invAmt.sum) }}
+          </span>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="BudgetTxt" title="Available Funds">
+        <ng-template kendoGridGroupHeaderColumnTemplate let-group="group" let-aggregates="aggregates">
+          <span title="Group Header Column Template for ProductName">
+            {{ formatter.format(aggregates.BudgetBalance.average - aggregates.invAmt.sum) }}
+          </span>
+        </ng-template>
+      </kendo-grid-column>
+
+    </kendo-grid>
+  </div>
+</div>

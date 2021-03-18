@@ -1,0 +1,8 @@
+<app-fin-pooled-participating
+(savePooledPart)="savePooledPart($event)">
+</app-fin-pooled-participating>
+
+<app-fin-pooled-participating-save
+[showDialogStatus] = "saveDialogStatus$ | async"
+(savePooledParticipating) ="onSavePooledParticipating($event)">
+</app-fin-pooled-participating-save>

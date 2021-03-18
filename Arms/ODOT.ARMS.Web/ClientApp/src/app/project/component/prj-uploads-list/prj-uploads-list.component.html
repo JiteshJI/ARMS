@@ -1,0 +1,66 @@
+<kendo-grid class="k-prjdata events-grid forms-grid extra-grid-space"
+            [data]="uploads"
+            [sortable]="true"
+            [reorderable]="true"
+            [resizable]="true"
+            (edit)="fileUploadClick(false)"
+            scrollable="none">
+  <ng-template kendoGridToolbarTemplate>
+    <div class="row">
+      <div class="col-12 table-button ">
+        <div class="add-btn-table">
+          <div class="grid-btn-bg">
+            <button type="button" class="btn add-grid-button k-button k-grid-add-comman" (click)="openUploadDlg.emit(true)" kendoGridAddCommand>
+              <img src="../../../../../assets/grid_toolbar_icons/Add_Toolbar_Icon.svg" />
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <kendo-grid-column field="documentName" title="File Name">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="uploadDate" title="Date Added" [width]="239">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{dataItem.uploadDate | date: 'MM/dd/yyyy'}}
+    </ng-template>
+  </kendo-grid-column>
+
+  <kendo-grid-column field="userId" title="Owner" [width]="132">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="privateInd" title="Private" [width]="132">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <kendo-switch [onLabel]="'Y'" [offLabel]="'N'" [checked]="isPrivate(dataItem)" (valueChange)="flipPrivate(dataItem)"></kendo-switch>
+    </ng-template>
+  </kendo-grid-column>
+
+  <kendo-grid-command-column title="Download" [width]="87">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <button type="button" class="btn btn-download" (click)="download.emit(dataItem)"><span class="fas fa-file-download"></span></button>
+    </ng-template>
+  </kendo-grid-command-column>
+
+  <kendo-grid-command-column title="Delete" [width]="80">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <!--<button type="button" class="btn btn-delete" (click)="onDelete.emit(dataItem.eventUploadId)"><span class="k-icon k-i-trash"></span></button>-->
+      <button type="button" class="btn btn-delete" (click)="delete(dataItem.eventUploadId)"><span class="k-icon k-i-trash"></span></button>
+    </ng-template>
+  </kendo-grid-command-column>
+
+  <!--<kendo-grid-column field="filler" title="">
+  </kendo-grid-column>-->
+
+  <ng-template kendoPagerTemplate let-totalPages="totalPages" let-currentPage="currentPage">
+    <kendo-pager-prev-buttons></kendo-pager-prev-buttons>
+    <kendo-pager-numeric-buttons [buttonCount]="3"></kendo-pager-numeric-buttons>
+    <kendo-pager-info></kendo-pager-info>
+    <kendo-pager-next-buttons></kendo-pager-next-buttons>
+    <kendo-pager-page-sizes [pageSizes]="[10, 25, 50]"></kendo-pager-page-sizes>
+  </ng-template>
+</kendo-grid>
+
+<div kendoDialogContainer></div>

@@ -1,0 +1,23 @@
+<form [formGroup]="prjDeliverablesForm">
+<div class="row">
+<div class="col-10"></div>
+<div class="col-2">
+      <label for="stdDeliverables">Standard Deliverables</label>
+        <!-- <button type="button" class="btn add-grid-button k-button k-grid-add-command" [disabled]="phaseList.length === 0" (click)="selectEvent.emit()" -->
+         <kendo-multiselect id="stdDeliverables"
+                        formControlName="projectDeliverablesList"
+                        [placeholder]="'Select Deliverables'"
+                        [data]="allDeliverables"
+                        [textField]="'deliverableTxt'"
+                        [valueField]="'deliverableId'"
+                        (valueChange)="handleDeliverablesChange($event)"
+                        [valuePrimitive]="false"
+                        tabindex="1">
+         </kendo-multiselect>
+         <button kendoButton class="coolV2" [icon]="'k-icon k-i-add'" (click)="setcustomDeliverableDialog.emit(true)"></button>
+         <button kendoButton class="coolV2" [icon]="'k-icon k-i-save'" (click)="saveProjectDeliverables.emit(this.prjDeliverablesForm.value)"></button>
+</div>
+</div>
+</form>
+
+<!-- [disabled]=disableStandardDeliverable -->

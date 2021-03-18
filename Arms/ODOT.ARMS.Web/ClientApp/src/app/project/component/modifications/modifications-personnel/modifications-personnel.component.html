@@ -1,0 +1,130 @@
+
+<kendo-grid class="k-prjdata forms-grid extra-grid-space"
+            [data]="data"
+            [rowClass]="rowCallback"
+            [pageSize]="15"
+            [pageable]="true"
+            [sortable]="true"
+            [reorderable]="true"
+            [resizable]="true"
+            [height]="480">
+
+  <ng-template kendoGridToolbarTemplate>
+    <div class="row">
+      <div class="col-12 table-button ">
+        <div class="add-btn-table">
+          <div class="grid-btn-bg">
+            <button type="button" class="btn add-grid-button k-button k-grid-add-command"
+                    (click)="onPersonnelAddClick()" kendoGridAddCommand>
+              <img src="../../../../../assets/grid_toolbar_icons/Add_Toolbar_Icon.svg" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <kendo-grid-column field="PersonnelID" hidden="hidden">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="RoleID" hidden="hidden">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="ProjID" hidden="hidden">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="ContactID" hidden="hidden">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="personNme" title="Name">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="roleNme" title="Role">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="agencyNme" title="Research Agency" width="200">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="isLead" title="Lead" width="43px">
+  </kendo-grid-column>
+
+
+  <kendo-grid-command-column title="Edit" width="50px">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <button type="button" class="btn btn-edit" kendoGridEditCommand (click)="onPersonEditClick(dataItem)" [disabled]="dataItem.activeInd == 'I'"><span class="fas fa-pencil-alt"></span></button>
+    </ng-template>
+  </kendo-grid-command-column>
+
+  <kendo-grid-command-column title="Status" width="43px" [columnMenu]="false">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <button *ngIf="dataItem.activeInd == 'A'" type="button" class="btn btn-delete" kendoGridRemoveCommand (click)="DeleteCB(dataItem)">
+        <span class="fas fa-trash-alt"></span>
+      </button>
+      <button *ngIf="dataItem.activeInd == 'I'" type="button" class="btn btn-delete" kendoGridRemoveCommand (click)="DeleteCB(dataItem)">
+        <span class="fas k-icon k-i-cancel"></span>
+      </button>
+    </ng-template>
+  </kendo-grid-command-column>
+
+</kendo-grid>
+
+<!--
+===========================================================================================================================================
+  Kendo dialog for adding new Personnel
+===========================================================================================================================================
+-->
+
+<kendo-dialog class="dis-contacts" *ngIf="PersonnelDialogOpened" (close)="PersonnelDialogClose()" [width]="250">
+  <kendo-dialog-titlebar class="k-refdata">{{ isNew ? 'Add Personnel' : 'Edit Personnel' }} </kendo-dialog-titlebar>
+  <form class="k-form" [formGroup]="personnelForm">
+
+    <div class="row">
+      <div class="col-6">
+        <label for="contact">Name</label>
+        <kendo-dropdownlist id="contact" formControlName="ContactID" [data]="peopleData" [filterable]="true" [textField]="'Nme'"
+                            [valueField]="'ContactID'" [valuePrimitive]="true"
+                            (filterChange)="handleFilter($event)">
+          <ng-template kendoDropDownListValueTemplate let-dataItem>
+            <span style="width: 100% !important;">{{ dataItem?.FirstNme }} {{ dataItem?.LastNme }}</span>
+          </ng-template>
+        </kendo-dropdownlist>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <label for="role">Role</label>
+        <kendo-dropdownlist id="role" formControlName="RoleID" [data]="roleData" [textField]="'RoleNme'"
+                            [valueField]="'RoleID'" [valuePrimitive]="true">
+        </kendo-dropdownlist>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+        <label>Lead</label>
+        <kendo-dropdownlist formControlName="IsLeadInd" [defaultItem]="defaultisLeadItem" [data]="isLead" [textField]="'text'"
+                            [valueField]="'value'" [valuePrimitive]="true">
+        </kendo-dropdownlist>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+        <label>Status</label>
+        <kendo-dropdownlist *ngIf="!isNew" formControlName="ActiveInd" [defaultItem]="defaultActiveItem" [data]="ActiveIn" [textField]="'text'"
+                            [valueField]="'value'" [valuePrimitive]="true">
+        </kendo-dropdownlist>
+        <input kendoTextBox *ngIf="isNew" disabled value="Active" class="k-textboxmedium" />
+      </div>
+    </div>
+
+  </form>
+  <kendo-dialog-actions>
+    <button class="btn" (click)="PersonnelDialogClose('no')">Cancel</button>
+    <button class="btn btn-margin-left" (click)="savePersonnel()" primary="true">Save</button>
+  </kendo-dialog-actions>
+</kendo-dialog>
+

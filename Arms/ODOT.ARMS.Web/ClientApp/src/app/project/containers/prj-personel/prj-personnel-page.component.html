@@ -1,0 +1,16 @@
+
+<app-prj-personnel-display
+  [personnel]= "personnel$ | async"
+  (selectedPersonnel)= "addEditSelectedPersonnel($event)">
+</app-prj-personnel-display>
+
+<app-prj-personnel-save
+[contactRoles]= "contactRoles"
+[contactNames]= "contactNames"
+[EditPersonnel]= "EditPersonnel$ |async"
+[saveDialogStatus]= "saveDialogStatus$ | async"
+(addNewEditPersonnelDialogClose) ="addNewEditPersonnelDialogClose()"
+(save)="saveEdit($event)">
+</app-prj-personnel-save>
+
+

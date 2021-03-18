@@ -1,0 +1,93 @@
+<kendo-grid class="k-fin-data forms-grid extra-grid-space"
+            [kendoGridBinding]="data"
+            [sortable]="true"
+            scrollable="none">
+
+  <ng-template kendoGridToolbarTemplate>
+    <div class="row">
+      <div class="col-12 table-button ">
+        <div class="add-btn-table">
+          <div class="grid-btn-bg">
+            <!--<button type="button" class="btn add-grid-button k-button k-grid-add-command" (click)="onAddClick(true)" kendoGridAddCommand>-->
+            <button type="button" class="btn add-grid-button k-button k-grid-add-command" routerLink="dialog" kendoGridAddCommand>
+            <img src="../../../../../assets/grid_toolbar_icons/Add_Toolbar_Icon.svg" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <kendo-grid-column field="phaseTxt" title="Phase" width="100">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="InvNum" title="Invoice Number">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="startDt" title="Start Date">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{dataItem.startDt | date: 'MM/dd/yyyy'}}
+    </ng-template>
+  </kendo-grid-column>
+
+  <kendo-grid-column field="endDt" title="End Date">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{dataItem.endDt | date: 'MM/dd/yyyy'}}
+    </ng-template>
+  </kendo-grid-column>
+
+  <kendo-grid-column field="propInvDt" title="Prop Inv Dt">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{dataItem.propInvDt | date: 'MM/dd/yyyy'}}
+    </ng-template>
+  </kendo-grid-column>
+
+  <kendo-grid-column field="finDt" title="Dt to Fin">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      {{dataItem.finDt | date: 'MM/dd/yyyy'}}
+    </ng-template>
+  </kendo-grid-column>
+
+  <kendo-grid-column field="statusTxt" title="Status">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="amt"
+                     title="Amount"
+                     format="{0:c}">
+  </kendo-grid-column>
+
+  <kendo-grid-command-column title="Edit" width="30px">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <button type="button" class="btn btn-edit"><span class="fas fa-pencil-alt"></span></button>
+    </ng-template>
+  </kendo-grid-command-column>
+
+</kendo-grid>
+
+
+<div class="add-invoice-dialog" kendoDialogContainer>
+  <router-outlet></router-outlet>
+</div>
+  
+
+  <!--
+  <kendo-dialog [width]="1000" [height]="900" *ngIf="AddEditDialogOpened" (close)="AddEditDialogClose()">
+    <kendo-dialog-titlebar class="k-fin-data">Add Invoice</kendo-dialog-titlebar>
+
+    <financial-invoices-invoice></financial-invoices-invoice>
+
+    <financial-invoices-encumbrance></financial-invoices-encumbrance>
+
+    <financial-invoices-balances></financial-invoices-balances>
+
+    <financial-invoices-budget-categories></financial-invoices-budget-categories>
+
+    <financial-invoices-commentuploads></financial-invoices-commentuploads>
+
+    <kendo-dialog-actions>
+      <button class="btn" tabindex="5" (click)="AddEditDialogClose()">Cancel</button>
+      <button class="btn btn-margin-left">Save</button>
+    </kendo-dialog-actions>
+  </kendo-dialog>-->
+
+

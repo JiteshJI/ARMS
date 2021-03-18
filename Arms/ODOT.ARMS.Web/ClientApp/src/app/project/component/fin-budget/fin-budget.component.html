@@ -1,0 +1,50 @@
+<kendo-grid [kendoGridBinding]="this.gridBudgetCategories" #grid class="k-fin-data forms-grid extra-grid-space"
+            [sortable]="true"
+            [height]="325">
+  <ng-template kendoGridToolbarTemplate>
+
+
+    <div class="row">
+      <div class="col-6"></div>
+      <div class="row col-6">
+        <div class="col-5 text-right"><b>Budget Category:</b></div>
+        <div class="col-6">
+          <kendo-dropdownlist [defaultItem]="this.budgetDefault"
+                              [data]="this.allBudgetCategories"
+                              [textField]="'text'"
+                              [valueField]="'value'"
+                              [value]="selectedBudget"
+                              (valueChange)="handleBudgetCategoryChange($event)">
+          </kendo-dropdownlist>
+        </div>
+        <div class="col-1 table-button">
+          <div class="add-btn-table">
+            <div class="grid-btn-bg">
+              <button type="button" class="btn add-grid-button k-button k-grid-add-command" (click)="onAddClick($event)" kendoGridAddCommand>
+                <img src="../../../../../assets/grid_toolbar_icons/Add_Toolbar_Icon.svg" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </ng-template>
+  <!-- <kendo-grid-column field="Phase" [width]="80">
+    <ng-template kendoGridGroupHeaderTemplate let-group let-field="field" let-value="value">
+      <strong>{{field}}</strong>: {{value}}
+    </ng-template>
+  </kendo-grid-column> -->
+  <kendo-grid-column field="bcAltId" title="id" [hidden]="true"></kendo-grid-column>
+  <kendo-grid-column field="budgetCatText" title="Budget Category" [width]="100">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="budgetAmt" title="Budget Amount" format="{0:c}" [width]="100">
+  </kendo-grid-column>
+
+  <kendo-grid-command-column title="View" width="10px">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <button type="button" class="btn btn-edit" kendoGridEditCommand (click)="onItemSelect(dataItem)"><span class="fa fa-eye"></span></button>
+    </ng-template>
+  </kendo-grid-command-column>
+</kendo-grid>

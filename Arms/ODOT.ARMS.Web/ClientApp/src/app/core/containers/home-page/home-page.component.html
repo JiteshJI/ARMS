@@ -1,0 +1,94 @@
+<kendo-grid [data]="gridData" [height]="300">
+  <ng-template kendoGridToolbarTemplate>
+    <div class="row">
+      <div class="col-6">
+        <span class="grid-header">Alerts</span>
+      </div>
+      <div class="col-6 table-button">
+        <div class="add-btn-table">
+          <div class="grid-btn-bg">
+            <div class="radio-wrap-inline">
+              <label class="k-label"><input kendoRadioButton type="radio" name="eventDue" /> All</label>
+              <label class="k-label"><input kendoRadioButton type="radio" name="eventDue" /> Past Due</label>
+              <label class="k-label"><input kendoRadioButton type="radio" value="M" name="eventDue" /> Today</label>
+              <label class="k-label"><input kendoRadioButton type="radio" name="eventDue" /> Upcoming</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <kendo-grid-column field="alertProjectName" title="Project Name">
+  </kendo-grid-column>
+  <kendo-grid-column field="alertDate" title="Date">
+  </kendo-grid-column>
+  <kendo-grid-column field="alertDeliverable" title="Deliverable">
+  </kendo-grid-column>
+  <kendo-grid-column field="alertDue" title="Due">
+  </kendo-grid-column>
+  <kendo-grid-command-column title="View" width="60">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <button type="button" class="btn btn-edit" kendoGridEditCommand (click)="onItemSelect(dataItem)"><span class="fa fa-eye"></span></button>
+    </ng-template>
+  </kendo-grid-command-column>
+</kendo-grid>
+
+<kendo-grid class="forms-grid home-search-grid extra-space-top"
+            [kendoGridBinding]="data"
+            [sortable]="true"
+            [resizable]="true"
+            [filterable]="true"
+            [pageable]="true"
+            [pageSize]="10">
+  <ng-template kendoGridToolbarTemplate>
+    <div class="row">
+      <div class="col-6">
+        <span class="grid-header">Search Projects</span>
+      </div>
+      <div class="col-6 table-button">
+        <div class="add-btn-table">
+          <div class="grid-btn-bg">
+            <div class="radio-wrap-inline">
+              <label class="k-label" [for]="myprj"><input type="radio" name="prj" value="M" #myprj [(ngModel)]="model.prjSearch" (click)="radioByUserClick($event)" kendoRadioButton /> My Projects</label>
+              <label class="k-label" [for]="allprj"><input type="radio" name="prj" value="A" #allprj [(ngModel)]="model.prjSearch" (click)="radioByUserClick($event)" kendoRadioButton /> All Projects</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <kendo-grid-column field="projectAltId" title="ID" width="40" [filterable]="false">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="pm" title="ODOT PM" width="160">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="pi" title="PI" width="160">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="rfpNum" title="RFP" width="120">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="pidNum" title="PID" width="120">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="agencyName" title="Agency Name" width="140">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="projectType" title="Project Type" width="140">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="projectTitleTxt" title="Project Title" width="200">
+  </kendo-grid-column>
+
+  <kendo-grid-column field="projectStatusTxt" title="Status" width="120">
+  </kendo-grid-column>
+
+  <kendo-grid-command-column title="View" width="60">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <button type="button" class="btn btn-edit" kendoGridEditCommand (click)="onItemSelect(dataItem)"><span class="fa fa-eye"></span></button>
+    </ng-template>
+  </kendo-grid-command-column>
+
+</kendo-grid>

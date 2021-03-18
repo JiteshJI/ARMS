@@ -1,0 +1,15 @@
+<kendo-menu class="sub-fin-menu menu-override">
+    <kendo-menu-item text="Funding" [disabled]="(activeTab$ | async) === 'Modifications'">
+        <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+            <a [kendoMenuItemLink]="index" routerLink="mod-funding"
+                [class.selected]="(activeTab$ | async) === 'Modifications'">
+                Modifications
+            </a>
+        </ng-template>
+    </kendo-menu-item>
+</kendo-menu>
+<form class="k-form">
+    <div class="card-body">
+        <router-outlet></router-outlet>
+    </div>
+</form>

@@ -1,0 +1,17 @@
+.roc-tab { background-color: #9E2A2B !important; }
+.standard-tab { background-color: #00B5E2 !important; }
+.pooled-tab { background-color: #DC582A !important; }
+.oril-tab { background-color: #009969 !important; }
+.save-panel {
+  height: 40px;
+  position: fixed !important;
+  bottom: 0% !important;
+  width: 100%;
+  background-color: green !important;
+  z-index: 100 !important;
+  opacity: 1;
+}
+
+.k-icon-32 {
+  font-size: 32px!important; /* Sets icon size to 32px */
+}

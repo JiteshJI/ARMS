@@ -1,0 +1,62 @@
+<kendo-dialog [width]="566" [height]="300" *ngIf="dialogStatus" (close)="closeDialog.emit(false)">
+    <kendo-dialog-titlebar class="k-prjdata">{{ title }}</kendo-dialog-titlebar>
+    <form class="k-form" [formGroup]="otherCategoryForm" (ngSubmit)="saveForm()">
+      <div class="row">
+        <div class="col-6">
+          <label for="phase">Phase <span class="k-field-info k-required">*</span></label>
+          <kendo-dropdownlist formControlName="phaseId"
+                              [value]="'phaseId'"
+                              [data]="this.phaseList"
+                              [defaultItem]="{phaseTitle: 'Select Phase',phaseId: null }"
+                              [textField]="'phaseTitle'"
+                              [valueField]="'phaseId'"
+                              [valuePrimitive]="true"
+                              required>
+          </kendo-dropdownlist>
+        </div>
+        <div class="col-6">
+          <label for="odotFunding" class="control-label">ODOT Funding<span class="k-field-info k-required">*</span></label>
+          <!--<input kendoTextBox formControlName="odotFunding" required />-->
+          <kendo-numerictextbox id="odotFunding" formControlName="odotFunding" [format]="'c2'" [min]="0"
+                                [max]="1000000000" required></kendo-numerictextbox>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <label for="title" class="control-label">Title</label>
+          <input kendoTextBox formControlName="title" />
+        </div>
+        <div class="col-6">
+          <label for="orgCostSharing" class="control-label">
+            Org Cost Sharing
+          </label>
+          <!--<input kendoTextBox formControlName="orgCostSharing" />-->
+          <kendo-numerictextbox id="orgCostSharing" formControlName="orgCostSharing" [format]="'c2'" [min]="0"
+                                [max]="1000000000"></kendo-numerictextbox>
+        </div>
+      </div>
+      <!--<div class="row">
+        <div class="offset-6 col-6">
+          <label for="status">Status<span class="k-field-info k-required">*</span></label>
+          <kendo-dropdownlist formControlName="statusId"
+                              [value]="'statusId'"
+                              [data]="this.status"
+                              [defaultItem]="{text: 'Select Status',value: null }"
+                              [textField]="'text'"
+                              [valueField]="'value'"
+                              [valuePrimitive]="true"
+                              required>
+          </kendo-dropdownlist>
+        </div>
+      </div>-->
+    </form>
+  
+    <kendo-dialog-actions>
+      <button class="btn" tabindex="5" (click)="closeDialog.emit(false)">Cancel</button>
+      <button class="btn btn-margin-left" 
+              primary="true" 
+              tabindex="6" 
+              [disabled]="!this.otherCategoryForm.valid" 
+              (click)="this.saveForm()">Save</button>
+    </kendo-dialog-actions>
+  </kendo-dialog>

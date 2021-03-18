@@ -1,0 +1,81 @@
+<div class="row">
+  <div class="col-6">
+    <label for="phaseId">Type</label>
+    <kendo-dropdownlist id="phaseId" [data]="phaseItems" tabindex="1"></kendo-dropdownlist>
+  </div>
+  <div class="col-6">
+    <label for="invRecDt">Invoice Received Date</label>
+    <kendo-datepicker id="invRecDt"
+                      [format]="'MM/dd/yyyy'"
+                      (valueChange)="onChangeInvRecDt($event)"
+                      tabindex="3"></kendo-datepicker>
+  </div>
+</div>
+<div class="row">
+  <div class="col-6">
+    <div class="row">
+      <div class="col-8">
+        <label for="invNum">Invoice Number</label>
+        <input kendoTextBox id="invNum" tabindex="2" maxlength="50" />
+      </div>
+      <div class="col-4">
+        <label for="finalInv">Final Invoice</label>
+        <input type="checkbox" kendoCheckBox id="finalInv"/>
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <label for="invDt">Invoice Date</label>
+    <kendo-datepicker id="invDt"
+                      [format]="'MM/dd/yyyy'"
+                      (valueChange)="onChangeInvRecDt($event)"
+                      tabindex="3"></kendo-datepicker>
+  </div>
+</div>
+<div class="row">
+  <div class="col-6">
+    <label for="invStatus">Status</label>
+    <kendo-dropdownlist [data]="listItems"
+                        id="invStatus"
+                        [textField]="'text'"
+                        [valueField]="'value'">
+    </kendo-dropdownlist>
+
+  </div>
+  <div class="col-6">
+    <label for="invStartDt">Invoice Start Date</label>
+    <kendo-datepicker id="invStartDt"
+                      [format]="'MM/dd/yyyy'"
+                      (valueChange)="onChangeInvStartDt($event)"
+                      tabindex="3"></kendo-datepicker>
+  </div>
+</div>
+<div class="row">
+  <div class="col-6">
+    <div class="row">
+    </div>
+  </div>
+  <div class="col-6">
+    <label for="invEndDt">Invoice End Date</label>
+    <kendo-datepicker id="invEndDt"
+                      [format]="'MM/dd/yyyy'"
+                      (valueChange)="onChangeInvEndDt($event)"
+                      tabindex="3"></kendo-datepicker>
+  </div>
+</div>
+<div class="row">
+  <div class="col-6">
+    <label for="propInvDt">Proper Invoice Date</label>
+    <kendo-datepicker id="propInvDt"
+                      [format]="'MM/dd/yyyy'"
+                      (valueChange)="onChangePropInvDt($event)"
+                      tabindex="3"></kendo-datepicker>
+  </div>
+  <div class="col-6">
+    <label for="invFinPaidDt">Invoice to Finance Paid</label>
+    <kendo-datepicker id="invFinPaidDt"
+                      [format]="'MM/dd/yyyy'"
+                      (valueChange)="onChangeInvFinPaidDt($event)"
+                      tabindex="3"></kendo-datepicker>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+
+  <kendo-grid [kendoGridBinding]="gridModBudgetData" #grid class="k-fin-data forms-grid extra-grid-space" [sortable]="true"
+              [height]="300">
+    <ng-template kendoGridToolbarTemplate>
+      <div class="row">
+        <div class="col-12 table-button ">
+          <div class="add-btn-table">
+            <div class="grid-btn-bg">
+              <button type="button" class="btn add-grid-button k-button k-grid-add-command"
+                      (click)="onAddClick(true)" kendoGridAddCommand>
+                <img src="../../../../../assets/grid_toolbar_icons/Add_Toolbar_Icon.svg" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <kendo-grid-column field="budgetCategory" title="Budget Category" [width]="100">
+      <ng-template kendoGridFooterTemplate let-column let-columnIndex="columnIndex">
+        TOTAL COST
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="title" title="Title" [width]="100"></kendo-grid-column>
+    <kendo-grid-column field="budgetAmount" title="Budget Amount" [width]="100">
+      <ng-template kendoGridFooterTemplate let-column let-columnIndex="columnIndex">
+        1234.00
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="status" title="Status" [width]="100"></kendo-grid-column>
+    <kendo-grid-command-column title="Edit" width="30px">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <button type="button" class="btn btn-edit"><span class="fas fa-pencil-alt"></span></button>
+      </ng-template>
+    </kendo-grid-command-column>
+  </kendo-grid>
+
+
