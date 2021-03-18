@@ -1,0 +1,44 @@
+<app-prj-pool-contribution-list [funding]="fundings$"
+                      (selectFunding)="onSelectFunding($event)"
+                      [fundingType]="fundingType$ | async"
+                      [fundingSource]="fundingSource$ | async"
+                      [fundingCategory]="fundingCategory$ | async"
+                      (selectFundingUpload)="onSelectUploadDoc($event)">
+  
+</app-prj-pool-contribution-list>
+
+<app-prj-pool-contribution-list [funding]="fundingData$"
+                      (selectFunding)="onSelectFunding($event)"
+                      [fundingType]="fundingType$ | async"
+                      [fundingSource]="fundingSource$ | async"
+                      [fundingCategory]="fundingCategory$ | async"
+                      (selectFundingUpload)="onSelectUploadDoc($event)">
+
+</app-prj-pool-contribution-list>
+
+<app-prj-pool-contribution-save [selectedfunding]="selectedFunding$ | async"                      
+                      [saveFundingDialogStatus]="saveFundingDialogStatus$ | async"
+                      (setSaveFundingDialogStatus)="onSetSaveFundingDialogStatus($event)"
+                      [fundingType]="fundingType$ | async"
+                      [fundingSource]="fundingSource$ | async"
+                      [fundingCategory]="fundingCategory$ | async"
+                      (saveFunding)="onSaveFunding($event)">
+</app-prj-pool-contribution-save>
+
+<app-upload-file-save [dlgTitle]="'Funding Documents Upload'"
+                      [uploadDialogStatus]="uploadDialogStatus$ | async"
+                      [projAltId]="(selectUploadSrc$ | async)?.projAltId"
+                      [srcId]="(selectUploadSrc$ | async)?.srcId"
+                      [uploadFiles]="uploads$ | async"
+                      (setUploadEventDialogStatus)="onSetUploadDialogStatus($event)"
+                      (updateUploadFiles)="onUploadFilesChange($event)"
+                      (download)="onDownload($event)"
+                      (updateFile)="onUpdateFileUpload($event)">
+</app-upload-file-save>
+
+
+
+<app-prj-pool-contribution-amount-save [projectInfo]=  "ProjectInfo$ | async" [contingencyAmount]="contingencyAmount" (saveProjInfo)= "saveProjInfo($event)">
+</app-prj-pool-contribution-amount-save>
+
+
