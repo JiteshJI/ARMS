@@ -50,6 +50,12 @@
       </ng-template>
     </kendo-menu-item>
 
+    <kendo-menu-item *ngIf="(isNewProject$ | async) === false" text="Contributions" [disabled]="(activeProjectTab$ | async) === 'Contributions'">
+      <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+        <a [kendoMenuItemLink]="index" routerLink="contributions" [class.selected]="(activeProjectTab$ | async) === 'Contributions'">Contributions</a>
+      </ng-template>
+    </kendo-menu-item>
+
     <kendo-menu-item *ngIf="(isNewProject$ | async) === false" text="Uploads" [disabled]="(activeProjectTab$ | async) === 'Uploads'">
       <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
         <a [kendoMenuItemLink]="index" routerLink="uploads" [class.selected]="(activeProjectTab$ | async) === 'Uploads'">Uploads</a>

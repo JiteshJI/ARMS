@@ -40,12 +40,12 @@ import { EditPrjEventsPageComponent } from './containers/edit-prj-events-page/ed
 import { EditPrjPhasePageComponent } from './containers/edit-prj-phase/edit-prj-phase-page.component';
 import { EditProjectPhaseResolverService } from './services/edit-project-phase-resolver.service';
 import { EditProjectAbstractResolverService } from './services/edit-project-abstract-resolver.service';
-import {ProjectInfoResolver} from './services/project-info.resolver.service';
+import { ProjectInfoResolver } from './services/project-info.resolver.service';
 import { EditPrjBudgetPageComponent } from './containers/edit-prj-budget-page/edit-prj-budget-page.component';
 import { EditFinFundingPageComponent } from './containers/edit-fin-funding-page/edit-fin-funding-page.component';
 import { EditProjectBudgetResolverService } from './services/edit-project-budgetCategory-resolver.service';
 import { EditProjectUploadsResolverService } from './services/edit-project-uploads-resolver.service';
-import {PersonnelResolverService} from './services/personnel.resolver';
+import { PersonnelResolverService } from './services/personnel.resolver';
 import { PrjPersonnelPageComponent } from './containers/prj-personel/prj-personnel-page.component';
 import { FinLedgerResolverService } from './services/get-fin-ledger-resolver.service';
 import { GetFinLedgerPageComponent } from './containers/get-fin-ledger-page/get-fin-ledger-page.component';
@@ -58,7 +58,7 @@ const routes: Routes = [
     path: 'edit',
     children: [
       {
-        path: ':projectAltId', component: PrjHeaderComponent, resolve: { data: ProjectShellResolverService},
+        path: ':projectAltId', component: PrjHeaderComponent, resolve: { data: ProjectShellResolverService },
         children: [
           { path: '', pathMatch: 'full', redirectTo: 'prj' },
           {
@@ -76,7 +76,8 @@ const routes: Routes = [
               // { path: 'events', component: EditPrjEventsComponent, resolve: { data: EditProjectEventsResolverService }, canDeactivate: [CanDeactivateGuard] },
               { path: 'events', component: EditPrjEventsPageComponent, data: { activeProjectTab: 'Events' }, resolve: { data: EditProjectEventsResolverService } }, // This probably does nor need a guard
               { path: 'personnel', component: PrjPersonnelPageComponent, data: { activeProjectTab: 'Personnel' }, resolve: { data: PersonnelResolverService } },
-              { path: 'uploads', component: EditPrjUploadsPageComponent, data: { activeProjectTab: 'Uploads' }, resolve: { data: EditProjectUploadsResolverService} }
+              { path: 'contribusions', component: PrjPersonnelPageComponent, data: { activeProjectTab: 'Contribusions' }, resolve: { data: PersonnelResolverService } },
+              { path: 'uploads', component: EditPrjUploadsPageComponent, data: { activeProjectTab: 'Uploads' }, resolve: { data: EditProjectUploadsResolverService } }
             ]
           },
           {
@@ -85,13 +86,14 @@ const routes: Routes = [
               { path: '', pathMatch: 'full', redirectTo: 'fin-overview' },
               { path: 'fin-overview', component: GetFinOverviewPageComponent, data: { activeFinanceTab: 'Overview' }, resolve: { data: FinOverviewResolverService } },
               // { path: 'fin-budget', component: FinancialBudgetComponent, data: { activeFinanceTab: 'Budget' } },
-              { path: 'fin-budget', component: EditPrjBudgetPageComponent, data: { activeFinanceTab: 'Budget' }, resolve: { data: EditProjectBudgetResolverService} },
-              { path: 'fin-funding', component: EditFinFundingPageComponent, data: { activeFinanceTab: 'Funding' }, resolve: { data: EditProjectFundingResolverService} },
+              { path: 'fin-budget', component: EditPrjBudgetPageComponent, data: { activeFinanceTab: 'Budget' }, resolve: { data: EditProjectBudgetResolverService } },
+              { path: 'fin-funding', component: EditFinFundingPageComponent, data: { activeFinanceTab: 'Funding' }, resolve: { data: EditProjectFundingResolverService } },
               {
-                path: 'fin-invoices', component: EditFinInvoicePageComponent, data: { activeFinanceTab: 'Invoices' }, resolve: { data: EditFinInvoiceResolverService} },
+                path: 'fin-invoices', component: EditFinInvoicePageComponent, data: { activeFinanceTab: 'Invoices' }, resolve: { data: EditFinInvoiceResolverService }
+              },
               { path: 'fin-ledger', component: GetFinLedgerPageComponent, data: { activeFinanceTab: 'Ledger' }, resolve: { data: FinLedgerResolverService } },
               { path: 'fin-cb', component: EditPrjCbPageComponent, data: { activeFinanceTab: 'ControllingBoard' }, resolve: { data: EditPrjCbResolverService } },
-              { path: 'fin-pooled-participating', component: GetFinPooledParticipatingPageComponent, data: { activeFinanceTab: 'ParticipatingAmounts'}}
+              { path: 'fin-pooled-participating', component: GetFinPooledParticipatingPageComponent, data: { activeFinanceTab: 'ParticipatingAmounts' } }
             ]
           },
           {
@@ -122,7 +124,7 @@ const routes: Routes = [
             path: 'prj', component: PrjComponent, data: { activeTab: 'Project', isNew: true },
             children: [
               { path: '', pathMatch: 'full', redirectTo: 'info' },
-              { path: 'info', component: PrjInfoPageComponent}
+              { path: 'info', component: PrjInfoPageComponent }
             ]
           }
         ]
