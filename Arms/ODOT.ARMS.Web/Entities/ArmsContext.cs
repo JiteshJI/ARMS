@@ -52,9 +52,9 @@ namespace ODOT.ARMS.Web.Entities
 
         public virtual DbSet<ProjectBalance> ArmsProjectBalance { get; set; }
 
-        public virtual DbSet<ArmsDeliverables> ArmsDeliverables {get;set;}
+        public virtual DbSet<ArmsDeliverables> ArmsDeliverables { get; set; }
 
-        public virtual DbSet<ArmsProjectDeliverables> ArmsProjectDeliverables {get;set;}
+        public virtual DbSet<ArmsProjectDeliverables> ArmsProjectDeliverables { get; set; }
 
         public virtual DbSet<LedgerForDD> ArmsLedger { get; set; }
 
@@ -1117,32 +1117,32 @@ namespace ODOT.ARMS.Web.Entities
                 entity.Property(invd => invd.EntryDt).HasColumnName("ENTRY_DT").HasDefaultValueSql("getdate()");
 
             });
-       
 
-            
+
+
             modelBuilder.Entity<ArmsProjectDeliverables>(entity =>
             {
-              entity.ToTable("ARMS_PROJECT_DELIVERABLES");
-              entity.HasKey(prjdev => prjdev.ProjectDeliverableId);           
-              entity.Property(prjdev => prjdev.ProjectDeliverableId).HasColumnName("PROJ_DELIVERABLE_ID").HasDefaultValueSql("(newid())");
-              entity.Property( prjdev => prjdev.ProjId).HasColumnName("PROJ_ID");
-              entity.Property(prjdev => prjdev.DeliverableId).HasColumnName("DELIVERABLE_ID");
-              entity.Property(prjdev => prjdev.EntryDt).HasColumnName("ENTRY_DT").HasDefaultValueSql("(getdate())");
-              entity.Property(prjdev => prjdev.UserId).IsRequired().HasColumnName("USER_ID").HasMaxLength(50);
-              entity.HasOne(prjdev => prjdev.armsDeliverables).WithMany(dev => dev.ArmsProjectDeliverables).HasForeignKey(prjdev => prjdev.DeliverableId)
-              .OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_ARMS_PROJECT_DELIVERABLES_ARMS_DELIVERABLES");
+                entity.ToTable("ARMS_PROJECT_DELIVERABLES");
+                entity.HasKey(prjdev => prjdev.ProjectDeliverableId);
+                entity.Property(prjdev => prjdev.ProjectDeliverableId).HasColumnName("PROJ_DELIVERABLE_ID").HasDefaultValueSql("(newid())");
+                entity.Property(prjdev => prjdev.ProjId).HasColumnName("PROJ_ID");
+                entity.Property(prjdev => prjdev.DeliverableId).HasColumnName("DELIVERABLE_ID");
+                entity.Property(prjdev => prjdev.EntryDt).HasColumnName("ENTRY_DT").HasDefaultValueSql("(getdate())");
+                entity.Property(prjdev => prjdev.UserId).IsRequired().HasColumnName("USER_ID").HasMaxLength(50);
+                entity.HasOne(prjdev => prjdev.armsDeliverables).WithMany(dev => dev.ArmsProjectDeliverables).HasForeignKey(prjdev => prjdev.DeliverableId)
+                .OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_ARMS_PROJECT_DELIVERABLES_ARMS_DELIVERABLES");
             });
 
             modelBuilder.Entity<ArmsDeliverables>(entity =>
             {
-              entity.ToTable("ARMS_DELIVERABLES");
-              entity.HasKey(dev => dev.DeliverableId);           
-              entity.Property(dev => dev.DeliverableId).HasColumnName("DELIVERABLE_ID").HasDefaultValueSql("(newid())");
-              entity.Property( dev => dev.DeliverableTxt).HasColumnName("DELIVERABLE_TXT");
-              entity.Property(dev => dev.ProjAltId).HasColumnName("PROJ_ALT_ID");
-              entity.Property(e => e.EntryDt).HasColumnName("ENTRY_DT").HasDefaultValueSql("(getdate())");
-              entity.Property(e => e.UserId).IsRequired().HasColumnName("USER_ID").HasMaxLength(50);
-              entity.Property(t => t.ActiveInd).HasColumnName("ACTIVE_IND");
+                entity.ToTable("ARMS_DELIVERABLES");
+                entity.HasKey(dev => dev.DeliverableId);
+                entity.Property(dev => dev.DeliverableId).HasColumnName("DELIVERABLE_ID").HasDefaultValueSql("(newid())");
+                entity.Property(dev => dev.DeliverableTxt).HasColumnName("DELIVERABLE_TXT");
+                entity.Property(dev => dev.ProjAltId).HasColumnName("PROJ_ALT_ID");
+                entity.Property(e => e.EntryDt).HasColumnName("ENTRY_DT").HasDefaultValueSql("(getdate())");
+                entity.Property(e => e.UserId).IsRequired().HasColumnName("USER_ID").HasMaxLength(50);
+                entity.Property(t => t.ActiveInd).HasColumnName("ACTIVE_IND");
                 entity.Property(t => t.DeliverableType).HasColumnName("DELIVERABLE_TYPE");
                 entity.Property(t => t.DeliverableAltId).HasColumnName("DELIVERABLE_ALT_ID").HasDefaultValueSql("(newid())");
             });
@@ -1161,10 +1161,9 @@ namespace ODOT.ARMS.Web.Entities
             {
 
                 entity.ToTable("ARMS_PULLING_CONTRIBUTION");
-
+                entity.HasKey(dev => dev.ContributionId);
                 entity.Property(e => e.ContributionId)
                   .HasColumnName("CONTROLLING_BOARD_ID");
-
 
                 entity.Property(e => e.ProjectId)
                  .HasColumnName("PROJ_ID");
